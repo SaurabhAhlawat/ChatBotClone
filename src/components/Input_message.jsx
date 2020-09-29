@@ -7,12 +7,13 @@ function Input(props) {
   }
 
   return (
-    <input
+    <textarea
       id="btn-input"
       type="text"
       className="form-control chat_input"
-      placeholder="Write your message here..."
+      placeholder="Type something... or use @ for search"
       onChange={changes}
+      onKeyDown={props.onEnterPress}
     />
   );
 }

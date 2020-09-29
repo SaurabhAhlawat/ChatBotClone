@@ -7,45 +7,83 @@
   font-family: "Poppins", sans-serif;
 }
 
+@media only screen and (max-width: 1000px) {
+  #chatBot-id {
+    width: 1000%;
+    right: 100px;
+  }
+  .fab-icon-a {
+    right: 20px !important;
+    width: 50px !important;
+    height: 50px !important;
+  }
+  .fab-img {
+    width: 50% !important;
+  }
+}
+
+#btn-input::-webkit-input-placeholder {
+  color: #565d56;
+  text-align: left;
+}
 #btn-input {
-  width: 80%;
+  margin: 0px 10px;
+  width: 65%;
   margin-bottom: 0;
   border-radius: 20px;
   color: #000;
   border: none;
   text-align: left;
+  resize: none !important;
 }
-#btn-input::-webkit-input-placeholder {
-  color: #000;
-  text-align: left;
+/*Up_arrow*/
+
+.downButton:active {
+  position: relative;
+  top: 1px;
 }
 
-.myButton {
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 85, 121, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
-  );
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  border-radius: 100%;
-  text-align: center;
+.down_button {
   cursor: pointer;
+  size: 1%;
+  max-width: 25px;
+  max-height: 25px;
 }
+
+.custom-layout {
+  position: absolute;
+  border: 2px solid #02b4de;
+  border-radius: 5px;
+  width: 94%;
+  bottom: 65px;
+  background-color: #fff;
+  margin-left: -5px;
+}
+
+.custom-layout button {
+  background-color: #fff;
+  width: 100%;
+  text-align: left;
+  font-size: 11px;
+  border: none;
+  padding: 3px;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+/*Send Buttons*/
 
 .myButton:active {
   position: relative;
   top: 1px;
 }
 .send_image {
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
   display: inline;
-  margin-top: 10px;
 }
 .panel-footer {
-  margin-top: 5px;
-  padding: 10px 0px 5px;
+  text-align: left !important;
   background-color: #fff;
   border: none;
   border-bottom-left-radius: 66%;
@@ -54,6 +92,7 @@
 .input-group {
   -webkit-box-sizing: inherit;
   display: block;
+  justify-content: space-between;
 }
 .panel {
   margin-bottom: 0px;
@@ -180,8 +219,8 @@
     rgba(0, 212, 255, 1) 100%
   );
   display: inline-block;
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   border-radius: 100%;
   text-align: center;
   cursor: pointer;
@@ -191,7 +230,7 @@
 .fab-img {
   width: 60%;
   display: inline;
-  margin-top: 12px;
+  margin-top: 11px;
 }
 
 /*Type2 ButtonMessage with recieve message*/
@@ -207,5 +246,5 @@
 }
 .msg_container > .btn_messs {
   display: block !important;
-  margin: -5px;
+  margin: -5px -1px;
 }

@@ -3,65 +3,102 @@
   z-index: 2147483646;
   right: 200px;
   bottom: 30px;
+  width: 1000%;
+  font-family: "Poppins", sans-serif;
 }
 
-.col-md-2,
-.col-md-10 {
-  padding: 0px;
+@media only screen and (max-width: 1000px) {
+  #chatBot-id {
+    width: 1000%;
+    right: 100px;
+  }
+  .fab-icon-a {
+    right: 20px !important;
+    width: 50px !important;
+    height: 50px !important;
+  }
+  .fab-img {
+    width: 50% !important;
+  }
 }
 
+#btn-input::-webkit-input-placeholder {
+  color: #565d56;
+  text-align: left;
+}
 #btn-input {
-  width: 75%;
+  margin: 0px 10px;
+  width: 65%;
   margin-bottom: 0;
-  padding-left: 20px;
   border-radius: 20px;
   color: #000;
+  border: none;
+  text-align: left;
+  resize: none !important;
 }
-#btn-input::-webkit-input-placeholder {
-  color: #000;
-}
-.icon-heading-chatBot {
-  float: left;
-  width: 20%;
-}
-.myButton {
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 85, 121, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
-  );
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  border-radius: 100%;
-  text-align: center;
+/*Up_arrow*/
 
-  cursor: pointer;
+.downButton:active {
+  position: relative;
+  top: 1px;
 }
+
+.down_button {
+  cursor: pointer;
+  size: 1%;
+  max-width: 25px;
+  max-height: 25px;
+}
+
+.custom-layout {
+  position: absolute;
+  border: 2px solid #02b4de;
+  border-radius: 5px;
+  width: 94%;
+  bottom: 65px;
+  background-color: #fff;
+  margin-left: -5px;
+}
+
+.custom-layout button {
+  background-color: #fff;
+  width: 100%;
+  text-align: left;
+  font-size: 11px;
+  border: none;
+  padding: 3px;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+/*Send Buttons*/
 
 .myButton:active {
   position: relative;
   top: 1px;
 }
 .send_image {
+  cursor: pointer;
+  width: 25px;
+  height: 25px;
   display: inline;
-  margin-top: 4px;
 }
 .panel-footer {
-  margin-top: 5px;
+  text-align: left !important;
   background-color: #fff;
+  border: none;
   border-bottom-left-radius: 66%;
   border-bottom-right-radius: 66%;
 }
-
+.input-group {
+  -webkit-box-sizing: inherit;
+  display: block;
+  justify-content: space-between;
+}
 .panel {
   margin-bottom: 0px;
   background-color: #fff;
 }
-.panel-title {
-  color: #fff;
-}
+
 .chat-window {
   bottom: 0;
   margin-left: 10%;
@@ -96,47 +133,44 @@
   border-radius: 10px 10px 0px 0px;
 }
 .msg_receive {
-  background: #ff7f00;
   padding-left: 0;
   margin-left: 0;
-  focus: right;
+  max-width: 200px;
+  text-align: left;
+  background-color: #02b4de;
 }
 .msg_sent {
-  background: #ff7f00;
+  background-color: #02b4de;
   padding-bottom: 20px !important;
   margin-right: 0px;
   margin-left: 0px;
-  focus: right;
+  text-align: right;
+  max-width: 200px;
 }
 .messages {
-  background: rgb(255, 255, 255);
-  padding: 5px;
+  /* background: rgb(255, 255, 255); */
+  color: #fff;
+  padding: 10px;
+  padding-left: 10px;
   border-radius: 12px;
+  font-family: "Montserrat", sans-serif;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  max-width: 500%;
 }
 .messages > p {
-  font-size: 9px;
+  font-size: 11px;
   margin: 0 0 0.2rem 0;
+  word-wrap: break-word;
+  text-align: left;
 }
 .messages > time {
-  font-size: 11px;
-  color: #ccc;
+  font-size: 10px;
+  color: #000;
+  text-align: left;
 }
 .msg_container {
   padding: 10px;
   overflow: hidden;
   display: flex;
-}
-
-.base_receive .avatar {
-  clear: left;
-  width: 60%;
-}
-
-.base_sent .avatar {
-  clear: right;
-  width: 60%;
 }
 
 .base_sent {
@@ -146,6 +180,11 @@
 
 .msg_sent > time {
   float: left;
+}
+
+.icon-heading-chatBot {
+  float: left;
+  width: 60%;
 }
 
 /*ScrollBar of ChatBot design*/
@@ -180,8 +219,8 @@
     rgba(0, 212, 255, 1) 100%
   );
   display: inline-block;
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   border-radius: 100%;
   text-align: center;
   cursor: pointer;
@@ -191,5 +230,21 @@
 .fab-img {
   width: 60%;
   display: inline;
-  margin-top: 12px;
+  margin-top: 11px;
+}
+
+/*Type2 ButtonMessage with recieve message*/
+.btn_mess {
+  cursor: pointer;
+  border: 2px solid #02b4de;
+  border-radius: 20px;
+  padding: 5px;
+  font-size: 11px;
+  margin: 2px;
+  float: left;
+  text-align: left;
+}
+.msg_container > .btn_messs {
+  display: block !important;
+  margin: -5px -1px;
 }

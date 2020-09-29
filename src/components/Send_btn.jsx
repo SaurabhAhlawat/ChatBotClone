@@ -6,7 +6,7 @@ function Button(props) {
     <a className="myButton" onClick={props.click} type="Submit">
       <img
         className="send_image"
-        src="/images/send16x16.png"
+        src="/images/arrow-right.png"
         alt="send_buton"
       />
     </a>
