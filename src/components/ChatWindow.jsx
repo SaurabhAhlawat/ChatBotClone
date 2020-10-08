@@ -113,14 +113,18 @@ function ChatWindow(props) {
   useEffect(() => {
     // console.log(temp);
     const user = Cookies.get(props.cookieKey);
-
+    console.log("cookie : " + user);
+    console.log(
+      "if cookie is undefined means no cookie found, else we found cookie : " +
+        user
+    );
     if (user) {
       //we have cookie
 
       var sessionCookie = {
         sessionid: user,
       };
-      // console.log("line 114");
+      console.log("we found cookie");
       // const test = { rest: { ph: 121212, em: "anan@" } };
 
       // const test2 = {
@@ -131,7 +135,9 @@ function ChatWindow(props) {
 
       Axios.post(props.cookieUrl, sessionCookie)
         .then((success) => {
-          console.log(success);
+          console.log(
+            "in success of cookie-fetching-api for fetching user info from cookie"
+          );
           //Found cookie
           setCookieData({ ...success.response });
           temp = {
@@ -144,6 +150,7 @@ function ChatWindow(props) {
 
           Axios.post(props.url, temp)
             .then((success) => {
+              console.log("now: fetching data from abcl.vitt.ai");
               //sp is for text messages array. we are storing it.
               //btn is for button UI messages array. we are storing it.
               var sp = [];
@@ -196,12 +203,19 @@ function ChatWindow(props) {
             })
             .catch((error) => {
               // console.log(error);
+
+              console.log(
+                "some error in fetching data from abcl.vitt.ai : " + error
+              );
             });
         })
         .catch((error) => {
-          console.log("" + error);
+          console.log(
+            "if cookie-fetching-api crashes or any error like : " + error
+          );
         });
     } else {
+      console.log("no cookies found");
       temp = {
         session: cookieData,
         query: "hi!",
@@ -211,7 +225,7 @@ function ChatWindow(props) {
       };
     }
 
-    console.log(temp);
+    // console.log(temp);
   }, []);
 
   /*After clicking on send either by pressing enter or by pressing send button*/
