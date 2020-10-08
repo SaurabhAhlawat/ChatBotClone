@@ -239,9 +239,12 @@ function ChatWindow(props) {
       temp.query.toString().trim() === null ||
       temp.query.toString().trim() === ""
     ) {
+      console.log(
+        "isClicked: query is blank, please enter something in textarea"
+      );
     } else {
       // console.log(temp);
-
+      console.log("isClicked: query is not blank");
       Axios.post(props.url, temp)
         .then((success) => {
           // console.log("printed");
@@ -251,12 +254,16 @@ function ChatWindow(props) {
           var btn = [];
           //type==1 for news
           var news = [];
-
+          console.log(
+            "isClicked: inside success of abcl.vitt.ai fetching api "
+          );
           /**UP Arrow */
           var trial = [];
           success.data.result.fulfillment.data.DownButton.GenerativeQuestion.map(
             (m, i) => {
               // console.log(i);
+
+              console.log("isClicked: inside Generative Question array");
               if (trial.length < 10) trial.push(m);
             }
           );
@@ -265,6 +272,8 @@ function ChatWindow(props) {
 
           success.data.result.fulfillment.messages.map((m) => {
             // console.log("type: " + m.type + " speec: " + m.speech);
+
+            console.log("isClicked: inside messages array");
             if (m.type === 0 && m.speech !== "") {
               m.speech.map((mm) => {
                 var inital_message = {
@@ -298,6 +307,10 @@ function ChatWindow(props) {
           setButtonValue([].concat(btn));
         })
         .catch((error) => {
+          console.log(
+            "isClicked: catch of abcl.vitt.ai fetching api and error is: " +
+              error
+          );
           /**If we get 500 Internal error. then we will show this query. */
           var inital_message = {
             session: cookieData,
