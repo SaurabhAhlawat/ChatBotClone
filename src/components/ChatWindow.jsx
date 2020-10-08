@@ -233,7 +233,7 @@ function ChatWindow(props) {
   function isClicked(bool) {
     setBottomSheet({ bottomSheet: false });
     var count = 1;
-    // console.log(bool);
+    console.log("isClicked: request: " + temp);
     if (
       temp.query.toString().trim() === undefined ||
       temp.query.toString().trim() === null ||
