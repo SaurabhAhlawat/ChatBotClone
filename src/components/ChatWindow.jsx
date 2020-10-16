@@ -12,7 +12,7 @@ import DownButton from "./DownButton";
 import ReactBottomsheet from "react-bottomsheet";
 
 function ChatWindow(props) {
-  const [cookieData, setCookieData] = useState({});
+  const [cookieData, setCookieData] = useState(-1);
 
   const [value, setValue] = useState([]);
   const [buttonValue, setButtonValue] = useState([]);
@@ -113,7 +113,8 @@ function ChatWindow(props) {
   useEffect(() => {
     // console.log(temp);
     const user = Cookies.get(props.cookieKey);
-    console.log("cookie : " + user);
+    console.log("cookie : ");
+    console.log(user);
     console.log(
       "if cookie is undefined means no cookie found, else we found cookie : " +
         user
@@ -121,9 +122,9 @@ function ChatWindow(props) {
     if (user) {
       //we have cookie
 
-      var sessionCookie = {
-        sessionid: user,
-      };
+      // var sessionCookie = {
+      //   sessionid: user,
+      // };
       console.log("we found cookie");
       // const test = { rest: { ph: 121212, em: "anan@" } };
 
@@ -133,13 +134,7 @@ function ChatWindow(props) {
       // };
       // console.log(test2);
 
-      Axios.post(props.cookieUrl, sessionCookie)
-        .then((success) => {
-          console.log(
-            "in success of cookie-fetching-api for fetching user info from cookie"
-          );
-          //Found cookie
-          setCookieData({ ...success.response });
+      setCookieData(user);
           temp = {
             session: cookieData,
             query: "hi!",
@@ -204,16 +199,24 @@ function ChatWindow(props) {
             .catch((error) => {
               // console.log(error);
 
-              console.log(
-                "some error in fetching data from abcl.vitt.ai : " + error
-              );
+              console.log("some error in fetching data from abcl.vitt.ai : ");
+              console.log(error);
             });
-        })
-        .catch((error) => {
-          console.log(
-            "if cookie-fetching-api crashes or any error like : " + error
-          );
-        });
+
+
+      // console.log(sessionCookie);
+      // Axios.post(props.cookieUrl, sessionCookie)
+      //   .then((success) => {
+      //     console.log(
+      //       "in success of cookie-fetching-api for fetching user info from cookie"
+      //     );
+      //     //Found cookie
+          
+      //   })
+      //   .catch((error) => {
+      //     console.log("if cookie-fetching-api crashes or any error like : ");
+      //     console.log(error);
+      //   });
     } else {
       console.log("no cookies found");
       temp = {
@@ -223,6 +226,66 @@ function ChatWindow(props) {
         time: startTime(),
         count: value.length,
       };
+
+      Axios.post(props.url, temp)
+        .then((success) => {
+          console.log("now: fetching data from abcl.vitt.ai");
+          //sp is for text messages array. we are storing it.
+          //btn is for button UI messages array. we are storing it.
+          var sp = [];
+          var btn = [];
+
+          /**UP Arrow */
+
+          var trial = [];
+          success.data.result.fulfillment.data.DownButton.GenerativeQuestion.map(
+            (m, i) => {
+              // console.log(i);
+              if (trial.length < 10) trial.push(m);
+            }
+          );
+          set_down_button_data([].concat(trial));
+          /** */
+
+          success.data.result.fulfillment.messages.map((m) => {
+            console.log(m);
+            // console.log("type: " + m.type + " speec: " + m.speech);
+            if (m.type === 0 && m.speech !== "") {
+              m.speech.map((mm) => {
+                var inital_message = {
+                  session: cookieData,
+                  query: mm,
+                  type: "receive",
+                  time: startTime(),
+                  count: value.length,
+                };
+                sp.push(inital_message);
+              });
+            } else if (m.type === 2) {
+              m.replies.map((mm) => {
+                var inital_message = {
+                  session: cookieData,
+                  query: mm,
+                  type: "button",
+                  time: startTime(),
+                  count: value.length,
+                };
+                // console.log("replies: " + mm);
+                btn.push(inital_message);
+              });
+            }
+          });
+          // console.log(btn);
+          // console.log(sp);
+          setValue([...value].concat(sp));
+          setButtonValue([].concat(btn));
+        })
+        .catch((error) => {
+          // console.log(error);
+
+          console.log("some error in fetching data from abcl.vitt.ai : ");
+          console.log(error);
+        });
     }
 
     // console.log(temp);
@@ -233,7 +296,8 @@ function ChatWindow(props) {
   function isClicked(bool) {
     setBottomSheet({ bottomSheet: false });
     var count = 1;
-    console.log("isClicked: request: " + temp);
+    console.log("isClicked: request: ");
+    console.log(temp);
     if (
       temp.query.toString().trim() === undefined ||
       temp.query.toString().trim() === null ||
