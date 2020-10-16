@@ -112,6 +112,7 @@ function ChatWindow(props) {
   /*API CALL for first GoodMorning messages when user open the chat! */
   useEffect(() => {
     console.log(temp);
+
     const user = Cookies.get(props.cookieKey);
     console.log("cookie : ");
     console.log(user);
@@ -142,7 +143,8 @@ function ChatWindow(props) {
             time: startTime(),
             count: value.length,
           };
-
+          console.log("session of temp: ")
+          console.log(temp.session)
           Axios.post(props.url, temp)
             .then((success) => {
               console.log("now: fetching data from abcl.vitt.ai");
@@ -227,6 +229,9 @@ function ChatWindow(props) {
         count: value.length,
       };
       console.log(temp)
+      
+      console.log("session of temp: ")
+      console.log(temp.session)
       Axios.post(props.url, temp)
         .then((success) => {
           console.log("now: fetching data from abcl.vitt.ai");
