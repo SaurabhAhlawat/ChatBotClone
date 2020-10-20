@@ -5,7 +5,6 @@ import Input from "./Input_message";
 import Button from "./Send_btn";
 import Axios from "axios";
 import "../css/chatbot.css";
-import qs from "qs";
 import ButtonMessage from "./btn_message";
 import Cookies from "js-cookie";
 import DownButton from "./DownButton";
@@ -424,13 +423,13 @@ function ChatWindow(props) {
   });
 
   /*Scroll to Bottom Easy UI*/
-  const messagesEndRef = useRef(null);
+  // const messagesEndRef = useRef(null);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-  };
+  // const scrollToBottom = () => {
+  //   messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  // };
 
-  useEffect(scrollToBottom, [value, buttonValue]);
+  // useEffect(scrollToBottom, [value, buttonValue]);
 
   //when user press enter from keyboard the text gets submitted
   const onEnterPressKeyBoard = (e) => {
@@ -443,15 +442,20 @@ function ChatWindow(props) {
   /**Return Type */
   http: return (
     <div
-      className="row chat-window "
+      className="chat-window "
       id="chatBot-id"
-      style={{ marginLeft: "120px;", display: props.active ? "block" : "none" }}
+      style={{  display: props.active ? "block" : "none" }}
     >
-      <div className="col-md">
+      <div >
         <div className="panel panel-default">
           <div className="panel-heading top-bar">
-            <div className="col-md">
-              <img className="icon-heading-chatBot" src="images/V1.png" />
+            <div >
+              
+              <div style={{color:"white",fontSize:"15px",float:"left"}}>Aditya Birla Capitals</div>
+              {/* <img className="icon-heading-chatBot" src="https://c3india.s3.ap-south-1.amazonaws.com/public_assets/data/000/000/344/original/BirlaCapitalLogo_jpeg?1538291690" /> */}
+              <div  style={{textAlign: "right"}}>
+                <img style={{cursor:"pointer"}} class="close-icon-heading-chatbot" onClick={props.closeChatbot}  src="/images/remove.png"/>
+              </div>
             </div>
           </div>
           <div className="panel-body msg_container_base">
@@ -468,7 +472,7 @@ function ChatWindow(props) {
             >
               <div>{downbuttons}</div>
             </ReactBottomsheet>
-            <div ref={messagesEndRef} />
+            {/* <div ref={messagesEndRef} /> */}
           </div>
           <div className="panel-footer">
             <div className="input-group">

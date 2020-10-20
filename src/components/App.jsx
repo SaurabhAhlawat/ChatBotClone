@@ -10,18 +10,23 @@ function App() {
   function handleClick() {
     item.isActive
       ? setitem({ isActive: false, icon: "/images/Fab64x64.png" })
-      : setitem({ isActive: true, icon: "/images/hide64x64.png" });
+      : setitem({ isActive: true, icon: "-1" });
+  }
+  function closeChatbot(){
+    setitem({ isActive: false, icon: "/images/Fab64x64.png" })
   }
   return (
     <>
       <Chat
         active={item.isActive}
+        closeChatbot={closeChatbot}
         url="https://ABCL.vitt.ai/"
         cookieKey="sessionid"
       />
+      {item.icon==="-1"?null:
       <a onClick={handleClick} class="fab-icon-a">
         <img src={item.icon} alt="Chat_facility" class="fab-img" />
-      </a>
+      </a>}
     </>
   );
 }

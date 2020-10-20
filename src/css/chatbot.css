@@ -1,16 +1,44 @@
 #chatBot-id {
   position: fixed;
   z-index: 2147483646;
-  right: 200px;
+  right: 100px;
   bottom: 30px;
-  width: 1000%;
+  width: 100%;
   font-family: "Poppins", sans-serif;
+
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3) !important;
 }
 
 @media only screen and (max-width: 1000px) {
   #chatBot-id {
-    width: 1000%;
-    right: 100px;
+    width: 100%;
+    right: 50px;
+    bottom: 0px;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+  }
+  .chat-window {
+    max-width: 100% !important;
+  }
+  .top-bar {
+    max-width: 100% !important;
+  }
+  .panel {
+    border: none;
+  }
+  .msg_container_base {
+    height: 80vh !important;
+    margin: auto;
+  }
+  .panel-footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+  }
+  .custom-layout {
+    position: absolute;
+    bottom: 72px !important;
   }
   .fab-icon-a {
     right: 20px !important;
@@ -21,14 +49,17 @@
     width: 50% !important;
   }
 }
-
+#my_form {
+  width: 100%;
+  display: table;
+}
 #btn-input::-webkit-input-placeholder {
   color: #565d56;
   text-align: left;
 }
 #btn-input {
-  margin: 0px 10px;
-  width: 65%;
+  display: table-cell;
+  width: 100%;
   margin-bottom: 0;
   border-radius: 20px;
   color: #000;
@@ -37,6 +68,12 @@
   resize: none !important;
 }
 /*Up_arrow*/
+.downButton {
+  display: table-cell;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0px 10px 0px 0px;
+}
 
 .downButton:active {
   position: relative;
@@ -46,13 +83,16 @@
 .down_button {
   cursor: pointer;
   size: 1%;
+  display: block;
   max-width: 25px;
   max-height: 25px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .custom-layout {
   position: absolute;
-  border: 2px solid #02b4de;
+  border: 2px solid #3e593c;
   border-radius: 5px;
   width: 94%;
   bottom: 65px;
@@ -71,6 +111,10 @@
 }
 
 /*Send Buttons*/
+.myButton {
+  display: table-cell;
+  padding: 0px 0px 0px 10px;
+}
 
 .myButton:active {
   position: relative;
@@ -80,14 +124,15 @@
   cursor: pointer;
   width: 25px;
   height: 25px;
-  display: inline;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
 }
 .panel-footer {
   text-align: left !important;
   background-color: #fff;
   border: none;
-  border-bottom-left-radius: 66%;
-  border-bottom-right-radius: 66%;
+  width: 100%;
 }
 .input-group {
   -webkit-box-sizing: inherit;
@@ -101,14 +146,8 @@
 
 .chat-window {
   bottom: 0;
-  margin-left: 10%;
   max-width: 300px;
 }
-.chat-window > div > .panel {
-  border-radius: 125px 125px 20px 20px;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
-}
-
 .msg_container_base {
   background: #fff;
   margin: 0;
@@ -117,35 +156,30 @@
   overflow-x: hidden;
 }
 .top-bar {
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 85, 121, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
-  );
-  color: white;
+  background: #3e593c !important;
   padding-left: 20px;
   font-size: 10%;
   position: relative;
   overflow: hidden;
   max-width: 300px;
   max-height: 50px;
-  border-radius: 10px 10px 0px 0px;
 }
 .msg_receive {
   padding-left: 0;
   margin-left: 0;
   max-width: 200px;
   text-align: left;
-  background-color: #02b4de;
+  background-color: #dfdfdf;
+  color: #000 !important;
 }
 .msg_sent {
-  background-color: #02b4de;
+  background: #3e593c !important;
   padding-bottom: 20px !important;
   margin-right: 0px;
   margin-left: 0px;
   text-align: right;
   max-width: 200px;
+  color: #fff !important;
 }
 .messages {
   /* background: rgb(255, 255, 255); */
@@ -164,7 +198,7 @@
 }
 .messages > time {
   font-size: 10px;
-  color: #000;
+  color: #90a4ae;
   text-align: left;
 }
 .msg_container {
@@ -212,12 +246,7 @@
   right: 100px;
   bottom: 50px;
 
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 85, 121, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
-  );
+  background: #3e593c !important;
   display: inline-block;
   width: 50px;
   height: 50px;

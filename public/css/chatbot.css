@@ -1,9 +1,9 @@
 #chatBot-id {
   position: fixed;
   z-index: 2147483646;
-  right: 200px;
+  right: 100px;
   bottom: 30px;
-  width: 1000%;
+  width: 100%;
   font-family: "Poppins", sans-serif;
 }
 
@@ -117,13 +117,7 @@
   overflow-x: hidden;
 }
 .top-bar {
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 85, 121, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
-  );
-  color: white;
+  background: #3e593c !important;
   padding-left: 20px;
   font-size: 10%;
   position: relative;
