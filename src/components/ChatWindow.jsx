@@ -429,13 +429,13 @@ function ChatWindow(props) {
   });
 
   /*Scroll to Bottom Easy UI*/
-  const messagesEndRef = useRef(null);
+  // const messagesEndRef = useRef(null);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-  };
+  // const scrollToBottom = () => {
+  //   messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  // };
 
-  useEffect(scrollToBottom, [value, buttonValue]);
+  // useEffect(scrollToBottom, [value, buttonValue]);
 
   //when user press enter from keyboard the text gets submitted
   const onEnterPressKeyBoard = (e) => {
@@ -471,7 +471,7 @@ function ChatWindow(props) {
               <div style={{padding:"10px" ,float:"right"}}>{loader!=-1?<LoaderDots size="small" theme="muted" />:null}</div>
             </div>
             
-            <div ref={messagesEndRef} />
+            {/* <div ref={messagesEndRef} /> */}
           </div>
           {/**Bottom sheet implementation */}
           <ReactBottomsheet
