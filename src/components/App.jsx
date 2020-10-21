@@ -24,7 +24,7 @@ function App() {
         cookieKey="sessionid"
       />
       {item.icon==="-1"?null:
-      <a onClick={handleClick} class="fab-icon-a">
+      <a onClick={(m)=>{m.preventDefault();handleClick()}} class="fab-icon-a">
         <img src={item.icon} alt="Chat_facility" class="fab-img" />
       </a>}
     </>

@@ -11,7 +11,7 @@ function Input(props) {
       id="btn-input"
       type="text"
       className="form-control chat_input"
-      placeholder="Type something... or use @ for search"
+      placeholder="Type a message..."
       onChange={changes}
       onKeyDown={props.onEnterPress}
     />

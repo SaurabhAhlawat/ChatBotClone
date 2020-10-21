@@ -9,6 +9,7 @@ import ButtonMessage from "./btn_message";
 import Cookies from "js-cookie";
 import DownButton from "./DownButton";
 import ReactBottomsheet from "react-bottomsheet";
+import { LoaderDots } from '@thumbtack/thumbprint-react';
 
 function ChatWindow(props) {
   const [cookieData, setCookieData] = useState(-1);
@@ -16,7 +17,7 @@ function ChatWindow(props) {
   const [value, setValue] = useState([]);
   const [buttonValue, setButtonValue] = useState([]);
   const [newsValue, setnewsValue] = useState([]);
-
+  const [loader,setLoader]=useState(-1);
   const [down_button_data, set_down_button_data] = useState([]);
 
   /**will return Current Time */
@@ -298,6 +299,9 @@ function ChatWindow(props) {
   /*After clicking on send either by pressing enter or by pressing send button*/
 
   function isClicked(bool) {
+    setLoader(1);
+    
+    setValue([...value,temp]);
     setBottomSheet({ bottomSheet: false });
     var count = 1;
     console.log("isClicked: request: ");
@@ -310,6 +314,7 @@ function ChatWindow(props) {
       console.log(
         "isClicked: query is blank, please enter something in textarea"
       );
+      setLoader(-1);
     } else {
       // console.log(temp);
       console.log("isClicked: query is not blank");
@@ -371,8 +376,9 @@ function ChatWindow(props) {
           // console.log(btn);
           // console.log(sp);
 
-          setValue([...value, temp].concat(sp));
+          setValue([...value,temp].concat(sp));
           setButtonValue([].concat(btn));
+          setLoader(-1);
         })
         .catch((error) => {
           console.log(
@@ -387,8 +393,8 @@ function ChatWindow(props) {
             time: startTime(),
             count: value.length,
           };
-          setValue([...value, temp, inital_message]);
-
+          setValue([...value,temp, inital_message]);
+          setLoader(-1);
           // console.log(error);
         });
 
@@ -423,13 +429,13 @@ function ChatWindow(props) {
   });
 
   /*Scroll to Bottom Easy UI*/
-  // const messagesEndRef = useRef(null);
+  const messagesEndRef = useRef(null);
 
-  // const scrollToBottom = () => {
-  //   messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-  // };
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  };
 
-  // useEffect(scrollToBottom, [value, buttonValue]);
+  useEffect(scrollToBottom, [value, buttonValue]);
 
   //when user press enter from keyboard the text gets submitted
   const onEnterPressKeyBoard = (e) => {
@@ -447,14 +453,14 @@ function ChatWindow(props) {
       style={{  display: props.active ? "block" : "none" }}
     >
       <div >
-        <div className="panel panel-default">
+        <div className="panel-default">
           <div className="panel-heading top-bar">
             <div >
               
-              <div style={{color:"white",fontSize:"15px",float:"left"}}>Aditya Birla Capitals</div>
+              <div style={{color:"white",fontSize:"15px",float:"left"}}>Aditya Birla Finance Limited</div>
               {/* <img className="icon-heading-chatBot" src="https://c3india.s3.ap-south-1.amazonaws.com/public_assets/data/000/000/344/original/BirlaCapitalLogo_jpeg?1538291690" /> */}
               <div  style={{textAlign: "right"}}>
-                <img style={{cursor:"pointer"}} class="close-icon-heading-chatbot" onClick={props.closeChatbot}  src="/images/remove.png"/>
+                <img style={{cursor:"pointer"}} class="close-icon-heading-chatbot" onClick={(m)=>{m.preventDefault();props.closeChatbot()}}  src="/images/remove.png"/>
               </div>
             </div>
           </div>
@@ -462,9 +468,13 @@ function ChatWindow(props) {
             {receives}
             <div className="row msg_container ">
               <div class="btn_messs">{recievesButton}</div>
+              <div style={{padding:"10px" ,float:"right"}}>{loader!=-1?<LoaderDots size="small" theme="muted" />:null}</div>
             </div>
-            {/**Bottom sheet implementation */}
-            <ReactBottomsheet
+            
+            <div ref={messagesEndRef} />
+          </div>
+          {/**Bottom sheet implementation */}
+          <ReactBottomsheet
               className="custom-layout"
               visible={sheet.bottomSheet}
               onClose={bottomsheetonClick}
@@ -472,8 +482,6 @@ function ChatWindow(props) {
             >
               <div>{downbuttons}</div>
             </ReactBottomsheet>
-            {/* <div ref={messagesEndRef} /> */}
-          </div>
           <div className="panel-footer">
             <div className="input-group">
               <form

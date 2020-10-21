@@ -20,16 +20,17 @@
   }
   .chat-window {
     max-width: 100% !important;
+    margin-left: 0px !important;
   }
   .top-bar {
     max-width: 100% !important;
   }
-  .panel {
+  .panel-default {
     border: none;
   }
   .msg_container_base {
-    height: 80vh !important;
-    margin: auto;
+    height: 84.5vh !important;
+    position: relative;
   }
   .panel-footer {
     position: absolute;
@@ -97,7 +98,7 @@
   width: 94%;
   bottom: 65px;
   background-color: #fff;
-  margin-left: -5px;
+  margin-left: 5px;
 }
 
 .custom-layout button {
@@ -139,7 +140,7 @@
   display: block;
   justify-content: space-between;
 }
-.panel {
+.panel-default {
   margin-bottom: 0px;
   background-color: #fff;
 }
