@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Send from "./Sent_message";
 import Receive from "./receive_message";
+import Table from './Table_Message';
 import Input from "./Input_message";
 import Button from "./Send_btn";
 import Axios from "axios";
@@ -10,14 +11,15 @@ import Cookies from "js-cookie";
 import DownButton from "./DownButton";
 import ReactBottomsheet from "react-bottomsheet";
 import { LoaderDots } from '@thumbtack/thumbprint-react';
+import Table_Message from "./Table_Message";
 
 function ChatWindow(props) {
-  const [cookieData, setCookieData] = useState(-1);
+  const [cookieData, setCookieData] = useState("004f1836-15ce-11eb-a4c1-023dd4e3dfca");
 
   const [value, setValue] = useState([]);
   const [buttonValue, setButtonValue] = useState([]);
   const [newsValue, setnewsValue] = useState([]);
-  const [loader,setLoader]=useState(-1);
+  const [loader, setLoader] = useState(-1);
   const [down_button_data, set_down_button_data] = useState([]);
 
   /**will return Current Time */
@@ -33,9 +35,9 @@ function ChatWindow(props) {
       time =
         h > 12
           ? (h - 12 < 10 ? "0" + (h - 12) : h - 12) +
-            ":" +
-            (m < 10 ? "0" + m : m) +
-            " PM"
+          ":" +
+          (m < 10 ? "0" + m : m) +
+          " PM"
           : (h < 10 ? "0" + h : h) + ":" + (m < 10 ? "0" + m : m) + " AM";
     }
 
@@ -67,6 +69,9 @@ function ChatWindow(props) {
       } else if (m.type == "sent") {
         return <Send key={i} query={m.query} time={m.time} />;
       }
+      else if (m.type == "card") {
+        return <Table key={i} query={m.query} time={m.time} tableClick={(m) => { tableHyperLinkClick(m) }} />;
+      }
     } else {
       return null;
     }
@@ -86,7 +91,7 @@ function ChatWindow(props) {
       );
     }
   });
-
+  // console.log(recievesButton.length+"recieve:");
   /*OnChange in Input  function to get the value from input*/
   var temp = {
     session: cookieData,
@@ -118,7 +123,7 @@ function ChatWindow(props) {
     console.log(user);
     console.log(
       "if cookie is undefined means no cookie found, else we found cookie : " +
-        user
+      user
     );
     if (user) {
       //we have cookie
@@ -136,74 +141,74 @@ function ChatWindow(props) {
       // console.log(test2);
       console.log(temp)
       setCookieData(user);
-          temp = {
-            session: cookieData,
-            query: "hi!",
-            type: "sent",
-            time: startTime(),
-            count: value.length,
-          };
-          console.log("session of temp: ")
-          console.log(temp.session)
-          Axios.post(props.url, temp)
-            .then((success) => {
-              console.log("now: fetching data from abcl.vitt.ai");
-              //sp is for text messages array. we are storing it.
-              //btn is for button UI messages array. we are storing it.
-              var sp = [];
-              var btn = [];
+      temp = {
+        session: cookieData,
+        query: "hi!",
+        type: "sent",
+        time: startTime(),
+        count: value.length,
+      };
+      console.log("session of temp: ")
+      console.log(temp.session)
+      Axios.post(props.url, temp)
+        .then((success) => {
+          console.log("now: fetching data from abcl.vitt.ai");
+          //sp is for text messages array. we are storing it.
+          //btn is for button UI messages array. we are storing it.
+          var sp = [];
+          var btn = [];
 
-              /**UP Arrow */
+          /**UP Arrow */
 
-              var trial = [];
-              success.data.result.fulfillment.data.DownButton.GenerativeQuestion.map(
-                (m, i) => {
-                  // console.log(i);
-                  if (trial.length < 10) trial.push(m);
-                }
-              );
-              set_down_button_data([].concat(trial));
-              /** */
+          var trial = [];
+          success.data.result.fulfillment.data.DownButton.GenerativeQuestion.map(
+            (m, i) => {
+              // console.log(i);
+              if (trial.length < 10) trial.push(m);
+            }
+          );
+          set_down_button_data([].concat(trial));
+          /** */
 
-              success.data.result.fulfillment.messages.map((m) => {
-                console.log(m);
-                // console.log("type: " + m.type + " speec: " + m.speech);
-                if (m.type === 0 && m.speech !== "") {
-                  m.speech.map((mm) => {
-                    var inital_message = {
-                      session: cookieData,
-                      query: mm,
-                      type: "receive",
-                      time: startTime(),
-                      count: value.length,
-                    };
-                    sp.push(inital_message);
-                  });
-                } else if (m.type === 2) {
-                  m.replies.map((mm) => {
-                    var inital_message = {
-                      session: cookieData,
-                      query: mm,
-                      type: "button",
-                      time: startTime(),
-                      count: value.length,
-                    };
-                    // console.log("replies: " + mm);
-                    btn.push(inital_message);
-                  });
-                }
+          success.data.result.fulfillment.messages.map((m) => {
+            console.log(m);
+            // console.log("type: " + m.type + " speec: " + m.speech);
+            if (m.type === 0 && m.speech !== "") {
+              m.speech.map((mm) => {
+                var inital_message = {
+                  session: cookieData,
+                  query: mm,
+                  type: "receive",
+                  time: startTime(),
+                  count: value.length,
+                };
+                sp.push(inital_message);
               });
-              // console.log(btn);
-              // console.log(sp);
-              setValue([...value].concat(sp));
-              setButtonValue([].concat(btn));
-            })
-            .catch((error) => {
-              // console.log(error);
+            } else if (m.type === 2) {
+              m.replies.map((mm) => {
+                var inital_message = {
+                  session: cookieData,
+                  query: mm,
+                  type: "button",
+                  time: startTime(),
+                  count: value.length,
+                };
+                // console.log("replies: " + mm);
+                btn.push(inital_message);
+              });
+            }
+          });
+          // console.log(btn);
+          // console.log(sp);
+          setValue([...value].concat(sp));
+          setButtonValue([].concat(btn));
+        })
+        .catch((error) => {
+          // console.log(error);
 
-              console.log("some error in fetching data from abcl.vitt.ai : ");
-              console.log(error);
-            });
+          console.log("some error in fetching data from abcl.vitt.ai : ");
+          console.log(error);
+        });
 
 
       // console.log(sessionCookie);
@@ -213,7 +218,7 @@ function ChatWindow(props) {
       //       "in success of cookie-fetching-api for fetching user info from cookie"
       //     );
       //     //Found cookie
-          
+
       //   })
       //   .catch((error) => {
       //     console.log("if cookie-fetching-api crashes or any error like : ");
@@ -229,7 +234,7 @@ function ChatWindow(props) {
         count: value.length,
       };
       console.log(temp)
-      
+
       console.log("session of temp: ")
       console.log(temp.session)
       Axios.post(props.url, temp)
@@ -300,8 +305,8 @@ function ChatWindow(props) {
 
   function isClicked(bool) {
     setLoader(1);
-    
-    setValue([...value,temp]);
+
+    setValue([...value, temp]);
     setBottomSheet({ bottomSheet: false });
     var count = 1;
     console.log("isClicked: request: ");
@@ -330,8 +335,30 @@ function ChatWindow(props) {
           console.log(
             "isClicked: inside success of abcl.vitt.ai fetching api "
           );
+
+          /**Table Data */
+          var table_Data = {
+            session: cookieData,
+            query: {},
+            type: "card",
+            time: startTime(),
+            count: value.length,
+          };
+          var flag = false;
+          var table_pos = false;
+          if (success.data.result.fulfillment.data.type === "card") {
+            table_Data.query = success.data.result.fulfillment.data.data
+            flag = true;
+            if (success.data.result.fulfillment.data.table == "up") table_pos = true
+          }
+
+          if (flag && table_pos) {
+            sp.push(table_Data)
+          }
+
           /**UP Arrow */
           var trial = [];
+
           success.data.result.fulfillment.data.DownButton.GenerativeQuestion.map(
             (m, i) => {
               // console.log(i);
@@ -375,15 +402,18 @@ function ChatWindow(props) {
           });
           // console.log(btn);
           // console.log(sp);
+          if (flag && !table_pos) {
+            sp.push(table_Data)
+          }
 
-          setValue([...value,temp].concat(sp));
+          setValue([...value, temp].concat(sp));
           setButtonValue([].concat(btn));
           setLoader(-1);
         })
         .catch((error) => {
           console.log(
             "isClicked: catch of abcl.vitt.ai fetching api and error is: " +
-              error
+            error
           );
           /**If we get 500 Internal error. then we will show this query. */
           var inital_message = {
@@ -393,7 +423,7 @@ function ChatWindow(props) {
             time: startTime(),
             count: value.length,
           };
-          setValue([...value,temp, inital_message]);
+          setValue([...value, temp, inital_message]);
           setLoader(-1);
           // console.log(error);
         });
@@ -404,6 +434,19 @@ function ChatWindow(props) {
     count++;
     document.getElementById("my_form").reset();
   }
+
+
+  function tableHyperLinkClick(m) {
+    temp = {
+      session: cookieData,
+      query: m,
+      type: "sent",
+      time: startTime(),
+      count: value.length,
+    };
+    isClicked();
+  }
+
 
   /**Bottom sheet logic */
   const [sheet, setBottomSheet] = useState({ bottomSheet: false });
@@ -450,38 +493,40 @@ function ChatWindow(props) {
     <div
       className="chat-window "
       id="chatBot-id"
-      style={{  display: props.active ? "block" : "none" }}
+      style={{ display: props.active ? "block" : "none" }}
     >
       <div >
         <div className="panel-default">
           <div className="panel-heading top-bar">
             <div >
-              
-              <div style={{color:"white",fontSize:"15px",float:"left"}}>Aditya Birla Finance Limited</div>
+
+              <div style={{ color: "white", fontSize: "15px", float: "left" }}>Aditya Birla Finance Limited</div>
               {/* <img className="icon-heading-chatBot" src="https://c3india.s3.ap-south-1.amazonaws.com/public_assets/data/000/000/344/original/BirlaCapitalLogo_jpeg?1538291690" /> */}
-              <div  style={{textAlign: "right"}}>
-                <img style={{cursor:"pointer"}} class="close-icon-heading-chatbot" onClick={(m)=>{m.preventDefault();props.closeChatbot()}}  src="/images/remove.png"/>
+              <div style={{ textAlign: "right" }}>
+                <img style={{ cursor: "pointer" }} class="close-icon-heading-chatbot" onClick={(m) => { m.preventDefault(); props.closeChatbot() }} src="/images/remove.png" />
               </div>
             </div>
           </div>
           <div className="panel-body msg_container_base">
             {receives}
-            <div className="row msg_container ">
+
+            {loader != -1 ? <div style={{ padding: "10px", float: "left" }}><LoaderDots size="small" theme="muted" /></div> : null}
+            {recievesButton.length != 0 ? <div className="row msg_container ">
               <div class="btn_messs">{recievesButton}</div>
-              <div style={{padding:"10px" ,float:"right"}}>{loader!=-1?<LoaderDots size="small" theme="muted" />:null}</div>
-            </div>
-            
+            </div> : null}
+
+
             {/* <div ref={messagesEndRef} /> */}
           </div>
           {/**Bottom sheet implementation */}
           <ReactBottomsheet
-              className="custom-layout"
-              visible={sheet.bottomSheet}
-              onClose={bottomsheetonClick}
-              appendCancelBtn={false}
-            >
-              <div>{downbuttons}</div>
-            </ReactBottomsheet>
+            className="custom-layout"
+            visible={sheet.bottomSheet}
+            onClose={bottomsheetonClick}
+            appendCancelBtn={false}
+          >
+            <div>{downbuttons}</div>
+          </ReactBottomsheet>
           <div className="panel-footer">
             <div className="input-group">
               <form
