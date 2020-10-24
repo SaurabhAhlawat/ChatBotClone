@@ -14,7 +14,8 @@ import { LoaderDots } from '@thumbtack/thumbprint-react';
 import Table_Message from "./Table_Message";
 
 function ChatWindow(props) {
-  const [cookieData, setCookieData] = useState("004f1836-15ce-11eb-a4c1-023dd4e3dfca");
+  //"004f1836-15ce-11eb-a4c1-023dd4e3dfca"
+  const [cookieData, setCookieData] = useState(-1);
 
   const [value, setValue] = useState([]);
   const [buttonValue, setButtonValue] = useState([]);
