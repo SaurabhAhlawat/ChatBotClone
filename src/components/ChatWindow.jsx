@@ -11,7 +11,6 @@ import Cookies from "js-cookie";
 import DownButton from "./DownButton";
 import ReactBottomsheet from "react-bottomsheet";
 import { LoaderDots } from '@thumbtack/thumbprint-react';
-import Table_Message from "./Table_Message";
 
 function ChatWindow(props) {
   //"004f1836-15ce-11eb-a4c1-023dd4e3dfca"
@@ -22,6 +21,7 @@ function ChatWindow(props) {
   const [newsValue, setnewsValue] = useState([]);
   const [loader, setLoader] = useState(-1);
   const [down_button_data, set_down_button_data] = useState([]);
+  const [conversation_id, set_conversation_id] = useState(-1);
 
   /**will return Current Time */
   const startTime = () => {
@@ -45,6 +45,17 @@ function ChatWindow(props) {
     return time;
   };
 
+  /**Generate Random Conversation Id for session */
+  function Conversation_id_function() {
+    var result = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for (var i = 0; i < 32; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
+
   /** when user presses any message UI button*/
   function onclick(event) {
     temp = {
@@ -53,6 +64,7 @@ function ChatWindow(props) {
       type: "sent",
       time: startTime(),
       count: value.length,
+      conversationId: conversation_id
     };
     // console.log(event);
     setButtonValue([]);
@@ -100,6 +112,7 @@ function ChatWindow(props) {
     type: "sent",
     time: startTime(),
     count: value.length,
+    conversationId: conversation_id
   };
 
   /**when we write something on input field, event function will change the value constantly */
@@ -110,6 +123,7 @@ function ChatWindow(props) {
       type: "sent",
       time: startTime(),
       count: value.length,
+      conversationId: conversation_id
     };
 
     // console.log({});
@@ -117,6 +131,8 @@ function ChatWindow(props) {
 
   /*API CALL for first GoodMorning messages when user open the chat! */
   useEffect(() => {
+    var conversation = Conversation_id_function();
+    set_conversation_id(conversation)
     console.log(temp);
 
     const user = Cookies.get(props.cookieKey);
@@ -148,6 +164,7 @@ function ChatWindow(props) {
         type: "sent",
         time: startTime(),
         count: value.length,
+        conversationId: conversation_id
       };
       console.log("session of temp: ")
       console.log(temp.session)
@@ -182,6 +199,7 @@ function ChatWindow(props) {
                   type: "receive",
                   time: startTime(),
                   count: value.length,
+                  conversationId: conversation_id
                 };
                 sp.push(inital_message);
               });
@@ -193,6 +211,7 @@ function ChatWindow(props) {
                   type: "button",
                   time: startTime(),
                   count: value.length,
+                  conversationId: conversation_id
                 };
                 // console.log("replies: " + mm);
                 btn.push(inital_message);
@@ -233,6 +252,7 @@ function ChatWindow(props) {
         type: "sent",
         time: startTime(),
         count: value.length,
+        conversationId: conversation_id
       };
       console.log(temp)
 
@@ -269,6 +289,7 @@ function ChatWindow(props) {
                   type: "receive",
                   time: startTime(),
                   count: value.length,
+                  conversationId: conversation_id
                 };
                 sp.push(inital_message);
               });
@@ -280,6 +301,7 @@ function ChatWindow(props) {
                   type: "button",
                   time: startTime(),
                   count: value.length,
+                  conversationId: conversation_id
                 };
                 // console.log("replies: " + mm);
                 btn.push(inital_message);
@@ -344,6 +366,7 @@ function ChatWindow(props) {
             type: "card",
             time: startTime(),
             count: value.length,
+            conversationId: conversation_id
           };
           var flag = false;
           var table_pos = false;
@@ -383,6 +406,7 @@ function ChatWindow(props) {
                   type: "receive",
                   time: startTime(),
                   count: value.length,
+                  conversationId: conversation_id
                 };
                 sp.push(inital_message);
               });
@@ -394,6 +418,7 @@ function ChatWindow(props) {
                   type: "button",
                   time: startTime(),
                   count: value.length,
+                  conversationId: conversation_id
                 };
                 // console.log("replies: " + mm);
                 btn.push(inital_message);
@@ -423,6 +448,7 @@ function ChatWindow(props) {
             type: "receive",
             time: startTime(),
             count: value.length,
+            conversationId: conversation_id
           };
           setValue([...value, temp, inital_message]);
           setLoader(-1);
@@ -444,6 +470,7 @@ function ChatWindow(props) {
       type: "sent",
       time: startTime(),
       count: value.length,
+      conversationId: conversation_id
     };
     isClicked();
   }
