@@ -14,14 +14,31 @@ import { LoaderDots } from '@thumbtack/thumbprint-react';
 
 function ChatWindow(props) {
   //"004f1836-15ce-11eb-a4c1-023dd4e3dfca"
+  //ToGetCookie
   const [cookieData, setCookieData] = useState(-1);
-
+  //ToGetAllMessages-Recieve,Send,ButtonsUI,Card
   const [value, setValue] = useState([]);
+  //ButtonUIArray which will disappear after click
   const [buttonValue, setButtonValue] = useState([]);
+  //News UI
   const [newsValue, setnewsValue] = useState([]);
+  //ThreeDots loading Animation
   const [loader, setLoader] = useState(-1);
+  //DownButtonList which will keep on changing.
   const [down_button_data, set_down_button_data] = useState([]);
+  //DownButtonList Checker
+  const [sheet, setBottomSheet] = useState({ bottomSheet: false });
+  //1 Random Id per session
   const [conversation_id, set_conversation_id] = useState(-1);
+  //TextArea while we type
+  const [textAreaInput, setTextAreaInput] = useState(false);
+  //ScrollTo 1st recieved Box after we recieve msg
+  const [scrollTo, setScrollTo] = useState(0);
+
+
+  /*Scroll to Bottom Easy UI*/
+  const messagesEndRef = useRef(null);
+
 
   /**will return Current Time */
   const startTime = () => {
@@ -75,10 +92,29 @@ function ChatWindow(props) {
   /*Mapping Text(speech) messages values which are in value array */
 
   var receives = value.map((m, i) => {
-    // console.log(typeof "kk");
+    // console.log("type:" + m.type + " pos:" + i);
     if (m.query !== "") {
       if (m.type == "receive") {
-        return <Receive key={i} query={m.query} time={m.time} />;
+
+        if (i < scrollTo) {
+          console.log("less i:" + i + " scroll:" + scrollTo);
+          return <Receive key={i} query={m.query} time={m.time} />;
+        }
+
+        else if (i === (scrollTo) || i === scrollTo + 1) {
+          console.log("Equal i:" + i + " scroll:" + scrollTo);
+          return <div>
+            <Receive key={i} query={m.query} time={m.time} />
+            <div ref={messagesEndRef} />
+            {messagesEndRef.current != null ? messagesEndRef.current.scrollIntoView({ behavior: "smooth", block: 'nearest' }) : null}
+          </div>;
+        }
+        else if (i > scrollTo) {
+          console.log("greater i:" + i + " scroll:" + scrollTo);
+          if (messagesEndRef.current != null) messagesEndRef.current.scrollIntoView({ behavior: "smooth", block: 'nearest' })
+          return <Receive key={i} query={m.query} time={m.time} />;
+        }
+
       } else if (m.type == "sent") {
         return <Send key={i} query={m.query} time={m.time} />;
       }
@@ -89,6 +125,8 @@ function ChatWindow(props) {
       return null;
     }
   });
+
+
 
   /*Mapping ButtonUI(replies) messages values which are in buttonValue array */
   var recievesButton = buttonValue.map((m, i) => {
@@ -326,9 +364,13 @@ function ChatWindow(props) {
 
   /*After clicking on send either by pressing enter or by pressing send button*/
 
-  function isClicked(bool) {
-    setLoader(1);
+  function clickButton() {
+    setTextAreaInput(!textAreaInput)
+  }
 
+  function isClicked(bool) {
+    setScrollTo(value.length + 1);
+    setLoader(1);
     setValue([...value, temp]);
     setBottomSheet({ bottomSheet: false });
     var count = 1;
@@ -348,6 +390,7 @@ function ChatWindow(props) {
       console.log("isClicked: query is not blank");
       Axios.post(props.url, temp)
         .then((success) => {
+
           // console.log("printed");
           //type==0 for text
           var sp = [];
@@ -399,7 +442,7 @@ function ChatWindow(props) {
 
             console.log("isClicked: inside messages array");
             if (m.type === 0 && m.speech !== "") {
-              m.speech.map((mm) => {
+              m.speech.map((mm, qq) => {
                 var inital_message = {
                   session: cookieData,
                   query: mm,
@@ -431,8 +474,9 @@ function ChatWindow(props) {
           if (flag && !table_pos) {
             sp.push(table_Data)
           }
-
+          
           setValue([...value, temp].concat(sp));
+
           setButtonValue([].concat(btn));
           setLoader(-1);
         })
@@ -476,8 +520,7 @@ function ChatWindow(props) {
   }
 
 
-  /**Bottom sheet logic */
-  const [sheet, setBottomSheet] = useState({ bottomSheet: false });
+/**Bottom sheet logic */
 
   const bottomsheetonClick = () => {
     var obj = sheet.bottomSheet
@@ -499,14 +542,7 @@ function ChatWindow(props) {
     );
   });
 
-  /*Scroll to Bottom Easy UI*/
-  // const messagesEndRef = useRef(null);
 
-  // const scrollToBottom = () => {
-  //   messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
-  // };
-
-  // useEffect(scrollToBottom, [value, buttonValue]);
 
   //when user press enter from keyboard the text gets submitted
   const onEnterPressKeyBoard = (e) => {
@@ -515,6 +551,7 @@ function ChatWindow(props) {
       isClicked(true);
     }
   };
+
 
   /**Return Type */
   http: return (
@@ -531,20 +568,21 @@ function ChatWindow(props) {
               <div style={{ color: "white", fontSize: "15px", float: "left" }}>Aditya Birla Finance Limited</div>
               {/* <img className="icon-heading-chatBot" src="https://c3india.s3.ap-south-1.amazonaws.com/public_assets/data/000/000/344/original/BirlaCapitalLogo_jpeg?1538291690" /> */}
               <div style={{ textAlign: "right" }}>
-                <img style={{ cursor: "pointer" }} class="close-icon-heading-chatbot" onClick={(m) => { m.preventDefault(); props.closeChatbot() }} src="/images/remove.png" />
+                {/* <img class="maximize-icon-heading-chatbot" onClick={(m) => { m.preventDefault(); }} src="/images/maximize.png" /> */}
+                <img style={{ cursor: "pointer" }} class="close-icon-heading-chatbot" onClick={(m) => { m.preventDefault(); props.closeChatbot(); setBottomSheet({ bottomSheet: false }) }} src="/images/remove.png" />
               </div>
             </div>
           </div>
           <div className="panel-body msg_container_base">
+
             {receives}
 
-            {loader != -1 ? <div style={{ padding: "10px", float: "left" }}><LoaderDots size="small" theme="muted" /></div> : null}
+            {loader != -1 ? <div style={{ padding: "10px", float: "left" }}><LoaderDots size="small" theme="muted" /> </div> : null}
             {recievesButton.length != 0 ? <div className="row msg_container ">
               <div class="btn_messs">{recievesButton}</div>
             </div> : null}
 
 
-            {/* <div ref={messagesEndRef} /> */}
           </div>
           {/**Bottom sheet implementation */}
           <ReactBottomsheet
@@ -568,10 +606,12 @@ function ChatWindow(props) {
                 <DownButton onClick={bottomsheetonClick} />
                 <Input
                   change={submitForm}
-                  onEnterPress={onEnterPressKeyBoard}
+                  textBoolean={textAreaInput}
+                  onEnterPress={(e) => { onEnterPressKeyBoard(e) }}
                 />
                 <Button
-                  click={() => {
+                  click={() => { 
+                    clickButton();
                     isClicked(true);
                   }}
                 />

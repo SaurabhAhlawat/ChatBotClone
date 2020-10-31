@@ -29,7 +29,7 @@
     border: none;
   }
   .msg_container_base {
-    height: 79vh !important;
+    height: 78vh !important;
     position: relative;
   }
   .panel-footer {
@@ -39,7 +39,7 @@
   }
   .custom-layout {
     position: absolute;
-    bottom: 72px !important;
+    bottom: 80px !important;
   }
   .fab-icon-a {
     right: 20px !important;
@@ -49,22 +49,33 @@
   .fab-img {
     width: 50% !important;
   }
+  .maximize-icon-heading-chatbot{
+    cursor: pointer;
+    margin-right: 30px !important;
+  }
+
+  .chatbot_comments-textarea__suggestions__list {
+    width: 300px !important;;
+  }
+  .chatbot_comments-textarea__highlighter{
+    width: 300px !important;
+  }
+
 }
 #my_form {
   width: 100%;
   display: table;
 }
-#btn-input::-webkit-input-placeholder {
+#chatbot_btn-input::-webkit-input-placeholder {
   color: #565d56;
   text-align: left;
 }
-#btn-input {
+#chatbot_btn-input {
   display: table-cell;
   width: 100%;
   margin-bottom: 0;
   border-radius: 20px;
   color: #000;
-  border: none;
   text-align: left;
   resize: none !important;
 }
@@ -96,7 +107,7 @@
   border: 2px solid #3e593c;
   border-radius: 5px;
   width: 94%;
-  bottom: 65px;
+  bottom: 76px;
   background-color: #fff;
   margin-left: 5px;
 }
@@ -294,6 +305,62 @@
   padding: 8px;
 }
 
-/* .chatbot_table_ui_tr:nth-child(even) {
-  background-color: #dddddd;
-} */
+/**Maximize Icon*/
+.maximize-icon-heading-chatbot{
+  cursor: pointer;
+  margin-right: 10px  ;
+}
+
+/***/
+
+/*@ functionality Css*/
+
+.chatbot_comments-textarea__input{
+  background-color: #fff;
+  border-radius: 20px;
+  transition: 0.3s ease-in-out;
+  padding: 9px;
+  color: #333;
+  border: 1px solid #dedede;
+  height: 100px;
+  resize: none;
+  width: 200px;
+  overflow: auto !important;
+  outline: none;
+  
+}
+
+.chatbot_comments-textarea__highlighter{
+  padding: 10px;
+  width: 200px !important;
+  height: 60px !important;
+  resize: none !important;
+  border-radius: 20px;
+  color: #000;
+  border: none;
+}
+
+
+.chatbot_comments-textarea__suggestions{
+  top:-210px !important;
+}
+.chatbot_comments-textarea__suggestions__list {
+  background-color: #fff;
+  border: 2px solid #3e593c;
+  font-size: 14px;
+  max-height: 200px;
+  height: 200px;
+  width: 220px;
+  overflow: auto;
+}
+.chatbot_comments-textarea__suggestions__item {
+  padding: 5px 15px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+.chatbot_comments-textarea__suggestions__item--focused {
+  background-color: #3e593c;
+  color:white ;
+}
+.chatbot_comments-textarea__control{
+  display: table-cell;
+}
