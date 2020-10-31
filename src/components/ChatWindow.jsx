@@ -37,7 +37,7 @@ function ChatWindow(props) {
 
 
   /*Scroll to Bottom Easy UI*/
-  const messagesEndRef = useRef(null);
+  const messagesEndRef2 = useRef(null);
 
 
   /**will return Current Time */
@@ -96,26 +96,17 @@ function ChatWindow(props) {
     if (m.query !== "") {
       if (m.type == "receive") {
 
-        if (i < scrollTo) {
-          console.log("less i:" + i + " scroll:" + scrollTo);
-          return <Receive key={i} query={m.query} time={m.time} />;
-        }
-
-        else if (i === (scrollTo) || i === scrollTo + 1) {
-          console.log("Equal i:" + i + " scroll:" + scrollTo);
-          return <div>
-            <Receive key={i} query={m.query} time={m.time} />
-            <div ref={messagesEndRef} />
-            {messagesEndRef.current != null ? messagesEndRef.current.scrollIntoView({ behavior: "smooth", block: 'nearest' }) : null}
-          </div>;
-        }
-        else if (i > scrollTo) {
-          console.log("greater i:" + i + " scroll:" + scrollTo);
-          if (messagesEndRef.current != null) messagesEndRef.current.scrollIntoView({ behavior: "smooth", block: 'nearest' })
-          return <Receive key={i} query={m.query} time={m.time} />;
-        }
+        return <Receive key={i} query={m.query} time={m.time} />;
 
       } else if (m.type == "sent") {
+        if (i === scrollTo) {
+          return <>
+            <div ref={messagesEndRef2} />
+            <Send key={i} query={m.query} time={m.time} />
+
+            {messagesEndRef2.current ? messagesEndRef2.current.scrollIntoView({ behavior: "smooth" }) : null}
+          </>
+        }
         return <Send key={i} query={m.query} time={m.time} />;
       }
       else if (m.type == "card") {
@@ -125,7 +116,6 @@ function ChatWindow(props) {
       return null;
     }
   });
-
 
 
   /*Mapping ButtonUI(replies) messages values which are in buttonValue array */
@@ -369,7 +359,7 @@ function ChatWindow(props) {
   }
 
   function isClicked(bool) {
-    setScrollTo(value.length + 1);
+    setScrollTo(value.length);
     setLoader(1);
     setValue([...value, temp]);
     setBottomSheet({ bottomSheet: false });
@@ -543,6 +533,15 @@ function ChatWindow(props) {
   });
 
 
+  /*Scroll to Bottom Easy UI*/
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(scrollToBottom, [value, buttonValue]);
+
 
   //when user press enter from keyboard the text gets submitted
   const onEnterPressKeyBoard = (e) => {
@@ -581,7 +580,7 @@ function ChatWindow(props) {
             {recievesButton.length != 0 ? <div className="row msg_container ">
               <div class="btn_messs">{recievesButton}</div>
             </div> : null}
-
+            <div ref={messagesEndRef} />
 
           </div>
           {/**Bottom sheet implementation */}
