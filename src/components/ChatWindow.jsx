@@ -361,7 +361,6 @@ function ChatWindow(props) {
   function isClicked(bool) {
     setScrollTo(value.length);
     setLoader(1);
-    setValue([...value, temp]);
     setBottomSheet({ bottomSheet: false });
     var count = 1;
     console.log("isClicked: request: ");
@@ -376,6 +375,8 @@ function ChatWindow(props) {
       );
       setLoader(-1);
     } else {
+
+      setValue([...value, temp]);
       // console.log(temp);
       console.log("isClicked: query is not blank");
       Axios.post(props.url, temp)
