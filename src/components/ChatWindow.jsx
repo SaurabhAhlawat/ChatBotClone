@@ -560,7 +560,6 @@ function ChatWindow(props) {
       id="chatBot-id"
       style={{ display: props.active ? "block" : "none" }}
     >
-      <div >
         <div className="panel-default">
           <div className="panel-heading top-bar">
             <div >
@@ -619,7 +618,6 @@ function ChatWindow(props) {
             </div>
           </div>
         </div>
-      </div>
     </div>
   );
 }

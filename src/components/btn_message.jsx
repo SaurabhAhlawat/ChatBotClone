@@ -5,7 +5,7 @@ function Button(props) {
   return (
     <>
       <div className="btn_mess">
-        <a style={{color:"black"}} onClick={props.click}>{props.query}</a>
+        <a style={{ color: "black", cursor: "pointer" }} onClick={props.click}>{props.query}</a>
       </div>
     </>
   );

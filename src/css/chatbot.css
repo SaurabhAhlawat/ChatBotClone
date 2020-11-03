@@ -27,6 +27,7 @@
   }
   .panel-default {
     border: none;
+    height: 100%;
   }
   .msg_container_base {
     height: 78vh !important;
@@ -276,7 +277,6 @@
 
 /*Type2 ButtonMessage with recieve message*/
 .btn_mess {
-  cursor: pointer;
   border: 2px solid #3e593c;
   border-radius: 20px;
   padding: 5px;
