@@ -34,6 +34,11 @@ function ChatWindow(props) {
   const [textAreaInput, setTextAreaInput] = useState(false);
   //ScrollTo 1st recieved Box after we recieve msg
   const [scrollTo, setScrollTo] = useState(0);
+  //Maximize ChatBot using maximize icon state change of class
+  const [maximizeChatBot, setMaximizeChatBot] = useState("");
+  //change maximize or minimize icon of chatbot
+  const [maxOrMinIcon, setMaxOrMinIcon] = useState("/images/maximize.png");
+
 
 
   /*Scroll to Bottom Easy UI*/
@@ -552,9 +557,21 @@ function ChatWindow(props) {
     }
   };
 
+  function onMaximizeChatBot() {
+    if (maximizeChatBot === "") {
+      setMaximizeChatBot("maximize-icon-heading-chatbot-Main");
+      setMaxOrMinIcon("/images/minimize.png")
+    }
+    else {
+      setMaximizeChatBot("");
+      setMaxOrMinIcon("/images/maximize.png");
+    }
+  }
+
 
   /**Return Type */
-  http: return (
+  return (
+    <div class={maximizeChatBot}>
     <div
       className="chat-window "
       id="chatBot-id"
@@ -567,8 +584,8 @@ function ChatWindow(props) {
               <div style={{ color: "white", fontSize: "15px", float: "left" }}>Aditya Birla Finance Limited</div>
               {/* <img className="icon-heading-chatBot" src="https://c3india.s3.ap-south-1.amazonaws.com/public_assets/data/000/000/344/original/BirlaCapitalLogo_jpeg?1538291690" /> */}
               <div style={{ textAlign: "right" }}>
-                {/* <img class="maximize-icon-heading-chatbot" onClick={(m) => { m.preventDefault(); }} src="/images/maximize.png" /> */}
-                <img style={{ cursor: "pointer" }} class="close-icon-heading-chatbot" onClick={(m) => { m.preventDefault(); props.closeChatbot(); setBottomSheet({ bottomSheet: false }) }} src="/images/remove.png" />
+                <img alt="maximize_icon" class="maximize-icon-heading-chatbot" onClick={(m) => { m.preventDefault(); onMaximizeChatBot(); }} src={maxOrMinIcon} />
+                <img alt="close_icon" style={{ cursor: "pointer" }} class="close-icon-heading-chatbot" onClick={(m) => { m.preventDefault(); props.closeChatbot(); setBottomSheet({ bottomSheet: false }) }} src="/images/remove.png" />
               </div>
             </div>
           </div>
@@ -576,8 +593,8 @@ function ChatWindow(props) {
 
             {receives}
 
-            {loader != -1 ? <div style={{ padding: "10px", float: "left" }}><LoaderDots size="small" theme="muted" /> </div> : null}
-            {recievesButton.length != 0 ? <div className="row msg_container ">
+            {loader !== -1 ? <div style={{ padding: "10px", float: "left" }}><LoaderDots size="small" theme="muted" /> </div> : null}
+            {recievesButton.length !== 0 ? <div className="row msg_container ">
               <div class="btn_messs">{recievesButton}</div>
             </div> : null}
             <div ref={messagesEndRef} />
@@ -618,6 +635,7 @@ function ChatWindow(props) {
             </div>
           </div>
         </div>
+      </div>
     </div>
   );
 }

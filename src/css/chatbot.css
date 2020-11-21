@@ -8,7 +8,7 @@
 
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3) !important;
 }
-
+/**Responsiveness*/
 @media only screen and (max-width: 1000px) {
   #chatBot-id {
     width: 100%;
@@ -51,8 +51,7 @@
     width: 50% !important;
   }
   .maximize-icon-heading-chatbot{
-    cursor: pointer;
-    margin-right: 30px !important;
+    display: none;
   }
 
   .chatbot_comments-textarea__suggestions__list {
@@ -63,6 +62,8 @@
   }
 
 }
+/*Responsive Css Ends here*/
+
 #my_form {
   width: 100%;
   display: table;
@@ -364,3 +365,56 @@
 .chatbot_comments-textarea__control{
   display: table-cell;
 }
+
+/*Chatbot FullScreen*/
+.maximize-icon-heading-chatbot-Main #chatBot-id {
+    width: 100%;
+    right: 50px;
+    bottom: 0px;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+  }
+ .maximize-icon-heading-chatbot-Main .chat-window {
+    max-width: 100% !important;
+    margin-left: 0px !important;
+  }
+.maximize-icon-heading-chatbot-Main  .top-bar {
+    max-width: 100% !important;
+  }
+.maximize-icon-heading-chatbot-Main  .panel-default {
+    border: none;
+    height: 100%;
+  }
+.maximize-icon-heading-chatbot-Main  .msg_container_base {
+    height: 78vh !important;
+    position: relative;
+  }
+.maximize-icon-heading-chatbot-Main  .panel-footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+  }
+.maximize-icon-heading-chatbot-Main  .custom-layout {
+    position: absolute;
+    bottom: 80px !important;
+  }
+.maximize-icon-heading-chatbot-Main  .fab-icon-a {
+    right: 20px !important;
+    width: 50px !important;
+    height: 50px !important;
+  }
+.maximize-icon-heading-chatbot-Main  .fab-img {
+    width: 50% !important;
+  }
+  .maximize-icon-heading-chatbot{
+    cursor: pointer;
+  }
+
+.maximize-icon-heading-chatbot-Main  .chatbot_comments-textarea__suggestions__list {
+    width: 300px !important;;
+  }
+.maximize-icon-heading-chatbot-Main  .chatbot_comments-textarea__highlighter{
+    width: 300px !important;
+  }
+  /*End of Full Screen Css*/
