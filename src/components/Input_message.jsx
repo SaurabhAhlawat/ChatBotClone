@@ -35,7 +35,7 @@ function Input(props) {
     }
 
     datas = {
-      size: 20,
+      size: 200,
       query: {
         multi_match: {
           query: value,

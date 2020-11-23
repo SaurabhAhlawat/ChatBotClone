@@ -192,7 +192,7 @@ function ChatWindow(props) {
       console.log(temp)
       setCookieData(user);
       temp = {
-        session: cookieData,
+        session: user,
         query: "hi!",
         type: "sent",
         time: startTime(),
