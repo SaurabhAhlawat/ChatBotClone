@@ -100,7 +100,6 @@ function ChatWindow(props) {
     // console.log("type:" + m.type + " pos:" + i);
     if (m.query !== "") {
       if (m.type == "receive") {
-
         return <Receive key={i} query={m.query} time={m.time} />;
 
       } else if (m.type == "sent") {
@@ -197,7 +196,7 @@ function ChatWindow(props) {
         type: "sent",
         time: startTime(),
         count: value.length,
-        conversationId: conversation_id
+        conversationId: conversation
       };
       console.log("session of temp: ")
       console.log(temp.session)
@@ -232,7 +231,7 @@ function ChatWindow(props) {
                   type: "receive",
                   time: startTime(),
                   count: value.length,
-                  conversationId: conversation_id
+                  conversationId: conversation
                 };
                 sp.push(inital_message);
               });
@@ -244,7 +243,7 @@ function ChatWindow(props) {
                   type: "button",
                   time: startTime(),
                   count: value.length,
-                  conversationId: conversation_id
+                  conversationId: conversation
                 };
                 // console.log("replies: " + mm);
                 btn.push(inital_message);
@@ -264,19 +263,6 @@ function ChatWindow(props) {
         });
 
 
-      // console.log(sessionCookie);
-      // Axios.post(props.cookieUrl, sessionCookie)
-      //   .then((success) => {
-      //     console.log(
-      //       "in success of cookie-fetching-api for fetching user info from cookie"
-      //     );
-      //     //Found cookie
-
-      //   })
-      //   .catch((error) => {
-      //     console.log("if cookie-fetching-api crashes or any error like : ");
-      //     console.log(error);
-      //   });
     } else {
       console.log("no cookies found");
       temp = {
@@ -285,7 +271,7 @@ function ChatWindow(props) {
         type: "sent",
         time: startTime(),
         count: value.length,
-        conversationId: conversation_id
+        conversationId: conversation
       };
       console.log(temp)
 
@@ -322,7 +308,7 @@ function ChatWindow(props) {
                   type: "receive",
                   time: startTime(),
                   count: value.length,
-                  conversationId: conversation_id
+                  conversationId: conversation
                 };
                 sp.push(inital_message);
               });
@@ -334,7 +320,7 @@ function ChatWindow(props) {
                   type: "button",
                   time: startTime(),
                   count: value.length,
-                  conversationId: conversation_id
+                  conversationId: conversation
                 };
                 // console.log("replies: " + mm);
                 btn.push(inital_message);
@@ -365,8 +351,9 @@ function ChatWindow(props) {
 
   function isClicked(bool) {
     setScrollTo(value.length);
-    setLoader(1);
+
     setBottomSheet({ bottomSheet: false });
+    setLoader(1);
     var count = 1;
     console.log("isClicked: request: ");
     console.log(temp);
@@ -470,7 +457,7 @@ function ChatWindow(props) {
           if (flag && !table_pos) {
             sp.push(table_Data)
           }
-          
+
           setValue([...value, temp].concat(sp));
 
           setButtonValue([].concat(btn));
@@ -516,7 +503,7 @@ function ChatWindow(props) {
   }
 
 
-/**Bottom sheet logic */
+  /**Bottom sheet logic */
 
   const bottomsheetonClick = () => {
     var obj = sheet.bottomSheet
@@ -551,7 +538,7 @@ function ChatWindow(props) {
 
   //when user press enter from keyboard the text gets submitted
   const onEnterPressKeyBoard = (e) => {
-    if (e.keyCode == 13 && e.shiftKey == false) {
+    if (e.keyCode === 13 && e.shiftKey === false) {
       e.preventDefault();
       isClicked(true);
     }
@@ -572,20 +559,24 @@ function ChatWindow(props) {
   /**Return Type */
   return (
     <div class={maximizeChatBot}>
-    <div
-      className="chat-window "
-      id="chatBot-id"
-      style={{ display: props.active ? "block" : "none" }}
-    >
+      <div class="blackScreenShadow_chatBot"></div>
+      <div
+        className="chat-window "
+        id="chatBot-id"
+        style={{ display: props.active ? "block" : "none" }}
+      >
         <div className="panel-default">
           <div className="panel-heading top-bar">
             <div >
 
-              <div style={{ color: "white", fontSize: "15px", float: "left" }}>Aditya Birla Finance Limited</div>
+              <div className="company_heading_name_chatbot" style={{ color: "white", fontSize: "15px", float: "left" }}>Aditya Birla Finance Limited</div>
               {/* <img className="icon-heading-chatBot" src="https://c3india.s3.ap-south-1.amazonaws.com/public_assets/data/000/000/344/original/BirlaCapitalLogo_jpeg?1538291690" /> */}
               <div style={{ textAlign: "right" }}>
                 <img alt="maximize_icon" class="maximize-icon-heading-chatbot" onClick={(m) => { m.preventDefault(); onMaximizeChatBot(); }} src={maxOrMinIcon} />
-                <img alt="close_icon" style={{ cursor: "pointer" }} class="close-icon-heading-chatbot" onClick={(m) => { m.preventDefault(); props.closeChatbot(); setBottomSheet({ bottomSheet: false }) }} src="/images/remove.png" />
+                <img alt="close_icon" style={{ cursor: "pointer" }} class="close-icon-heading-chatbot" onClick={(m) => {
+                  m.preventDefault();
+                  setMaximizeChatBot(""); props.closeChatbot(); setBottomSheet({ bottomSheet: false })
+                }} src="/images/remove.png" />
               </div>
             </div>
           </div>
@@ -593,7 +584,7 @@ function ChatWindow(props) {
 
             {receives}
 
-            {loader !== -1 ? <div style={{ padding: "10px", float: "left" }}><LoaderDots size="small" theme="muted" /> </div> : null}
+            {loader !== -1 ? <div style={{ padding: "10px", float: "left" }} className="loader_animation_chatbot"><LoaderDots size="small" theme="muted" /> </div> : null}
             {recievesButton.length !== 0 ? <div className="row msg_container ">
               <div class="btn_messs">{recievesButton}</div>
             </div> : null}
@@ -626,7 +617,7 @@ function ChatWindow(props) {
                   onEnterPress={(e) => { onEnterPressKeyBoard(e) }}
                 />
                 <Button
-                  click={() => { 
+                  click={() => {
                     clickButton();
                     isClicked(true);
                   }}

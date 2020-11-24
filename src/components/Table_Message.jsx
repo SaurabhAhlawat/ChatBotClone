@@ -32,7 +32,7 @@ function Table_Message(props) {
   return (
     <div className="row msg_container base_receive">
       <div className="aa">
-        <div className="messages chatbot_table_ui">
+        <div className="messages_chatbot chatbot_table_ui">
           <div style={{ color: "black" }}>{details.entries.title}</div>
           <table>
             <thead>

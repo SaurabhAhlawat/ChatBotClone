@@ -6,7 +6,7 @@ function receive(props) {
   return (
     <div className="row msg_container base_receive">
       <div className="aa">
-        <div className="messages msg_receive">
+        <div className="messages_chatbot msg_receive_chatbot">
           <p>
             <Linkify>{props.query}</Linkify>
           </p>

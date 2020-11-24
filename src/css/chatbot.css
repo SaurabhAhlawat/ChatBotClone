@@ -176,41 +176,42 @@
   position: relative;
   overflow: hidden;
   max-width: 300px;
-  max-height: 50px;
+  /* max-height: 50px; */
 }
-.msg_receive {
+.msg_receive_chatbot {
   padding-left: 0;
   margin-left: 0;
+  border-radius: 1rem 1rem 1rem 0rem !important;
   max-width: 200px;
   text-align: left;
-  background-color: #dfdfdf;
+  background-color: #fff;
   color: #000 !important;
 }
-.msg_sent {
+.msg_sent_chatbot {
   background: #3e593c !important;
   padding-bottom: 20px !important;
+  border-radius: 1rem 1rem 0rem 1rem !important;
   margin-right: 0px;
   margin-left: 0px;
   text-align: right;
   max-width: 200px;
   color: #fff !important;
 }
-.messages {
-  /* background: rgb(255, 255, 255); */
+.messages_chatbot {
   color: #fff;
   padding: 10px;
   padding-left: 10px;
   border-radius: 12px;
   font-family: "Montserrat", sans-serif;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
-.messages > p {
+.messages_chatbot > p {
   font-size: 11px;
   margin: 0 0 0.2rem 0;
   word-wrap: break-word;
   text-align: left;
 }
-.messages > time {
+.messages_chatbot > time {
   font-size: 10px;
   color: #90a4ae;
   text-align: left;
@@ -226,7 +227,7 @@
   align-items: flex-end;
 }
 
-.msg_sent > time {
+.msg_sent_chatbot > time {
   float: left;
 }
 
@@ -367,8 +368,20 @@
 }
 
 /*Chatbot FullScreen*/
+
+.maximize-icon-heading-chatbot-Main .blackScreenShadow_chatBot{
+  height: 100%;
+  width: 100%;
+  position: fixed !important;
+  z-index: 2147483630 !important;
+  background-color: black;
+  opacity: 0.3;
+}
+
 .maximize-icon-heading-chatbot-Main #chatBot-id {
-    width: 100%;
+    width: 70%;
+    margin: auto !important;
+    height: 80%;
     right: 50px;
     bottom: 0px;
     top: 0px;
@@ -381,13 +394,14 @@
   }
 .maximize-icon-heading-chatbot-Main  .top-bar {
     max-width: 100% !important;
+    height: 50px;
   }
 .maximize-icon-heading-chatbot-Main  .panel-default {
     border: none;
     height: 100%;
   }
 .maximize-icon-heading-chatbot-Main  .msg_container_base {
-    height: 78vh !important;
+    height: 62vh !important;
     position: relative;
   }
 .maximize-icon-heading-chatbot-Main  .panel-footer {
@@ -398,7 +412,13 @@
 .maximize-icon-heading-chatbot-Main  .custom-layout {
     position: absolute;
     bottom: 80px !important;
+    margin-left: 20px;
+
   }
+.maximize-icon-heading-chatbot-Main .custom-layout button {
+  font-size: 14px;
+  padding:10px;
+}
 .maximize-icon-heading-chatbot-Main  .fab-icon-a {
     right: 20px !important;
     width: 50px !important;
@@ -417,4 +437,35 @@
 .maximize-icon-heading-chatbot-Main  .chatbot_comments-textarea__highlighter{
     width: 300px !important;
   }
+
+.maximize-icon-heading-chatbot-Main .messages_chatbot{
+  max-width: 600px;
+}
+.maximize-icon-heading-chatbot-Main .messages_chatbot > p{
+  font-size: 14px;
+}
+.maximize-icon-heading-chatbot-Main .messages_chatbot > time{
+  font-size:12px ;
+}
+.maximize-icon-heading-chatbot-Main .btn_mess{
+  font-size: 14px;
+  padding:7px;
+}
+
+.maximize-icon-heading-chatbot-Main .messages_chatbot .chatbot_table_ui_th{
+  font-size: 13px;
+}
+.maximize-icon-heading-chatbot-Main .msg_container{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.maximize-icon-heading-chatbot-Main .loader_animation_chatbot{
+  margin-left: 20px;
+}
+.maximize-icon-heading-chatbot-Main .maximize-icon-heading-chatbot{
+  margin-right: 30px;
+}
+.maximize-icon-heading-chatbot-Main .company_heading_name_chatbot{
+  font-size: 17px !important;
+}
   /*End of Full Screen Css*/
