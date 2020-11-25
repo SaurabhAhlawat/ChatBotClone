@@ -536,14 +536,6 @@ function ChatWindow(props) {
   useEffect(scrollToBottom, [value, buttonValue]);
 
 
-  //when user press enter from keyboard the text gets submitted
-  const onEnterPressKeyBoard = (e) => {
-    if (e.keyCode === 13 && e.shiftKey === false) {
-      e.preventDefault();
-      isClicked(true);
-    }
-  };
-
   function onMaximizeChatBot() {
     if (maximizeChatBot === "") {
       setMaximizeChatBot("maximize-icon-heading-chatbot-Main");
