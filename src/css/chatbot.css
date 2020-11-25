@@ -30,8 +30,11 @@
     height: 100%;
   }
   .msg_container_base {
-    height: 78vh !important;
-    position: relative;
+    height:auto !important;
+    top: 3em !important;
+    bottom: 6em !important;
+    position: fixed;
+    width: 100%;
   }
   .panel-footer {
     position: absolute;
@@ -167,7 +170,7 @@
   background: #fff;
   margin: 0;
   padding: 0 10px 10px;
-  height: 350px;
+  height: 350px ;
   overflow-x: hidden;
 }
 .top-bar {
@@ -400,9 +403,13 @@
     height: 100%;
   }
 .maximize-icon-heading-chatbot-Main  .msg_container_base {
-    height: 62vh !important;
-    position: relative;
+    height: auto !important;
+    width: 70% ;
+    bottom: 11em !important;
+    top: 8em !important;
+    position: fixed;
   }
+
 .maximize-icon-heading-chatbot-Main  .panel-footer {
     position: absolute;
     width: 100%;
