@@ -41,6 +41,19 @@ function ChatWindow(props) {
 
 
 
+  /**using Escape button to make downbuttonList disappear*/
+  useEffect(() => {
+    const handleEsc = (event) => {
+      if (event.keyCode === 27) {
+        setBottomSheet({ bottomSheet: false })
+      }
+    };
+    window.addEventListener('keydown', handleEsc);
+
+  }, []);
+  /** */
+
+
   /*Scroll to Bottom Easy UI*/
   const messagesEndRef2 = useRef(null);
 
