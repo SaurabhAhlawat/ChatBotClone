@@ -614,7 +614,7 @@ function ChatWindow(props) {
                 <Input
                   change={submitForm}
                   textBoolean={textAreaInput}
-                  onEnterPress={(e) => { onEnterPressKeyBoard(e) }}
+                  onEnterPress={(e) => { onclick(temp.query) }}
                 />
                 <Button
                   click={() => {

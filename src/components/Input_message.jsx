@@ -70,9 +70,10 @@ function Input(props) {
 
 
   const onEnterPressKeyBoard = (e) => {
-    if (e.keyCode == 13 && e.shiftKey == false) {
+    if (e.key === 'Enter') {
       e.preventDefault();
       setTextAreaInput("");
+      props.onEnterPress(e)
     }
   };
 
@@ -115,8 +116,8 @@ function Input(props) {
       allowSpaceInQuery="true"
       value={textAreaInput}
       className="chatbot_comments-textarea"
-      placeholder="Type something... or use @ for search"
-      onKeyDown={(e) => { onEnterPressKeyBoard(e); props.onEnterPress(e) }}
+      placeholder="Type something... or use @ to search a mutual fund"
+      onKeyDown={(e) => { onEnterPressKeyBoard(e); }}
       onChange={changes}>
 
       <Mention

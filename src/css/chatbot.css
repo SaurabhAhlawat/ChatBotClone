@@ -78,6 +78,7 @@
   margin-bottom: 0;
   border-radius: 20px;
   color: #000;
+  font-size: 13px !important;
   text-align: left;
   resize: none !important;
 }
