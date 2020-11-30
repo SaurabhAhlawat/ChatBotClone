@@ -11,6 +11,7 @@ import Cookies from "js-cookie";
 import DownButton from "./DownButton";
 import ReactBottomsheet from "react-bottomsheet";
 import { LoaderDots } from '@thumbtack/thumbprint-react';
+import Image_message from "./Image_message";
 
 function ChatWindow(props) {
   //"004f1836-15ce-11eb-a4c1-023dd4e3dfca"
@@ -126,8 +127,11 @@ function ChatWindow(props) {
         }
         return <Send key={i} query={m.query} time={m.time} />;
       }
-      else if (m.type == "card") {
+      else if (m.type === "card") {
         return <Table key={i} query={m.query} time={m.time} tableClick={(m) => { tableHyperLinkClick(m) }} />;
+      }
+      else if (m.type === "image") {
+        return <Image_message link={m.query} />
       }
     } else {
       return null;
@@ -262,6 +266,18 @@ function ChatWindow(props) {
                 btn.push(inital_message);
               });
             }
+            else if (m.type === 3) {
+              var inital_message = {
+                session: cookieData,
+                query: m.speech,
+                type: "image",
+                time: startTime(),
+                count: value.length,
+                conversationId: conversation
+              };
+              console.log("ImageLink: " + inital_message.query);
+              sp.push(inital_message);
+            }
           });
           // console.log(btn);
           // console.log(sp);
@@ -338,6 +354,17 @@ function ChatWindow(props) {
                 // console.log("replies: " + mm);
                 btn.push(inital_message);
               });
+            } else if (m.type === 3) {
+              var inital_message = {
+                session: cookieData,
+                query: m.speech,
+                type: "image",
+                time: startTime(),
+                count: value.length,
+                conversationId: conversation
+              };
+              console.log("ImageLink: " + inital_message.query);
+              sp.push(inital_message);
             }
           });
           // console.log(btn);
@@ -462,7 +489,17 @@ function ChatWindow(props) {
                 // console.log("replies: " + mm);
                 btn.push(inital_message);
               });
-            } else if (m.type == 1) {
+            } else if (m.type === 3) {
+              var inital_message = {
+                session: cookieData,
+                query: m.speech,
+                type: "image",
+                time: startTime(),
+                count: value.length,
+                conversationId: conversation_id
+              };
+              console.log("ImageLink: " + inital_message.query);
+              sp.push(inital_message);
             }
           });
           // console.log(btn);
@@ -566,7 +603,7 @@ function ChatWindow(props) {
     <div class={maximizeChatBot}>
       <div class="blackScreenShadow_chatBot"></div>
       <div
-        className="chat-window "
+        className="chat-window chatbotAnimationClassFadeIn"
         id="chatBot-id"
         style={{ display: props.active ? "block" : "none" }}
       >

@@ -5,9 +5,22 @@
   bottom: 30px;
   width: 100%;
   font-family: "Poppins", sans-serif;
-
+  animation-duration: 0.6s;
+  animation-fill-mode: both;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3) !important;
 }
+.chatbotAnimationClassFadeIn{
+  animation-name: fadeIn;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 /**Responsiveness*/
 @media only screen and (max-width: 1000px) {
   #chatBot-id {
@@ -315,6 +328,16 @@
   margin-right: 10px  ;
 }
 
+/*  Image_message_receive*/
+.image_message_chatbot{
+  width: 200px;
+  height: 200px;
+  border-radius: 10%;
+  background: transparent;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+/*  Image_message_receive css Ends here*/
+
 /***/
 
 /*@ functionality Css*/
@@ -474,4 +497,14 @@
 .maximize-icon-heading-chatbot-Main .company_heading_name_chatbot{
   font-size: 17px !important;
 }
+
+/*  Image_message_receive*/
+.maximize-icon-heading-chatbot-Main .image_message_chatbot{
+  width: 300px;
+  height: 300px;
+  border-radius: 10%;
+  background: transparent;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+/*  Image_message_receive css Ends here*/
   /*End of Full Screen Css*/
