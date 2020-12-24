@@ -330,8 +330,8 @@
 
 /*  Image_message_receive*/
 .image_message_chatbot{
-  width: 200px;
-  height: 200px;
+  max-width: 200px;
+  max-height: 200px;
   border-radius: 10%;
   background: transparent;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
@@ -406,7 +406,7 @@
 .maximize-icon-heading-chatbot-Main #chatBot-id {
     width: 70%;
     margin: auto !important;
-    height: 80%;
+    height: 95%;
     right: 50px;
     bottom: 0px;
     top: 0px;
@@ -428,8 +428,8 @@
 .maximize-icon-heading-chatbot-Main  .msg_container_base {
     height: auto !important;
     width: 70% ;
-    bottom: 11em !important;
-    top: 8em !important;
+    bottom: 8em !important;
+    top: 4em !important;
     position: fixed;
   }
 
@@ -500,8 +500,8 @@
 
 /*  Image_message_receive*/
 .maximize-icon-heading-chatbot-Main .image_message_chatbot{
-  width: 300px;
-  height: 300px;
+  max-width: 300px;
+  max-height: 300px;
   border-radius: 10%;
   background: transparent;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
