@@ -10,7 +10,7 @@ import ButtonMessage from "./btn_message";
 import Cookies from "js-cookie";
 import DownButton from "./DownButton";
 import ReactBottomsheet from "react-bottomsheet";
-import { LoaderDots } from '@thumbtack/thumbprint-react';
+import { Dot } from 'react-animated-dots';
 import Image_message from "./Image_message";
 
 function ChatWindow(props) {
@@ -626,7 +626,7 @@ function ChatWindow(props) {
 
             {receives}
 
-            {loader !== -1 ? <div style={{ padding: "10px", float: "left" }} className="loader_animation_chatbot"><LoaderDots size="small" theme="muted" /> </div> : null}
+            {loader !== -1 ? <div className="loader_animation_chatbot"><Dot>.</Dot><Dot>.</Dot><Dot>.</Dot> </div> : null}
             {recievesButton.length !== 0 ? <div className="row msg_container ">
               <div class="btn_messs">{recievesButton}</div>
             </div> : null}
