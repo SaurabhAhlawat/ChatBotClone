@@ -71,9 +71,12 @@ function Input(props) {
 
   const onEnterPressKeyBoard = (e) => {
     if (e.key === 'Enter') {
-      e.preventDefault();
-      setTextAreaInput("");
-      props.onEnterPress(e)
+			setTimeout(() => {
+
+			setTextAreaInput("");
+			}, 250);
+			props.onEnterPress(e)
+			e.preventDefault();
     }
   };
 

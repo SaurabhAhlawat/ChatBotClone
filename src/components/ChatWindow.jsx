@@ -625,7 +625,7 @@ function ChatWindow(props) {
           <div className="panel-body msg_container_base">
 
             {receives}
-
+            
             {loader !== -1 ? <div className="loader_animation_chatbot"><Dot>.</Dot><Dot>.</Dot><Dot>.</Dot> </div> : null}
             {recievesButton.length !== 0 ? <div className="row msg_container ">
               <div class="btn_messs">{recievesButton}</div>
