@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Chat from "./ChatWindow";
 import "../css/chatbot.css";
 
@@ -7,6 +7,16 @@ function App() {
     isActive: false,
     icon: "/images/Fab64x64.png",
   });
+  const [notification, setNotification] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      // console.log('This will run after 4 second!')
+      setNotification(true)
+    }, 4000);
+    return () => clearTimeout(timer);
+  }, [])
+
   function handleClick() {
     item.isActive
       ? setitem({ isActive: false, icon: "/images/Fab64x64.png" })
@@ -17,6 +27,7 @@ function App() {
   }
   return (
     <>
+      {notification ? <div class="fab-icon-a-welcome-notification">Hi! Do you need some help?</div> : null}
       <Chat
         active={item.isActive}
         closeChatbot={closeChatbot}
