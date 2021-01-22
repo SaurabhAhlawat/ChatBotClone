@@ -62,6 +62,10 @@
     right: 20px !important;
     width: 50px !important;
     height: 50px !important;
+    bottom: 180px !important ;
+  }
+  .fab-icon-a-welcome-notification{
+    bottom: 240px !important;
   }
   .fab-img {
     width: 50% !important;
@@ -275,8 +279,8 @@
 .fab-icon-a-welcome-notification{
 	position: fixed;
 	z-index: 2147483646;
-	right: 110px;
-	bottom: 120px;
+	right: 60px;
+	bottom: 210px;
 	color: white;
 	background: #3e593c !important;
 	display: inline-block;
@@ -294,8 +298,8 @@
 .fab-icon-a {
   position: fixed;
   z-index: 2147483646;
-  right: 100px;
-  bottom: 50px;
+  right: 25px;
+  bottom: 150px;
 
   background: #3e593c !important;
   display: inline-block;
