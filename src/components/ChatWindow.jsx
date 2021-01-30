@@ -102,6 +102,7 @@ function ChatWindow(props) {
       count: value.length,
       conversationId: conversation_id
     };
+    clickButton()
     // console.log(event);
     setButtonValue([]);
     set_down_button_data([]);
@@ -287,7 +288,22 @@ function ChatWindow(props) {
         .catch((error) => {
           // console.log(error);
 
+          var errors = "";
+          // console.log(error.message)
+          if (error.message.includes("Network")) errors = "There seems to be an issue with your internet connection. Please check."
+          else errors = "Oops! please Please write something..."
+          var inital_message = {
+            session: cookieData,
+            query: errors,
+            type: "receive",
+            time: startTime(),
+            count: value.length,
+            conversationId: conversation_id
+          };
+          setValue([...value, inital_message]);
+          setLoader(-1);
           console.log("some error in fetching data from abcl.vitt.ai : ");
+
           console.log(error);
         });
 
@@ -375,6 +391,20 @@ function ChatWindow(props) {
         .catch((error) => {
           // console.log(error);
 
+          var errors = "";
+          // console.log(error.message)
+          if (error.message.includes("Network")) errors = "There seems to be an issue with your internet connection. Please check."
+          else errors = "Oops! Please write something..."
+          var inital_message = {
+            session: cookieData,
+            query: errors,
+            type: "receive",
+            time: startTime(),
+            count: value.length,
+            conversationId: conversation_id
+          };
+          setValue([...value, inital_message]);
+          setLoader(-1);
           console.log("some error in fetching data from abcl.vitt.ai : ");
           console.log(error);
         });
@@ -519,9 +549,13 @@ function ChatWindow(props) {
             error
           );
           /**If we get 500 Internal error. then we will show this query. */
+          var errors = "";
+          // console.log(error.message)
+          if (error.message.includes("Network")) errors = "There seems to be an issue with your internet connection. Please check."
+          else errors = "Oops! please Enter something related to Finance!"
           var inital_message = {
             session: cookieData,
-            query: "Oops! please Enter something related Finance!",
+            query: errors,
             type: "receive",
             time: startTime(),
             count: value.length,
