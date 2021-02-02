@@ -87,15 +87,14 @@
 	display: block;
 	overflow: auto;
 	width: 100%;
-	height: 110%;
+	height: 100%;
 	top: 0px;
 	left: 0px;
 	bottom: 0px;
 	right: 0px;
-	padding: 9px;
+	padding: 5px 5px;
 	margin-bottom: 0px;
 	margin-top: 0px;
-	border-radius: 20px;
 	border:1px solid #dedede;
 	color: #000;
 	font-size: 13px !important;
@@ -104,26 +103,37 @@
 }
 /*Up_arrow*/
 .downButton {
+	bottom: 70px;
+	right: 5px;
+	border-radius: 100%;
+	size: 10%;
+	padding: 10px;
+	background-color: #e6e6e6;
+	position: absolute;
 	display: table-cell;
 	margin-right: auto;
 	margin-left: auto;
-	padding: 0px 10px 0px 0px;
 }
 
 .downButton:active {
-	position: relative;
-	top: 1px;
+	position: absolute;
+	bottom: 69px;
+}
+.bottom-sheet-item:hover{
+	background-color: #3e593c;
+	color: white;
 }
 
 .down_button {
 	cursor: pointer;
 	size: 1%;
 	display: block;
-	max-width: 25px;
-	max-height: 25px;
+	max-width: 15px;
+	max-height: 15px;
 	margin-right: auto;
 	margin-left: auto;
 }
+/*Up_arrow Ends here*/
 
 .custom-layout {
 	position: absolute;
@@ -148,7 +158,9 @@
 /*Send Buttons*/
 .myButton {
 	display: table-cell;
-	padding: 0px 0px 0px 10px;
+	text-align: center	;
+	vertical-align: middle;
+	padding-left: 5px;
 }
 
 .myButton:active {
@@ -165,7 +177,7 @@
 }
 .panel-footer {
 	text-align: left !important;
-	background-color: #fff;
+	background-color: #E6E6E6;
 	border: none;
 	width: 100%;
 }
@@ -430,6 +442,7 @@ cursor: pointer;
 
 /*Chatbot FullScreen*/
 
+
 .maximize-icon-heading-chatbot-Main .blackScreenShadow_chatBot{
 	height: 100%;
 	width: 100%;
@@ -539,12 +552,6 @@ cursor: pointer;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
-.maximize-icon-heading-chatbot-Main .downButton{
-	padding: 0px !important;
-}
-.maximize-icon-heading-chatbot-Main .myButton{
-	padding: 0px !important;
-}
 
 .maximize-icon-heading-chatbot-Main .chatbot_list_funds{
 	width: auto;

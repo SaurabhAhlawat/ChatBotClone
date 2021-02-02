@@ -19,8 +19,8 @@ function Input(props) {
 		setTextAreaInput(event.target.value)
 
 
-		handle_question_Result(event.target.value)
 		if (event.target.value.trim() === '') { setShowQuestion(false); setShow(false); }
+		else handle_question_Result(event.target.value)
 
 		if (event.target.value.indexOf("@") != -1) {
 			// console.log(event.target.value.substring(event.target.value.indexOf("@") + 1, event.target.value.length));

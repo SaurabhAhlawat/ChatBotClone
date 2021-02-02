@@ -686,7 +686,7 @@ function ChatWindow(props) {
                   isClicked(true);
                 }}
               >
-                <DownButton onClick={bottomsheetonClick} />
+                <DownButton onClick={bottomsheetonClick} visible={sheet.bottomSheet} />
                 <Input
                   change={submitForm}
                   textBoolean={textAreaInput}

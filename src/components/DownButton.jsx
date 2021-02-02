@@ -4,11 +4,12 @@ import ReactBottomsheet from "react-bottomsheet";
 import "../css/chatbot.css"
 
 function DownButton(props) {
+  const [src, setSrc] = useState("/images/arrowUp.png")
   return (
     <a className="downButton" onClick={props.onClick}>
       <img
         className="down_button"
-        src="/images/arrow-up.png"
+        src={props.visible ? "/images/arrowDown.png" : "/images/arrowUp.png"}
         alt="down_button"
       />
     </a>
