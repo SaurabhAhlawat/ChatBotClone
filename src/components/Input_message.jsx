@@ -66,6 +66,13 @@ function Input(props) {
 		setShow(false)
 	}, [props.textBoolean])
 
+
+	useEffect(() => {
+		setShowQuestion(false)
+		setShow(false)
+		console.log("Escape in I/p msg")
+	}, [props.EscapeButton])
+
 	var CancelToken = axios.CancelToken;
 	var cancel;
 	var datas;

@@ -284,6 +284,7 @@
 	border:2px solid #3e593c;
 }
 .chatbot_list_funds_item{
+	font-size: 11px;
 padding: 5px 15px;
 border-top: 1px solid #3e593c;
 background-color: white;
@@ -303,13 +304,15 @@ cursor: pointer;
 	z-index: 999999998;
 	overflow-y: scroll;
 	max-height: 200px;
-	width: 76%;
+	width: 84%;
 	bottom: 60px;
 	background-color: white;
 	border:2px solid #3e593c;
 }
 
 .chatbot_list_questions_item{
+	
+	font-size: 11px;
 padding: 5px 15px;
 border-top: 1px solid #3e593c;
 background-color: white;
@@ -556,6 +559,14 @@ cursor: pointer;
 .maximize-icon-heading-chatbot-Main .chatbot_list_funds{
 	width: auto;
 }
+
+.maximize-icon-heading-chatbot-Main .chatbot_list_questions_item{
+	font-size: 14px;
+}
+.maximize-icon-heading-chatbot-Main .chatbot_list_funds_item{
+	font-size: 14px;
+}
+
 
 /*  Image_message_receive css Ends here*/
 	/*End of Full Screen Css*/
