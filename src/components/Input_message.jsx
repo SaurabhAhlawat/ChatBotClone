@@ -7,10 +7,10 @@ import { Height } from "@material-ui/icons";
 function Input(props) {
 	const [textAreaInput, setTextAreaInput] = useState("");
 	// const [value, setValue] = useState({ query: "" });
-	const [lists, setList] = useState([]);
+	// const [lists, setList] = useState([]);
 	const [questionList, setQuestionList] = useState([]);
 	const [showQuestion, setShowQuestion] = useState(false);
-	const [show, setShow] = useState(false)
+	// const [show, setShow] = useState(false)
 
 
 	function changes(event) {
@@ -19,24 +19,27 @@ function Input(props) {
 		setTextAreaInput(event.target.value)
 
 
-		if (event.target.value.trim() === '') { setShowQuestion(false); setShow(false); }
+		if (event.target.value.trim() === '') {
+			setShowQuestion(false);
+			// setShow(false); 
+		}
 		else handle_question_Result(event.target.value)
 
-		if (event.target.value.indexOf("@") != -1) {
-			// console.log(event.target.value.substring(event.target.value.indexOf("@") + 1, event.target.value.length));
-			handle_mf_Result(event.target.value.substring(event.target.value.indexOf("@") + 1, event.target.value.length));
-			// setShow(true)
-		}
-		else setShow(false)
+		// if (event.target.value.indexOf("@") != -1) {
+		// 	// console.log(event.target.value.substring(event.target.value.indexOf("@") + 1, event.target.value.length));
+		// 	handle_mf_Result(event.target.value.substring(event.target.value.indexOf("@") + 1, event.target.value.length));
+		// 	// setShow(true)
+		// }
+		// else setShow(false)
 
 	}
 
 
 
 
-	const lists_of_fund = lists.map((e, i) => {
-		return <div key={i} class="chatbot_list_funds_item" onClick={() => { onClickOfItemFunds(e) }}>{e}</div>
-	})
+	// const lists_of_fund = lists.map((e, i) => {
+	// 	return <div key={i} class="chatbot_list_funds_item" onClick={() => { onClickOfItemFunds(e) }}>{e}</div>
+	// })
 
 	const lists_of_questions_suggestions = questionList.map((e, i) => {
 		return <div key={i} class="chatbot_list_questions_item" onClick={() => { onClickOfItemQuestions(e) }}><i class="fa fa-search"></i> {e}</div>
@@ -46,7 +49,7 @@ function Input(props) {
 		// console.log(e);
 		setTextAreaInput(e);
 		setShowQuestion(false);
-		setShow(false);
+		// setShow(false);
 		props.change(e);
 
 	}
@@ -54,7 +57,7 @@ function Input(props) {
 	function onClickOfItemFunds(e) {
 		console.log(e);
 		setTextAreaInput(textAreaInput.substring(0, textAreaInput.indexOf("@")) + " " + e);
-		setShow(false);
+		// setShow(false);
 
 		props.change(textAreaInput.substring(0, textAreaInput.indexOf("@")) + " " + e);
 		handle_question_Result(textAreaInput.substring(0, textAreaInput.indexOf("@")) + " " + e)
@@ -63,13 +66,13 @@ function Input(props) {
 	useEffect(() => {
 		setTextAreaInput("");
 		setShowQuestion(false)
-		setShow(false)
+		// setShow(false)
 	}, [props.textBoolean])
 
 
 	useEffect(() => {
 		setShowQuestion(false)
-		setShow(false)
+		// setShow(false)
 		console.log("Escape in I/p msg")
 	}, [props.EscapeButton])
 
@@ -89,7 +92,7 @@ function Input(props) {
 		}
 
 		datas2 = {
-			size: 5,
+			size: 50,
 			query: {
 				"multi_match": {
 					"query": value,
@@ -136,62 +139,62 @@ function Input(props) {
 
 	}
 
-	function handle_mf_Result(value) {
-		var tempList = []
-		if (cancel !== undefined) {
-			cancel();
-		}
+	// function handle_mf_Result(value) {
+	// 	var tempList = []
+	// 	if (cancel !== undefined) {
+	// 		cancel();
+	// 	}
 
-		datas = {
-			size: 500,
-			query: {
-				"multi_match": {
-					"query": value,
-					"fields": [
-						"name",
-						"category"
-					],
-					"type": "cross_fields",
-					"operator": "OR",
-					"minimum_should_match": "50%",
-					"tie_breaker": "0.3"
-				}
-			},
-		};
-		axios({
-			method: "post",
-			url:
-				"https://search-finresearch-nee4bx22xxffjggmbpbr4y27ye.ap-south-1.es.amazonaws.com/mfsearch/_search",
-			data: datas,
-			cancelToken: new CancelToken(function executor(c) {
-				// An executor function receives a cancel function as a parameter
-				cancel = c;
-			}),
-		})
-			.then((response) => {
-				// console.log(response.data.hits.hits);
-				// setList(response.data.hits.hits);
+	// 	datas = {
+	// 		size: 500,
+	// 		query: {
+	// 			"multi_match": {
+	// 				"query": value,
+	// 				"fields": [
+	// 					"name",
+	// 					"category"
+	// 				],
+	// 				"type": "cross_fields",
+	// 				"operator": "OR",
+	// 				"minimum_should_match": "50%",
+	// 				"tie_breaker": "0.3"
+	// 			}
+	// 		},
+	// 	};
+	// 	axios({
+	// 		method: "post",
+	// 		url:
+	// 			"https://search-finresearch-nee4bx22xxffjggmbpbr4y27ye.ap-south-1.es.amazonaws.com/mfsearch/_search",
+	// 		data: datas,
+	// 		cancelToken: new CancelToken(function executor(c) {
+	// 			// An executor function receives a cancel function as a parameter
+	// 			cancel = c;
+	// 		}),
+	// 	})
+	// 		.then((response) => {
+	// 			// console.log(response.data.hits.hits);
+	// 			// setList(response.data.hits.hits);
 
-				// console.log("--------------------------------------------------------")
-				response.data.hits.hits.map((e, q) => {
-					// console.log(e._source.name);
-					tempList.push(e._source.name)
-				})
-				setList([].concat(tempList))
-				console.log(lists.length)
-				if (lists.length === 0) setShow(false)
-				else setShow(true)
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	}
+	// 			// console.log("--------------------------------------------------------")
+	// 			response.data.hits.hits.map((e, q) => {
+	// 				// console.log(e._source.name);
+	// 				tempList.push(e._source.name)
+	// 			})
+	// 			setList([].concat(tempList))
+	// 			console.log(lists.length)
+	// 			if (lists.length === 0) setShow(false)
+	// 			else setShow(true)
+	// 		})
+	// 		.catch((error) => {
+	// 			console.log(error);
+	// 		});
+	// }
 
 
 	const onEnterPressKeyBoard = (e) => {
 		if (e.key === 'Enter') {
 			setTimeout(() => {
-				setShow(false)
+				// setShow(false)
 				setShowQuestion(false)
 			setTextAreaInput("");
 			}, 250);
@@ -252,7 +255,7 @@ function Input(props) {
 		// </MentionsInput>
 
 		<>
-			{ show ? <div class="chatbot_list_funds" >{lists_of_fund}</div> : null}
+			{/* { show ? <div class="chatbot_list_funds" >{lists_of_fund}</div> : null} */}
 			{showQuestion ? <div class="chatbot_list_questions_suggestions">{lists_of_questions_suggestions}</div> : null}
 
 			<textarea
