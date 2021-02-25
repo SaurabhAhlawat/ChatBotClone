@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../css/chatbot.css";
+import Linkify from "react-linkify";
 
 function Table_Message(props) {
 
@@ -9,6 +10,13 @@ function Table_Message(props) {
       {m}
     </th>);
   });
+
+  const componentDecorator = (href, text, key) => (
+    <a href={href} key={key} target="_blank" style={{ "color": "#3e593c" }}>
+      {text}
+    </a>
+  );
+
   var rows = details.entries.values.map((m, i) => {
     return (
       <tr className="chatbot_table_ui_tr">
@@ -16,10 +24,10 @@ function Table_Message(props) {
           return (
             <td className="chatbot_table_ui_th">
               {p.hyperlink != null ?
-                <a style={{ cursor: "pointer", color: "black", textDecoration: "underline" }} onClick={() => { props.tableClick(p.hyperlink) }}>
+                <a style={{ cursor: "pointer", color: "#3e593c", textDecoration: "underline" }} onClick={() => { props.tableClick(p.hyperlink) }}>
                   {p.value}
                 </a> :
-                p.value
+                <Linkify componentDecorator={componentDecorator} >{p.value}</Linkify>
               }
             </td>);
         })}
@@ -33,7 +41,7 @@ function Table_Message(props) {
     <div className="row msg_container base_receive">
       <div className="aa">
         <div className="messages_chatbot chatbot_table_ui">
-          <div style={{ color: "black" }}>{details.entries.title}</div>
+          <div >{details.entries.title}</div>
           <table>
             <thead>
               <tr className="chatbot_table_ui_tr">

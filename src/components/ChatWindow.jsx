@@ -650,7 +650,7 @@ function ChatWindow(props) {
 					<div className="panel-heading top-bar">
 						<div >
 
-							<div className="company_heading_name_chatbot" style={{ color: "white", fontSize: "15px", float: "left" }}>Aditya Birla Finance Limited</div>
+							<div className="company_heading_name_chatbot" style={{ color: "white", float: "left" }}>Aditya Birla Finance Limited</div>
 							{/* <img className="icon-heading-chatBot" src="https://c3india.s3.ap-south-1.amazonaws.com/public_assets/data/000/000/344/original/BirlaCapitalLogo_jpeg?1538291690" /> */}
 							<div style={{ textAlign: "right" }}>
 								<img alt="maximize_icon" class="maximize-icon-heading-chatbot" onClick={(m) => { m.preventDefault(); onMaximizeChatBot(); }} src={maxOrMinIcon} />

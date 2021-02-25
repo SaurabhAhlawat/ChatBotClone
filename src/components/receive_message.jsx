@@ -5,7 +5,7 @@ import Linkify from "react-linkify";
 function receive(props) {
 
   const componentDecorator = (href, text, key) => (
-    <a href={href} key={key} target="_blank">
+    <a href={href} key={key} target="_blank" style={{ "color": "#3e593c" }}>
       {text}
     </a>
   );
@@ -17,7 +17,7 @@ function receive(props) {
           <p>
             <Linkify componentDecorator={componentDecorator} >{props.query}</Linkify>
           </p>  
-          <time datetime="2009-11-13T20:00">{props.time}</time>
+          <time datetime={props.time}>{props.time}</time>
         </div>
       </div>
     </div>

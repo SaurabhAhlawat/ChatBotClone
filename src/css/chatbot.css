@@ -4,10 +4,14 @@
 	right: 100px;
 	bottom: 30px;
 	width: 100%;
-	font-family: "Poppins", sans-serif;
+	font-family: "PF Handbook Pro Regular", sans-serif;
+	font-weight: 2000;
 	animation-duration: 0.6s;
 	animation-fill-mode: both;
 	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3) !important;
+}
+.company_heading_name_chatbot{
+	font-size: 16px;
 }
 .chatbotAnimationClassFadeIn{
 	animation-name: fadeIn;
@@ -97,13 +101,13 @@
 	margin-top: 0px;
 	border:1px solid #dedede;
 	color: #000;
-	font-size: 13px !important;
+	font-size: 16px !important;
 	text-align: left;
 	resize: none !important;
 }
 /*Up_arrow*/
 .downButton {
-	bottom: 70px;
+	bottom: 80px;
 	right: 5px;
 	border-radius: 100%;
 	size: 10%;
@@ -149,7 +153,7 @@
 	background-color: #fff;
 	width: 100%;
 	text-align: left;
-	font-size: 11px;
+	font-size: 15px;
 	border: none;
 	padding: 3px;
 	border-bottom: 1px solid #d3d3d3;
@@ -205,29 +209,23 @@
 .top-bar {
 	background: #3e593c !important;
 	padding-left: 20px;
-	font-size: 10%;
 	position: relative;
 	overflow: hidden;
 	max-width: 300px;
 	/* max-height: 50px; */
 }
 .msg_receive_chatbot {
-	padding-left: 0;
-	margin-left: 0;
 	border-radius: 1rem 1rem 1rem 0rem !important;
 	max-width: 200px;
 	text-align: left;
-	background-color: #fff;
-	color: #000 !important;
+	background-color: #969F6E;
+	color: #fff !important;
 }
 .msg_sent_chatbot {
-	background: #3e593c !important;
-	padding-bottom: 20px !important;
 	border-radius: 1rem 1rem 0rem 1rem !important;
-	margin-right: 0px;
-	margin-left: 0px;
-	text-align: right;
 	max-width: 200px;
+	text-align: left;
+	background-color: #3e593c ;
 	color: #fff !important;
 }
 .messages_chatbot {
@@ -235,19 +233,19 @@
 	padding: 10px;
 	padding-left: 10px;
 	border-radius: 12px;
-	font-family: "Montserrat", sans-serif;
+	font-family: "PF Handbook Pro Regular", sans-serif;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 .messages_chatbot > p {
-	font-size: 11px;
+	font-size: 15px;
 	margin: 0 0 0.2rem 0;
 	word-wrap: break-word;
 	text-align: left;
 }
 .messages_chatbot > time {
-	font-size: 10px;
-	color: #90a4ae;
-	text-align: left;
+	font-size: 11px;
+	color: rgb(255, 255, 255);
+	text-align: right !important;
 }
 .msg_container {
 	padding: 10px;
@@ -260,9 +258,6 @@
 	align-items: flex-end;
 }
 
-.msg_sent_chatbot > time {
-	float: left;
-}
 
 .icon-heading-chatBot {
 	float: left;
@@ -284,11 +279,11 @@
 	border:2px solid #3e593c;
 }
 .chatbot_list_funds_item{
-	font-size: 11px;
-padding: 5px 15px;
-border-top: 1px solid #3e593c;
-background-color: white;
-cursor: pointer;
+	font-size: 15px;
+	padding: 5px 15px;
+	border-top: 1px solid #3e593c;
+	background-color: white;
+	cursor: pointer;
 }
 .chatbot_list_funds_item:hover{
 	color: white;
@@ -305,18 +300,18 @@ cursor: pointer;
 	overflow-y: scroll;
 	max-height: 200px;
 	width: 84%;
-	bottom: 60px;
+	bottom: 70px;
 	background-color: white;
 	border:2px solid #3e593c;
 }
 
 .chatbot_list_questions_item{
 	
-	font-size: 11px;
-padding: 5px 15px;
-border-top: 1px solid #3e593c;
-background-color: white;
-cursor: pointer;
+	font-size: 15px;
+	padding: 5px 15px;
+	border-top: 1px solid #3e593c;
+	background-color: white;
+	cursor: pointer;
 }
 .chatbot_list_questions_item:hover{
 	color: white;
@@ -354,9 +349,9 @@ cursor: pointer;
 	background: #3e593c !important;
 	display: inline-block;
 	padding: 10px 20px;
-	font-family: "Montserrat", sans-serif;
+	font-family: "PF Handbook Pro Regular", sans-serif;
 	font-weight:bold;
-	font-size: 15px;
+	font-size: 20px;
 	border-radius: 10px 10px 0px 10px;
 	width: auto;
 	height: auto;
@@ -390,7 +385,7 @@ cursor: pointer;
 /*Animation three dots*/
 .loader_animation_chatbot{
 	margin-top: -40px !important;
-	font-size:50px;
+	font-size:70px;
 	color: #3e593c !important;
 	float: left;;
 }
@@ -402,7 +397,7 @@ cursor: pointer;
 	border: 2px solid #3e593c;
 	border-radius: 20px;
 	padding: 5px;
-	font-size: 11px;
+	font-size: 15px;
 	margin: 2px;
 	float: left;
 	text-align: left;
@@ -414,14 +409,15 @@ cursor: pointer;
 
 /*Table Card Ui*/
 .chatbot_table_ui {
+	background-color: #969F6E;
 	border-collapse: collapse;
+	color: #fff;
 	width: 100%;
 }
 .chatbot_table_ui_th {
-	border: 1px solid #3e593c;
+	border: 1px solid #fff;
 	text-align: left;
-	color: #000;
-	font-size: 10px;
+	font-size: 13px;
 	padding: 8px;
 }
 
@@ -444,7 +440,9 @@ cursor: pointer;
 /***/
 
 /*Chatbot FullScreen*/
-
+.maximize-icon-heading-chatbot-Main #chatbot_btn-input{
+	font-size: 20px !important;
+}
 
 .maximize-icon-heading-chatbot-Main .blackScreenShadow_chatBot{
 	height: 100%;
@@ -481,7 +479,7 @@ cursor: pointer;
 		height: auto !important;
 		width: 70% ;
 		bottom: 8em !important;
-		top: 4em !important;
+		top: 5em !important;
 		position: fixed;
 	}
 
@@ -492,12 +490,12 @@ cursor: pointer;
 	}
 .maximize-icon-heading-chatbot-Main  .custom-layout {
 		position: absolute;
-		bottom: 80px !important;
+		bottom: 90px !important;
 		margin-left: 20px;
 
 	}
 .maximize-icon-heading-chatbot-Main .custom-layout button {
-	font-size: 14px;
+	font-size: 18px;
 	padding:10px;
 }
 .maximize-icon-heading-chatbot-Main  .fab-icon-a {
@@ -511,23 +509,28 @@ cursor: pointer;
 .maximize-icon-heading-chatbot{
 	cursor: pointer;
 }
-
+.maximize-icon-heading-chatbot-Main .downButton{
+	bottom: 90px;
+}
 .maximize-icon-heading-chatbot-Main .messages_chatbot{
 	max-width: 600px;
 }
 .maximize-icon-heading-chatbot-Main .messages_chatbot > p{
-	font-size: 14px;
+	font-size: 18px;
 }
 .maximize-icon-heading-chatbot-Main .messages_chatbot > time{
-	font-size:12px ;
+	font-size:15px ;
 }
 .maximize-icon-heading-chatbot-Main .btn_mess{
-	font-size: 14px;
+	font-size: 18px;
 	padding:7px;
 }
 
+.maximize-icon-heading-chatbot-Main .chatbot_table_ui{
+	font-size: 18px;
+}
 .maximize-icon-heading-chatbot-Main .messages_chatbot .chatbot_table_ui_th{
-	font-size: 13px;
+	font-size: 18px;
 }
 .maximize-icon-heading-chatbot-Main .msg_container{
 	margin-left: 20px;
@@ -543,7 +546,7 @@ cursor: pointer;
 	margin-right: 30px;
 }
 .maximize-icon-heading-chatbot-Main .company_heading_name_chatbot{
-	font-size: 17px !important;
+	font-size: 20px !important;
 }
 
 /*  Image_message_receive*/
@@ -557,14 +560,15 @@ cursor: pointer;
 
 
 .maximize-icon-heading-chatbot-Main .chatbot_list_funds{
+	bottom: 70px !important;
 	width: auto;
 }
 
 .maximize-icon-heading-chatbot-Main .chatbot_list_questions_item{
-	font-size: 14px;
+	font-size: 18px;
 }
 .maximize-icon-heading-chatbot-Main .chatbot_list_funds_item{
-	font-size: 14px;
+	font-size: 18px;
 }
 
 
@@ -584,3 +588,11 @@ cursor: pointer;
 	to   { transform: translateX(0); }
 }
 /**Fading CSs Ends here*/
+
+
+/*Font PF Handbook Pro Regular*/
+ @font-face {
+	font-family: 'PF Handbook Pro Regular';
+	src: local('PF Handbook Pro Regular'), url('../fonts/PFHandbookProRegular.woff') format('woff');
+	}
+/*Font PF Handbook Pro Regular Ends here*/
