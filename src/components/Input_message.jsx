@@ -54,14 +54,14 @@ function Input(props) {
 
 	}
 
-	function onClickOfItemFunds(e) {
-		console.log(e);
-		setTextAreaInput(textAreaInput.substring(0, textAreaInput.indexOf("@")) + " " + e);
-		// setShow(false);
+	// function onClickOfItemFunds(e) {
+	// 	console.log(e);
+	// 	setTextAreaInput(textAreaInput.substring(0, textAreaInput.indexOf("@")) + " " + e);
+	// 	// setShow(false);
 
-		props.change(textAreaInput.substring(0, textAreaInput.indexOf("@")) + " " + e);
-		handle_question_Result(textAreaInput.substring(0, textAreaInput.indexOf("@")) + " " + e)
-	}
+	// 	props.change(textAreaInput.substring(0, textAreaInput.indexOf("@")) + " " + e);
+	// 	handle_question_Result(textAreaInput.substring(0, textAreaInput.indexOf("@")) + " " + e)
+	// }
 
 	useEffect(() => {
 		setTextAreaInput("");
@@ -103,7 +103,7 @@ function Input(props) {
 					],
 					"type": "cross_fields",
 					"operator": "OR",
-					"minimum_should_match": "50%",
+					"minimum_should_match": "35%",
 					"tie_breaker": "0.3"
 				}
 			}
@@ -203,37 +203,7 @@ function Input(props) {
 		}
 	};
 
-	// var users = [
-	//   {
-	//     id: "user_id",
-	//     display: "A"
-	//   }, {
-	//     id: "user_id",
-	//     display: "A"
-	//   }, {
-	//     id: "user_id",
-	//     display: "A"
-	//   }, {
-	//     id: "user_id",
-	//     display: "A"
-	//   }, {
-	//     id: "user_id",
-	//     display: "A"
-	//   }, {
-	//     id: "user_id",
-	//     display: "A"
-	//   }, {
-	//     id: "user_id",
-	//     display: "A"
-	//   }, {
-	//     id: "user_id",
-	//     display: "A B C"
-	//   }, {
-	//     id: "user_id",
-	//     display: "A"
-	//   },
 
-	// ]
 
 	return (
 
@@ -268,7 +238,7 @@ function Input(props) {
 			id="chatbot_btn-input"
 				type="text"
 				className="chatbot_comments-textarea"
-			placeholder="Type something... or use @ to search a mutual fund"
+				placeholder="Type a message... "
 				value={textAreaInput}
 				onChange={changes}
 				onKeyDown={(e) => { onEnterPressKeyBoard(e); }}

@@ -1,8 +1,15 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import "../css/chatbot.css";
 import Linkify from "react-linkify";
 
 function Table_Message(props) {
+
+  // //This is to check whether it contains << >> this angle brackets or not!
+  // const [checkUrlExist, setCheckUrlExist] = useState(false)
+
+  // //This value is for Hey, This might interest you! Here are the latest income tax slabs and rates - <<Tax:http://www.ecoti.in/OsciWb>>
+  // //type text 
+  // const [values, setValues] = useState({ mainText: "", string: "", link: "" })
 
   var details = props.query;
   var heading = details.entries.headings.map((m, i) => {

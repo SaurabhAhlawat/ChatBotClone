@@ -26,7 +26,7 @@
 }
 
 /**Responsiveness*/
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 990px) {
 	#chatBot-id {
 		width: 100%;
 		right: 50px;
@@ -300,7 +300,7 @@
 	overflow-y: scroll;
 	max-height: 200px;
 	width: 85%;
-	bottom: 70px;
+	bottom: 60px;
 	background-color: white;
 	border:2px solid #3e593c;
 }
@@ -362,7 +362,7 @@
 .fab-icon-a {
 	position: fixed;
 	z-index: 2147483646;
-	right: 25px;
+	right: 20px;
 	bottom: 150px;
 
 	background: #3e593c !important;
@@ -478,8 +478,8 @@
 .maximize-icon-heading-chatbot-Main  .msg_container_base {
 		height: auto !important;
 		width: 70% ;
-		bottom: 8em !important;
-		top: 5em !important;
+		bottom: 7.6em !important;
+		top: 4.5em !important;
 		position: fixed;
 	}
 
@@ -524,6 +524,9 @@
 .maximize-icon-heading-chatbot-Main .btn_mess{
 	font-size: 18px;
 	padding:7px;
+}
+.maximize-icon-heading-chatbot-Main .chatbot_list_questions_suggestions{
+	bottom: 70px;
 }
 
 .maximize-icon-heading-chatbot-Main .chatbot_table_ui{
