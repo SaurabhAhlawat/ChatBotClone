@@ -32,7 +32,7 @@ function App() {
 			<Chat
 				active={item.isActive}
 				closeChatbot={closeChatbot}
-				url="https://abwm.vitt.ai/"
+				url="http://0.0.0.0:5000"
 				cookieKey="sessionid"
 			/>
 			{item.icon==="-1"?null:
