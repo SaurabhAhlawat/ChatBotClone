@@ -193,6 +193,8 @@
 .panel-default {
 	margin-bottom: 0px;
 	background-color: #fff;
+	border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
 }
 
 .chat-window {
@@ -225,8 +227,9 @@
 	border-radius: 1rem 1rem 0rem 1rem !important;
 	max-width: 200px;
 	text-align: left;
-	background-color: #3e593c ;
-	color: #fff !important;
+	background-color:  #F1F3F6;
+	color: #3e593c !important;
+	border: 1px solid #3e593c;
 }
 .messages_chatbot {
 	color: #fff;
@@ -247,6 +250,48 @@
 	color: rgb(255, 255, 255);
 	text-align: right !important;
 }
+
+.messages_chatbot.msg_sent_chatbot > time {
+	color: #3e593c !important;
+}
+
+.panel-default .panel-logo-wrapper {
+    color: #fff;
+    background: #c72229;
+	border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+}
+
+.panel-default .panel-logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+	padding: 5px 10px;
+}
+
+.panel-default .action-btn {
+	padding: 5px 10px;
+}
+
+.panel-default .panel-logo .logo-text {
+    font-size: 20px;
+    text-transform: uppercase;
+    font-family: 'PF Handbook Pro Regular';
+	line-height: 1;
+}
+
+.panel-default .panel-logo .logo-image img {
+    width: 120px;
+}
+
+.panel-default .panel-heading-text {
+	background-color: #969F6E;
+	color: #fff;
+	font-size: 10px;
+    padding: 3px 10px;
+	border-bottom: 1px solid #fff;
+}
+
 .msg_container {
 	padding: 10px;
 	overflow: hidden;
@@ -479,7 +524,7 @@
 		height: auto !important;
 		width: 70% ;
 		bottom: 7.6em !important;
-		top: 4.5em !important;
+		top: 7.7em !important;
 		position: fixed;
 	}
 
@@ -545,9 +590,6 @@
 	font-size: 80px;
 }
 
-.maximize-icon-heading-chatbot-Main .maximize-icon-heading-chatbot{
-	margin-right: 30px;
-}
 .maximize-icon-heading-chatbot-Main .company_heading_name_chatbot{
 	font-size: 20px !important;
 }
