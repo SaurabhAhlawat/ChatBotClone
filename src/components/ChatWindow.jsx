@@ -647,19 +647,23 @@ function ChatWindow(props) {
 				style={{ display: props.active ? "block" : "none" }}
 			>
 				<div className="panel-default">
-					<div className="panel-heading top-bar">
-						<div >
-
-							<div className="company_heading_name_chatbot" style={{ color: "white", float: "left" }}>Aditya Birla Finance Limited</div>
-							{/* <img className="icon-heading-chatBot" src="https://c3india.s3.ap-south-1.amazonaws.com/public_assets/data/000/000/344/original/BirlaCapitalLogo_jpeg?1538291690" /> */}
-							<div style={{ textAlign: "right" }}>
-								<img alt="maximize_icon" class="maximize-icon-heading-chatbot" onClick={(m) => { m.preventDefault(); onMaximizeChatBot(); }} src={maxOrMinIcon} />
-								<img alt="close_icon" style={{ cursor: "pointer" }} class="close-icon-heading-chatbot" onClick={(m) => {
-									m.preventDefault();
-									setMaximizeChatBot(""); props.closeChatbot(); setBottomSheet({ bottomSheet: false })
-								}} src="/images/remove.png" />
+					<div className="panel-logo-wrapper">
+						<div style={{ textAlign: "right" }} className="action-btn">
+							<img alt="maximize_icon" class="maximize-icon-heading-chatbot" onClick={(m) => { m.preventDefault(); onMaximizeChatBot(); }} src={maxOrMinIcon} />
+							<img alt="close_icon" style={{ cursor: "pointer" }} class="close-icon-heading-chatbot" onClick={(m) => {
+								m.preventDefault();
+								setMaximizeChatBot(""); props.closeChatbot(); setBottomSheet({ bottomSheet: false })
+							}} src="/images/remove.png" />
+						</div>
+						<div className="panel-logo">
+							<div className="logo-text">Wealth Assist</div>
+							<div className="logo-image">
+								<img src="https://c3india.s3.ap-south-1.amazonaws.com/public_assets/data/000/000/344/original/BirlaCapitalLogo_jpeg?1538291690" />
 							</div>
 						</div>
+					</div>
+					<div className="panel-heading-text">
+						Aditya Birla Finance Limited (AMFI registered Mutual Fund Distributor)
 					</div>
 					<div className="panel-body msg_container_base">
 
