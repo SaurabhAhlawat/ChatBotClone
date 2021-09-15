@@ -97,7 +97,7 @@ function Input(props) {
 				"multi_match": {
 					"query": value,
 					"fields": [
-						"question^2",
+						"question",
 						"entityvalue",
 						"extra^2"
 					],
