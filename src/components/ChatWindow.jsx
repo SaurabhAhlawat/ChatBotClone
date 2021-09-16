@@ -227,6 +227,7 @@ function ChatWindow(props) {
 					//btn is for button UI messages array. we are storing it.
 					var sp = [];
 					var btn = [];
+					var actionText = [];
 
 					/**UP Arrow */
 
@@ -280,11 +281,21 @@ function ChatWindow(props) {
 							};
 							console.log("ImageLink: " + inital_message.query);
 							sp.push(inital_message);
+						} else if (m.type === 4 && m.speech !== "") {
+							var inital_message = {
+								session: cookieData,
+								query: m.speech,
+								type: "receive",
+								time: startTime(),
+								count: value.length,
+								conversationId: conversation
+							};
+							actionText.push(inital_message);
 						}
 					});
 					// console.log(btn);
 					// console.log(sp);
-					setValue([...value].concat(sp));
+					setValue([...value].concat(sp).concat(actionText));
 					setButtonValue([].concat(btn));
 					setLoader(-1)
 				})
@@ -332,6 +343,7 @@ function ChatWindow(props) {
 					//btn is for button UI messages array. we are storing it.
 					var sp = [];
 					var btn = [];
+					var actionText = [];
 
 					/**UP Arrow */
 
@@ -384,11 +396,21 @@ function ChatWindow(props) {
 							};
 							console.log("ImageLink: " + inital_message.query);
 							sp.push(inital_message);
+						} else if (m.type === 4 && m.speech !== "") {
+							var inital_message = {
+								session: cookieData,
+								query: m.speech,
+								type: "receive",
+								time: startTime(),
+								count: value.length,
+								conversationId: conversation
+							};
+							actionText.push(inital_message);
 						}
 					});
 					// console.log(btn);
 					// console.log(sp);
-					setValue([...value].concat(sp));
+					setValue([...value].concat(sp).concat(actionText));
 					setButtonValue([].concat(btn));
 					setLoader(-1)
 				})
@@ -453,6 +475,7 @@ function ChatWindow(props) {
 					var sp = [];
 					//type==2 for button message
 					var btn = [];
+					var actionText = [];
 					//type==1 for news
 					var news = [];
 					console.log(
@@ -534,6 +557,16 @@ function ChatWindow(props) {
 							};
 							console.log("ImageLink: " + inital_message.query);
 							sp.push(inital_message);
+						} else if (m.type === 4 && m.speech !== "") {
+							var inital_message = {
+								session: cookieData,
+								query: m.speech,
+								type: "receive",
+								time: startTime(),
+								count: value.length,
+								conversationId: conversation_id
+							};
+							actionText.push(inital_message);
 						}
 					});
 					// console.log(btn);
@@ -542,7 +575,7 @@ function ChatWindow(props) {
 						sp.push(table_Data)
 					}
 
-					setValue([...value, temp].concat(sp));
+					setValue([...value, temp].concat(sp).concat(actionText));
 
 					setButtonValue([].concat(btn));
 					setLoader(-1);
