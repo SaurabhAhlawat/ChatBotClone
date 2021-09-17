@@ -184,7 +184,7 @@ function ChatWindow(props) {
 	/*API CALL for first GoodMorning messages when user open the chat! */
 
 	useEffect(() => {
-		if(window.location.pathname === "mf-transaction/Category") {
+		if(window.location.pathname === "/mf-transaction/Category") {
 			setTimeout(initializeChat, 10000);
 		} else {
 			initializeChat();
