@@ -182,7 +182,16 @@ function ChatWindow(props) {
 	}
 
 	/*API CALL for first GoodMorning messages when user open the chat! */
+
 	useEffect(() => {
+		if(window.location.pathname === "mf-transaction/Category") {
+			setTimeout(initializeChat, 10000);
+		} else {
+			initializeChat();
+		}
+	}, []);
+
+	function initializeChat() {
 		var conversation = Conversation_id_function();
 		set_conversation_id(conversation)
 		console.log(temp);
@@ -437,8 +446,7 @@ function ChatWindow(props) {
 		}
 
 		// console.log(temp);
-	}, []);
-
+	}
 	/*After clicking on send either by pressing enter or by pressing send button*/
 
 	function clickButton() {
