@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Chat from "./ChatWindow";
 import "../css/chatbot.css";
 import { set } from "js-cookie";
+import { HIDE_WELCOME_MESSAGE_TIME, SHOW_WELCOME_MESSAGE_TIME } from "../utils/constants";
 
 function App() {
 	const [item, setitem] = useState({
@@ -12,10 +13,21 @@ function App() {
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
-			setNotification((value) => (value === -1 ? 1 : 0));
-		}, 4000);
+			setNotification((value) => {
+				return (value === -1 ? 1 : 0)
+			});
+		}, SHOW_WELCOME_MESSAGE_TIME);
 		return () => clearTimeout(timer);
 	}, [setNotification]);
+
+	useEffect(() => {
+		if(notification === 1) {
+			const timer = setTimeout(() => {
+				setNotification(0);
+			}, HIDE_WELCOME_MESSAGE_TIME);
+			return () => clearTimeout(timer);
+		}
+	}, [notification, setNotification]);
 
 
 	function handleClick() {

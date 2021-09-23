@@ -1,0 +1,2 @@
+export const SHOW_WELCOME_MESSAGE_TIME = 4000;
+export const HIDE_WELCOME_MESSAGE_TIME = 5000;
