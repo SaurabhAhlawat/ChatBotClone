@@ -8,7 +8,7 @@ function Table_Message(props) {
 
 	var details = props.query;
 	var heading = details.entries.headings.map((m, i) => {
-		return (<th className="chatbot_table_ui_th">
+		return (<th className="jcb_chatbot_table_ui_th">
 			{m}
 		</th>);
 	});
@@ -24,7 +24,7 @@ function Table_Message(props) {
 			<tr className="chatbot_table_ui_tr">
 				{details.entries.values[i].map((p, q) => {
 					return (
-						<td key={q} className="chatbot_table_ui_th">
+						<td key={q} className="jcb_chatbot_table_ui_th">
 							{p.hyperlink != null ?
 								(p.hyperlink.indexOf("<") === 0 ?
 									<a style={{ cursor: "pointer", color: "#3e593c", textDecoration: "underline" }} href={p.hyperlink.substring(1, p.hyperlink.length)}>
@@ -47,9 +47,9 @@ function Table_Message(props) {
 		);
 	});
 	return (
-		<div className="row msg_container base_receive">
+		<div className="row jcb_msg_container base_receive">
 			<div className="aa">
-				<div className="messages_chatbot chatbot_table_ui">
+				<div className="jcb_messages_chatbot jcb_chatbot_table_ui">
 					<div >{details.entries.title}</div>
 					<table>
 						<thead>

@@ -3,9 +3,9 @@ import "../css/chatbot.css";
 
 function Sent(props) {
   return (
-    <div className="row msg_container base_sent">
+    <div className="row jcb_msg_container jcb_base_sent">
       <div className="aa">
-        <div className="messages_chatbot msg_sent_chatbot">
+        <div className="jcb_messages_chatbot jcb_msg_sent_chatbot">
           <p>{props.query}</p>
           <time datetime={props.time}>{props.time}</time>
         </div>

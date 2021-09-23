@@ -44,9 +44,9 @@ function Receive(props) {
 
 
 	return (
-		<div className="row msg_container base_receive">
+		<div className="row jcb_msg_container base_receive">
 			<div className="aa">
-				<div className="messages_chatbot msg_receive_chatbot">
+				<div className="jcb_messages_chatbot jcb_msg_receive_chatbot">
 					<p>
 						{checkUrlExist ? <>{values.mainText} <a target="_blank" href={values.link} style={{ "color": "#3e593c" }}>{values.string}</a></>
 							: <Linkify componentDecorator={componentDecorator} >{props.query}</Linkify>}

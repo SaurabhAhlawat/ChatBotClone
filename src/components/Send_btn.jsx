@@ -3,9 +3,9 @@ import "../css/chatbot.css";
 
 function Button(props) {
   return (
-    <a className="myButton" onClick={props.click} type="Submit">
+    <a className="jcb_myButton" onClick={props.click} type="Submit">
       <img
-        className="send_image"
+        className="jcb_send_image"
         src="/images/arrow-right.png"
         alt="send_buton"
       />
