@@ -1,4 +1,4 @@
-#chatBot-id {
+#jcb_chatBot-id {
 	position: fixed;
 	z-index: 2147483646;
 	right: 100px;
@@ -10,10 +10,10 @@
 	animation-fill-mode: both;
 	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3) !important;
 }
-.company_heading_name_chatbot{
+.jcb_company_heading_name_chatbot{
 	font-size: 16px;
 }
-.chatbotAnimationClassFadeIn{
+.jcb_chatbotAnimationClassFadeIn{
 	animation-name: fadeIn;
 }
 @keyframes fadeIn {
@@ -27,7 +27,7 @@
 
 /**Responsiveness*/
 @media only screen and (max-width: 991px) {
-	#chatBot-id {
+	#jcb_chatBot-id {
 		width: 100%;
 		right: 50px;
 		bottom: 0px;
@@ -35,58 +35,58 @@
 		left: 0px;
 		right: 0px;
 	}
-	.chat-window {
+	.jcb_chat-window {
 		max-width: 100% !important;
 		margin-left: 0px !important;
 	}
-	.top-bar {
+	.jcb_top-bar {
 		max-width: 100% !important;
 	}
-	.panel-default {
+	.jcb_panel-default {
 		border: none;
 		height: 100%;
 	}
-	.msg_container_base {
+	.jcb_msg_container_base {
 		height:auto !important;
 		top: 3em !important;
 		bottom: 6em !important;
 		position: fixed;
 		width: 100%;
 	}
-	.panel-footer {
+	.jcb_panel-footer {
 		position: absolute;
 		width: 100%;
 		bottom: 0px;
 	}
-	.custom-layout {
+	.jcb_custom-layout {
 		position: absolute;
 		bottom: 80px !important;
 	}
-	.fab-icon-a {
+	.jcb_fab-icon-a {
 		right: 20px !important;
 		width: 50px !important;
 		height: 50px !important;
 		bottom: 180px !important ;
 	}
-	.fab-icon-a-welcome-notification{
+	.jcb_fab-icon-a-welcome-notification{
 		bottom: 240px !important;
 	}
-	.fab-img {
+	.jcb_fab-img {
 		width: 50% !important;
 	}
-	.maximize-icon-heading-chatbot{
+	.jcb_maximize-icon-heading-chatbot{
 		display: none;
 	}
 
 }
 /*Responsive Css Ends here*/
 
-#my_form {
+#jcb_my_form {
 	width: 100%;
 	display: table;
 }
 
-#chatbot_btn-input {	
+#jcb_chatbot_btn-input {	
 	outline: none;
 	display: block;
 	overflow: auto;
@@ -106,7 +106,7 @@
 	resize: none !important;
 }
 /*Up_arrow*/
-.downButton {
+.jcb_downButton {
 	bottom: 80px;
 	right: 5px;
 	border-radius: 100%;
@@ -119,16 +119,16 @@
 	margin-left: auto;
 }
 
-.downButton:active {
+.jcb_downButton:active {
 	position: absolute;
 	bottom: 69px;
 }
-.bottom-sheet-item:hover{
+.jcb_bottom-sheet-item:hover{
 	background-color: #3e593c;
 	color: white;
 }
 
-.down_button {
+.jcb_down_button {
 	cursor: pointer;
 	size: 1%;
 	display: block;
@@ -139,7 +139,7 @@
 }
 /*Up_arrow Ends here*/
 
-.custom-layout {
+.jcb_custom-layout {
 	position: absolute;
 	border: 2px solid #3e593c;
 	border-radius: 5px;
@@ -149,7 +149,7 @@
 	margin-left: 5px;
 }
 
-.custom-layout button {
+.jcb_custom-layout button {
 	background-color: #fff;
 	width: 100%;
 	text-align: left;
@@ -160,18 +160,18 @@
 }
 
 /*Send Buttons*/
-.myButton {
+.jcb_myButton {
 	display: table-cell;
 	text-align: center	;
 	vertical-align: middle;
 	padding-left: 5px;
 }
 
-.myButton:active {
+.jcb_myButton:active {
 	position: relative;
 	top: 1px;
 }
-.send_image {
+.jcb_send_image {
 	cursor: pointer;
 	width: 25px;
 	height: 25px;
@@ -179,36 +179,36 @@
 	margin-right: auto;
 	margin-left: auto;
 }
-.panel-footer {
+.jcb_panel-footer {
 	text-align: left !important;
 	background-color: #E6E6E6;
 	border: none;
 	width: 100%;
 }
-.input-group {
+.jcb_input-group {
 	-webkit-box-sizing: inherit;
 	display: block;
 	justify-content: space-between;
 }
-.panel-default {
+.jcb_panel-default {
 	margin-bottom: 0px;
 	background-color: #fff;
 	border-top-right-radius: 3px;
     border-top-left-radius: 3px;
 }
 
-.chat-window {
+.jcb_chat-window {
 	bottom: 0;
 	max-width: 300px;
 }
-.msg_container_base {
+.jcb_msg_container_base {
 	background: #fff;
 	margin: 0;
 	padding: 0 10px 10px;
 	height: 350px ;
 	overflow-x: hidden;
 }
-.top-bar {
+.jcb_top-bar {
 	background: #3e593c !important;
 	padding-left: 20px;
 	position: relative;
@@ -216,14 +216,14 @@
 	max-width: 300px;
 	/* max-height: 50px; */
 }
-.msg_receive_chatbot {
+.jcb_msg_receive_chatbot {
 	border-radius: 1rem 1rem 1rem 0rem !important;
 	max-width: 200px;
 	text-align: left;
 	background-color: #969F6E;
 	color: #fff !important;
 }
-.msg_sent_chatbot {
+.jcb_msg_sent_chatbot {
 	border-radius: 1rem 1rem 0rem 1rem !important;
 	max-width: 200px;
 	text-align: left;
@@ -231,7 +231,7 @@
 	color: #3e593c !important;
 	border: 1px solid #3e593c;
 }
-.messages_chatbot {
+.jcb_messages_chatbot {
 	color: #fff;
 	padding: 10px;
 	padding-left: 10px;
@@ -239,52 +239,52 @@
 	font-family: "PF Handbook Pro Regular", sans-serif;
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
-.messages_chatbot > p {
+.jcb_messages_chatbot > p {
 	font-size: 15px;
 	margin: 0 0 0.2rem 0;
 	word-wrap: break-word;
 	text-align: left;
 }
-.messages_chatbot > time {
+.jcb_messages_chatbot > time {
 	font-size: 11px;
 	color: rgb(255, 255, 255);
 	text-align: right !important;
 }
 
-.messages_chatbot.msg_sent_chatbot > time {
+.jcb_messages_chatbot.jcb_msg_sent_chatbot > time {
 	color: #3e593c !important;
 }
 
-.panel-default .panel-logo-wrapper {
+.jcb_panel-default .jcb_panel-logo-wrapper {
     color: #fff;
     background: #c72229;
 	border-top-right-radius: 3px;
     border-top-left-radius: 3px;
 }
 
-.panel-default .panel-logo {
+.jcb_panel-default .jcb_panel-logo {
     display: flex;
     justify-content: space-between;
     align-items: end;
 	padding: 5px 10px;
 }
 
-.panel-default .action-btn {
+.jcb_panel-default .jcb_action-btn {
 	padding: 5px 10px;
 }
 
-.panel-default .panel-logo .logo-text {
+.jcb_panel-default .jcb_panel-logo .jcb_logo-text {
     font-size: 20px;
     text-transform: uppercase;
     font-family: 'PF Handbook Pro Regular';
 	line-height: 1;
 }
 
-.panel-default .panel-logo .logo-image img {
+.jcb_panel-default .jcb_panel-logo .jcb_logo-image img {
     width: 120px;
 }
 
-.panel-default .panel-heading-text {
+.jcb_panel-default .jcb_panel-heading-text {
 	background-color: #969F6E;
 	color: #fff;
 	font-size: 10px;
@@ -292,19 +292,19 @@
 	border-bottom: 1px solid #fff;
 }
 
-.msg_container {
+.jcb_msg_container {
 	padding: 10px;
 	overflow: hidden;
 	display: flex;
 }
 
-.base_sent {
+.jcb_base_sent {
 	justify-content: flex-end;
 	align-items: flex-end;
 }
 
 
-.icon-heading-chatBot {
+.jcb_icon-heading-chatBot {
 	float: left;
 	width: 60%;
 }
@@ -312,7 +312,7 @@
 
 /*@ functionality Css*/
 /**Scroll list of funds */
-.chatbot_list_funds{
+.jcb_chatbot_list_funds{
 	position: absolute;
 	z-index: 999999999;
 	overflow-y: scroll;
@@ -323,14 +323,14 @@
 	background-color: white;
 	border:2px solid #3e593c;
 }
-.chatbot_list_funds_item{
+.jcb_chatbot_list_funds_item{
 	font-size: 15px;
 	padding: 5px 15px;
 	border-top: 1px solid #3e593c;
 	background-color: white;
 	cursor: pointer;
 }
-.chatbot_list_funds_item:hover{
+.jcb_chatbot_list_funds_item:hover{
 	color: white;
 	background-color: #3e593c;
 }
@@ -339,7 +339,7 @@
 /*@ functionality Ends here Css*/
 
 /**List of Questions Suggestions*/
-.chatbot_list_questions_suggestions{
+.jcb_chatbot_list_questions_suggestions{
 	position: absolute;
 	z-index: 999999998;
 	overflow-y: scroll;
@@ -350,7 +350,7 @@
 	border:2px solid #3e593c;
 }
 
-.chatbot_list_questions_item{
+.jcb_chatbot_list_questions_item{
 	
 	font-size: 15px;
 	padding: 5px 15px;
@@ -358,7 +358,7 @@
 	background-color: white;
 	cursor: pointer;
 }
-.chatbot_list_questions_item:hover{
+.jcb_chatbot_list_questions_item:hover{
 	color: white;
 	background-color: #3e593c;
 }
@@ -368,24 +368,24 @@
 
 /*ScrollBar of ChatBot design*/
 
-.msg_container_base::-webkit-scrollbar {
+.jcb_msg_container_base::-webkit-scrollbar {
 	width: 11px;
 }
-.msg_container_base {
+.jcb_msg_container_base {
 	scrollbar-width: thin;
 	scrollbar-color: #90a4ae #cfd8dc;
 }
-.msg_container_base::-webkit-scrollbar-track {
+.jcb_msg_container_base::-webkit-scrollbar-track {
 	background: #cfd8dc;
 }
-.msg_container_base::-webkit-scrollbar-thumb {
+.jcb_msg_container_base::-webkit-scrollbar-thumb {
 	background-color: #90a4ae;
 	border-radius: 6px;
 	border: 3px solid #cfd8dc;
 }
 
 /*Floating Button*/
-.fab-icon-a-welcome-notification{
+.jcb_fab-icon-a-welcome-notification{
 	position: fixed;
 	z-index: 2147483646;
 	right: 60px;
@@ -404,7 +404,7 @@
 	animation: 2s slidein,3s fadein; 
 	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
 }
-.fab-icon-a {
+.jcb_fab-icon-a {
 	position: fixed;
 	z-index: 2147483646;
 	right: 20px;
@@ -420,7 +420,7 @@
 
 	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
 }
-.fab-img {
+.jcb_fab-img {
 	width: 60%;
 	display: inline;
 	margin-top: 11px;
@@ -428,7 +428,7 @@
 
 
 /*Animation three dots*/
-.loader_animation_chatbot{
+.jcb_loader_animation_chatbot{
 	margin-top: -40px !important;
 	font-size:70px;
 	color: #3e593c !important;
@@ -438,7 +438,7 @@
 
 
 /*Type2 ButtonMessage with recieve message*/
-.btn_mess {
+.jcb_btn_mess {
 	border: 2px solid #3e593c;
 	border-radius: 20px;
 	padding: 5px;
@@ -447,19 +447,19 @@
 	float: left;
 	text-align: left;
 }
-.msg_container > .btn_messs {
+.jcb_msg_container > .jcb_btn_messs {
 	display: block !important;
 	margin: -5px -1px;
 }
 
 /*Table Card Ui*/
-.chatbot_table_ui {
+.jcb_chatbot_table_ui {
 	background-color: #969F6E;
 	border-collapse: collapse;
 	color: #fff;
 	width: 100%;
 }
-.chatbot_table_ui_th {
+.jcb_chatbot_table_ui_th {
 	border: 1px solid #fff;
 	text-align: left;
 	font-size: 13px;
@@ -467,13 +467,13 @@
 }
 
 /**Maximize Icon*/
-.maximize-icon-heading-chatbot{
+.jcb_maximize-icon-heading-chatbot{
 	cursor: pointer;
 	margin-right: 10px  ;
 }
 
 /*  Image_message_receive*/
-.image_message_chatbot{
+.jcb_image_message_chatbot{
 	max-width: 200px;
 	max-height: 200px;
 	border-radius: 10%;
@@ -485,11 +485,11 @@
 /***/
 
 /*Chatbot FullScreen*/
-.maximize-icon-heading-chatbot-Main #chatbot_btn-input{
+.jcb_maximize-icon-heading-chatbot-Main #jcb_chatbot_btn-input{
 	font-size: 20px !important;
 }
 
-.maximize-icon-heading-chatbot-Main .blackScreenShadow_chatBot{
+.jcb_maximize-icon-heading-chatbot-Main .jcb_blackScreenShadow_chatBot{
 	height: 100%;
 	width: 100%;
 	position: fixed !important;
@@ -498,7 +498,7 @@
 	opacity: 0.3;
 }
 
-.maximize-icon-heading-chatbot-Main #chatBot-id {
+.jcb_maximize-icon-heading-chatbot-Main #jcb_chatBot-id {
 		width: 70%;
 		margin: auto !important;
 		height: 95%;
@@ -508,19 +508,19 @@
 		left: 0px;
 		right: 0px;
 	}
- .maximize-icon-heading-chatbot-Main .chat-window {
+ .jcb_maximize-icon-heading-chatbot-Main .jcb_chat-window {
 		max-width: 100% !important;
 		margin-left: 0px !important;
 	}
-.maximize-icon-heading-chatbot-Main  .top-bar {
+.jcb_maximize-icon-heading-chatbot-Main  .jcb_top-bar {
 		max-width: 100% !important;
 		height: 50px;
 	}
-.maximize-icon-heading-chatbot-Main  .panel-default {
+.jcb_maximize-icon-heading-chatbot-Main  .jcb_panel-default {
 		border: none;
 		height: 100%;
 	}
-.maximize-icon-heading-chatbot-Main  .msg_container_base {
+.jcb_maximize-icon-heading-chatbot-Main  .jcb_msg_container_base {
 		height: auto !important;
 		width: 70% ;
 		bottom: 7.6em !important;
@@ -528,74 +528,74 @@
 		position: fixed;
 	}
 
-.maximize-icon-heading-chatbot-Main  .panel-footer {
+.jcb_maximize-icon-heading-chatbot-Main  .jcb_panel-footer {
 		position: absolute;
 		width: 100%;
 		bottom: 0px;
 	}
-.maximize-icon-heading-chatbot-Main  .custom-layout {
+.jcb_maximize-icon-heading-chatbot-Main  .jcb_custom-layout {
 		position: absolute;
 		bottom: 90px !important;
 		margin-left: 20px;
 
 	}
-.maximize-icon-heading-chatbot-Main .custom-layout button {
+.jcb_maximize-icon-heading-chatbot-Main .jcb_custom-layout button {
 	font-size: 18px;
 	padding:10px;
 }
-.maximize-icon-heading-chatbot-Main  .fab-icon-a {
+.jcb_maximize-icon-heading-chatbot-Main  .jcb_fab-icon-a {
 		right: 20px !important;
 		width: 50px !important;
 		height: 50px !important;
 	}
-.maximize-icon-heading-chatbot-Main  .fab-img {
+.jcb_maximize-icon-heading-chatbot-Main  .jcb_fab-img {
 		width: 50% !important;
 	}
-.maximize-icon-heading-chatbot{
+.jcb_maximize-icon-heading-chatbot{
 	cursor: pointer;
 }
-.maximize-icon-heading-chatbot-Main .downButton{
+.jcb_maximize-icon-heading-chatbot-Main .jcb_downButton{
 	bottom: 90px;
 }
-.maximize-icon-heading-chatbot-Main .messages_chatbot{
+.jcb_maximize-icon-heading-chatbot-Main .jcb_messages_chatbot{
 	max-width: 600px;
 }
-.maximize-icon-heading-chatbot-Main .messages_chatbot > p{
+.jcb_maximize-icon-heading-chatbot-Main .jcb_messages_chatbot > p{
 	font-size: 18px;
 }
-.maximize-icon-heading-chatbot-Main .messages_chatbot > time{
+.jcb_maximize-icon-heading-chatbot-Main .jcb_messages_chatbot > time{
 	font-size:15px ;
 }
-.maximize-icon-heading-chatbot-Main .btn_mess{
+.jcb_maximize-icon-heading-chatbot-Main .jcb_btn_mess{
 	font-size: 18px;
 	padding:7px;
 }
-.maximize-icon-heading-chatbot-Main .chatbot_list_questions_suggestions{
+.jcb_maximize-icon-heading-chatbot-Main .jcb_chatbot_list_questions_suggestions{
 	bottom: 70px;
 }
 
-.maximize-icon-heading-chatbot-Main .chatbot_table_ui{
+.jcb_maximize-icon-heading-chatbot-Main .jcb_chatbot_table_ui{
 	font-size: 18px;
 }
-.maximize-icon-heading-chatbot-Main .messages_chatbot .chatbot_table_ui_th{
+.jcb_maximize-icon-heading-chatbot-Main .jcb_messages_chatbot .jcb_chatbot_table_ui_th{
 	font-size: 18px;
 }
-.maximize-icon-heading-chatbot-Main .msg_container{
+.jcb_maximize-icon-heading-chatbot-Main .jcb_msg_container{
 	margin-left: 20px;
 	margin-right: 20px;
 }
 
-.maximize-icon-heading-chatbot-Main .loader_animation_chatbot{
+.jcb_maximize-icon-heading-chatbot-Main .jcb_loader_animation_chatbot{
 	margin-left: 30px;
 	font-size: 80px;
 }
 
-.maximize-icon-heading-chatbot-Main .company_heading_name_chatbot{
+.jcb_maximize-icon-heading-chatbot-Main .jcb_company_heading_name_chatbot{
 	font-size: 20px !important;
 }
 
 /*  Image_message_receive*/
-.maximize-icon-heading-chatbot-Main .image_message_chatbot{
+.jcb_maximize-icon-heading-chatbot-Main .jcb_image_message_chatbot{
 	max-width: 300px;
 	max-height: 300px;
 	border-radius: 10%;
@@ -604,15 +604,15 @@
 }
 
 
-.maximize-icon-heading-chatbot-Main .chatbot_list_funds{
+.jcb_maximize-icon-heading-chatbot-Main .jcb_chatbot_list_funds{
 	bottom: 70px !important;
 	width: auto;
 }
 
-.maximize-icon-heading-chatbot-Main .chatbot_list_questions_item{
+.jcb_maximize-icon-heading-chatbot-Main .jcb_chatbot_list_questions_item{
 	font-size: 18px;
 }
-.maximize-icon-heading-chatbot-Main .chatbot_list_funds_item{
+.jcb_maximize-icon-heading-chatbot-Main .jcb_chatbot_list_funds_item{
 	font-size: 18px;
 }
 

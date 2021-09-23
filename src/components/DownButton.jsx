@@ -6,11 +6,11 @@ import "../css/chatbot.css"
 function DownButton(props) {
   const [src, setSrc] = useState("/images/arrowUp.png")
   return (
-    <a className="downButton" onClick={props.onClick}>
+    <a className="jcb_downButton" onClick={props.onClick}>
       <img
-        className="down_button"
+        className="jcb_down_button"
         src={props.visible ? "/images/arrowDown.png" : "/images/arrowUp.png"}
-        alt="down_button"
+        alt="jcb_down_button"
       />
     </a>
   );

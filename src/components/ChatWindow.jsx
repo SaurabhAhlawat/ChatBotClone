@@ -26,7 +26,7 @@ function ChatWindow(props) {
 	//ThreeDots loading Animation
 	const [loader, setLoader] = useState(-1);
 	//DownButtonList which will keep on changing.
-	const [down_button_data, set_down_button_data] = useState([]);
+	const [jcb_down_button_data, set_jcb_down_button_data] = useState([]);
 	//DownButtonList Checker
 	const [sheet, setBottomSheet] = useState({ bottomSheet: false });
 	//1 Random Id per session
@@ -107,7 +107,7 @@ function ChatWindow(props) {
 		clickButton()
 		// console.log(event);
 		setButtonValue([]);
-		set_down_button_data([]);
+		set_jcb_down_button_data([]);
 		isClicked(true);
 	}
 
@@ -247,7 +247,7 @@ function ChatWindow(props) {
 							if (trial.length < 10) trial.push(m);
 						}
 					);
-					set_down_button_data([].concat(trial));
+					set_jcb_down_button_data([].concat(trial));
 					/** */
 
 					success.data.result.fulfillment.messages.map((m) => {
@@ -363,7 +363,7 @@ function ChatWindow(props) {
 							if (trial.length < 10) trial.push(m);
 						}
 					);
-					set_down_button_data([].concat(trial));
+					set_jcb_down_button_data([].concat(trial));
 					/** */
 
 					success.data.result.fulfillment.messages.map((m) => {
@@ -522,7 +522,7 @@ function ChatWindow(props) {
 							if (trial.length < 10) trial.push(m);
 						}
 					);
-					set_down_button_data([].concat(trial));
+					set_jcb_down_button_data([].concat(trial));
 					/** */
 
 					success.data.result.fulfillment.messages.map((m) => {
@@ -615,7 +615,7 @@ function ChatWindow(props) {
 		}
 		//console.log(value);
 		count++;
-		document.getElementById("my_form").reset();
+		document.getElementById("jcb_my_form").reset();
 	}
 
 
@@ -641,10 +641,10 @@ function ChatWindow(props) {
 		setBottomSheet(obj);
 		setEscapeButton(!escapeButton)
 	};
-	var downbuttons = down_button_data.map((m, i) => {
+	var downbuttons = jcb_down_button_data.map((m, i) => {
 		return (
 			<button
-				className="bottom-sheet-item"
+				className="jcb_bottom-sheet-item"
 				onClick={() => {
 					onclick(m);
 					bottomsheetonClick();
@@ -668,7 +668,7 @@ function ChatWindow(props) {
 
 	function onMaximizeChatBot() {
 		if (maximizeChatBot === "") {
-			setMaximizeChatBot("maximize-icon-heading-chatbot-Main");
+			setMaximizeChatBot("jcb_maximize-icon-heading-chatbot-Main");
 			setMaxOrMinIcon("/images/minimize.png")
 		}
 		else {
@@ -680,57 +680,57 @@ function ChatWindow(props) {
 
 	/**Return Type */
 	return (
-		<div class={maximizeChatBot}>
-			<div class="blackScreenShadow_chatBot"></div>
+		<div class={"jcb " + maximizeChatBot}>
+			<div class="jcb_blackScreenShadow_chatBot"></div>
 			<div
-				className="chat-window chatbotAnimationClassFadeIn"
-				id="chatBot-id"
+				className="jcb_chat-window jcb_chatbotAnimationClassFadeIn"
+				id="jcb_chatBot-id"
 				style={{ display: props.active ? "block" : "none" }}
 			>
-				<div className="panel-default">
-					<div className="panel-logo-wrapper">
-						<div style={{ textAlign: "right" }} className="action-btn">
-							<img alt="maximize_icon" class="maximize-icon-heading-chatbot" onClick={(m) => { m.preventDefault(); onMaximizeChatBot(); }} src={maxOrMinIcon} />
+				<div className="jcb_panel-default">
+					<div className="jcb_panel-logo-wrapper">
+						<div style={{ textAlign: "right" }} className="jcb_action-btn">
+							<img alt="maximize_icon" class="jcb_maximize-icon-heading-chatbot" onClick={(m) => { m.preventDefault(); onMaximizeChatBot(); }} src={maxOrMinIcon} />
 							<img alt="close_icon" style={{ cursor: "pointer" }} class="close-icon-heading-chatbot" onClick={(m) => {
 								m.preventDefault();
 								setMaximizeChatBot(""); props.closeChatbot(); setBottomSheet({ bottomSheet: false })
 							}} src="/images/remove.png" />
 						</div>
-						<div className="panel-logo">
-							<div className="logo-text">Wealth Assist</div>
-							<div className="logo-image">
+						<div className="jcb_panel-logo">
+							<div className="jcb_logo-text">Wealth Assist</div>
+							<div className="jcb_logo-image">
 								<img src="https://c3india.s3.ap-south-1.amazonaws.com/public_assets/data/000/000/344/original/BirlaCapitalLogo_jpeg?1538291690" />
 							</div>
 						</div>
 					</div>
-					<div className="panel-heading-text">
+					<div className="jcb_panel-heading-text">
 						Aditya Birla Finance Limited (AMFI registered Mutual Fund Distributor)
 					</div>
-					<div className="panel-body msg_container_base">
+					<div className="panel-body jcb_msg_container_base">
 
 						{receives}
 						
-						{loader !== -1 ? <div className="loader_animation_chatbot"><Dot>.</Dot><Dot>.</Dot><Dot>.</Dot> </div> : null}
-						{recievesButton.length !== 0 ? <div className="row msg_container ">
-							<div class="btn_messs">{recievesButton}</div>
+						{loader !== -1 ? <div className="jcb_loader_animation_chatbot"><Dot>.</Dot><Dot>.</Dot><Dot>.</Dot> </div> : null}
+						{recievesButton.length !== 0 ? <div className="row jcb_msg_container ">
+							<div class="jcb_btn_messs">{recievesButton}</div>
 						</div> : null}
 						<div ref={messagesEndRef} />
 
 					</div>
 					{/**Bottom sheet implementation */}
 					<ReactBottomsheet
-						className="custom-layout"
+						className="jcb_custom-layout"
 						visible={sheet.bottomSheet}
 						onClose={bottomsheetonClick}
 						appendCancelBtn={false}
 					>
 						<div>{downbuttons}</div>
 					</ReactBottomsheet>
-					<div className="panel-footer">
-						<div className="input-group">
+					<div className="jcb_panel-footer">
+						<div className="jcb_input-group">
 							<form
 								autoComplete="off"
-								id="my_form"
+								id="jcb_my_form"
 								onSubmit={(m) => {
 									m.preventDefault();
 									isClicked(true);

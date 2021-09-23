@@ -28,7 +28,7 @@ function App() {
 	}
 	return (
 		<>
-			{notification === 1 ? <div class="fab-icon-a-welcome-notification">Hi! Do you need some help?</div> : null}
+			{notification === 1 ? <div class="jcb_fab-icon-a-welcome-notification">Hi! Do you need some help?</div> : null}
 			<Chat
 				active={item.isActive}
 				closeChatbot={closeChatbot}
@@ -36,8 +36,8 @@ function App() {
 				cookieKey="sessionid"
 			/>
 			{item.icon==="-1"?null:
-				<a onClick={(m) => { m.preventDefault(); handleClick(); setNotification(0); }} class="fab-icon-a">
-				<img src={item.icon} alt="Chat_facility" class="fab-img" />
+				<a onClick={(m) => { m.preventDefault(); handleClick(); setNotification(0); }} class="jcb_fab-icon-a">
+				<img src={item.icon} alt="Chat_facility" class="jcb_fab-img" />
 			</a>}
 		</>
 	);

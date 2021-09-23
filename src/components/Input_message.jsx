@@ -38,11 +38,11 @@ function Input(props) {
 
 
 	// const lists_of_fund = lists.map((e, i) => {
-	// 	return <div key={i} class="chatbot_list_funds_item" onClick={() => { onClickOfItemFunds(e) }}>{e}</div>
+	// 	return <div key={i} class="jcb_chatbot_list_funds_item" onClick={() => { onClickOfItemFunds(e) }}>{e}</div>
 	// })
 
 	const lists_of_questions_suggestions = questionList.map((e, i) => {
-		return <div key={i} class="chatbot_list_questions_item" onClick={() => { onClickOfItemQuestions(e) }}><i class="fa fa-search"></i> {e}</div>
+		return <div key={i} class="jcb_chatbot_list_questions_item" onClick={() => { onClickOfItemQuestions(e) }}><i class="fa fa-search"></i> {e}</div>
 	})
 
 	function onClickOfItemQuestions(e) {
@@ -208,7 +208,7 @@ function Input(props) {
 	return (
 
 		// <MentionsInput
-		// 	id="chatbot_btn-input"
+		// 	id="jcb_chatbot_btn-input"
 		// 	type="text"
 		// 	allowSpaceInQuery="true"
 		// 	value={textAreaInput}
@@ -225,8 +225,8 @@ function Input(props) {
 		// </MentionsInput>
 
 		<>
-			{/* { show ? <div class="chatbot_list_funds" >{lists_of_fund}</div> : null} */}
-			{showQuestion ? <div class="chatbot_list_questions_suggestions">{lists_of_questions_suggestions}</div> : null}
+			{/* { show ? <div class="jcb_chatbot_list_funds" >{lists_of_fund}</div> : null} */}
+			{showQuestion ? <div class="jcb_chatbot_list_questions_suggestions">{lists_of_questions_suggestions}</div> : null}
 
 			<textarea
 				ref={input => input && input.focus()}
@@ -235,7 +235,7 @@ function Input(props) {
 					// box- sizing: border-box;background-color: transparent;font-family: inherit;font-size: inherit;letter-spacing: inherit;/* 
 					//height: 100%; */bottom: 0px;overflow: hidden;resize: none;
 				}}
-			id="chatbot_btn-input"
+			id="jcb_chatbot_btn-input"
 				type="text"
 				className="chatbot_comments-textarea"
 				placeholder="Type a message... "

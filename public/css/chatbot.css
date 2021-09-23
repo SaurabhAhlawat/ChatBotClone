@@ -1,4 +1,4 @@
-#chatBot-id {
+#jcb_chatBot-id {
   position: fixed;
   z-index: 2147483646;
   right: 100px;
@@ -8,16 +8,16 @@
 }
 
 @media only screen and (max-width: 1000px) {
-  #chatBot-id {
+  #jcb_chatBot-id {
     width: 1000%;
     right: 100px;
   }
-  .fab-icon-a {
+  .jcb_fab-icon-a {
     right: 20px !important;
     width: 50px !important;
     height: 50px !important;
   }
-  .fab-img {
+  .jcb_fab-img {
     width: 50% !important;
   }
 }
@@ -38,19 +38,19 @@
 }
 /*Up_arrow*/
 
-.downButton:active {
+.jcb_downButton:active {
   position: relative;
   top: 1px;
 }
 
-.down_button {
+.jcb_down_button {
   cursor: pointer;
   size: 1%;
   max-width: 25px;
   max-height: 25px;
 }
 
-.custom-layout {
+.jcb_custom-layout {
   position: absolute;
   border: 2px solid #02b4de;
   border-radius: 5px;
@@ -60,7 +60,7 @@
   margin-left: -5px;
 }
 
-.custom-layout button {
+.jcb_custom-layout button {
   background-color: #fff;
   width: 100%;
   text-align: left;
@@ -72,24 +72,24 @@
 
 /*Send Buttons*/
 
-.myButton:active {
+.jcb_myButton:active {
   position: relative;
   top: 1px;
 }
-.send_image {
+.jcb_send_image {
   cursor: pointer;
   width: 25px;
   height: 25px;
   display: inline;
 }
-.panel-footer {
+.jcb_panel-footer {
   text-align: left !important;
   background-color: #fff;
   border: none;
   border-bottom-left-radius: 66%;
   border-bottom-right-radius: 66%;
 }
-.input-group {
+.jcb_input-group {
   -webkit-box-sizing: inherit;
   display: block;
   justify-content: space-between;
@@ -99,24 +99,24 @@
   background-color: #fff;
 }
 
-.chat-window {
+.jcb_chat-window {
   bottom: 0;
   margin-left: 10%;
   max-width: 300px;
 }
-.chat-window > div > .panel {
+.jcb_chat-window > div > .panel {
   border-radius: 125px 125px 20px 20px;
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
 }
 
-.msg_container_base {
+.jcb_msg_container_base {
   background: #fff;
   margin: 0;
   padding: 0 10px 10px;
   height: 350px;
   overflow-x: hidden;
 }
-.top-bar {
+.jcb_top-bar {
   background: #3e593c !important;
   padding-left: 20px;
   font-size: 10%;
@@ -161,13 +161,13 @@
   color: #000;
   text-align: left;
 }
-.msg_container {
+.jcb_msg_container {
   padding: 10px;
   overflow: hidden;
   display: flex;
 }
 
-.base_sent {
+.jcb_base_sent {
   justify-content: flex-end;
   align-items: flex-end;
 }
@@ -176,31 +176,31 @@
   float: left;
 }
 
-.icon-heading-chatBot {
+.jcb_icon-heading-chatBot {
   float: left;
   width: 60%;
 }
 
 /*ScrollBar of ChatBot design*/
 
-.msg_container_base::-webkit-scrollbar {
+.jcb_msg_container_base::-webkit-scrollbar {
   width: 11px;
 }
-.msg_container_base {
+.jcb_msg_container_base {
   scrollbar-width: thin;
   scrollbar-color: #90a4ae #cfd8dc;
 }
-.msg_container_base::-webkit-scrollbar-track {
+.jcb_msg_container_base::-webkit-scrollbar-track {
   background: #cfd8dc;
 }
-.msg_container_base::-webkit-scrollbar-thumb {
+.jcb_msg_container_base::-webkit-scrollbar-thumb {
   background-color: #90a4ae;
   border-radius: 6px;
   border: 3px solid #cfd8dc;
 }
 
 /*Floating Button*/
-.fab-icon-a {
+.jcb_fab-icon-a {
   position: fixed;
   z-index: 2147483646;
   right: 100px;
@@ -221,14 +221,14 @@
 
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
 }
-.fab-img {
+.jcb_fab-img {
   width: 60%;
   display: inline;
   margin-top: 11px;
 }
 
 /*Type2 ButtonMessage with recieve message*/
-.btn_mess {
+.jcb_btn_mess {
   cursor: pointer;
   border: 2px solid #02b4de;
   border-radius: 20px;
@@ -238,7 +238,7 @@
   float: left;
   text-align: left;
 }
-.msg_container > .btn_messs {
+.jcb_msg_container > .jcb_btn_messs {
   display: block !important;
   margin: -5px -1px;
 }
