@@ -13,6 +13,10 @@ function App() {
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
+			new Audio("https://c3.avaamo.com/assets/disconnected-0b53435b5ff4147085fbd8ebc06e7684358ac41efc28ed182c02544e8b0ec388.mp3").play()
+			.catch(() => {
+				console.info('User has not interacted with document yet.');
+			});
 			setNotification((value) => {
 				return (value === -1 ? 1 : 0)
 			});
