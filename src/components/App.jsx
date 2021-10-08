@@ -13,7 +13,9 @@ function App() {
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
-			new Audio("https://c3.avaamo.com/assets/disconnected-0b53435b5ff4147085fbd8ebc06e7684358ac41efc28ed182c02544e8b0ec388.mp3").play()
+			const audio = new Audio("https://c3.avaamo.com/assets/disconnected-0b53435b5ff4147085fbd8ebc06e7684358ac41efc28ed182c02544e8b0ec388.mp3");
+			audio.volume = 0.1;
+			audio.play()
 			.catch(() => {
 				console.info('User has not interacted with document yet.');
 			});
@@ -35,7 +37,9 @@ function App() {
 
 
 	function handleClick() {
-		new Audio("https://c3.avaamo.com/assets/disconnected-0b53435b5ff4147085fbd8ebc06e7684358ac41efc28ed182c02544e8b0ec388.mp3").play();
+		const audio = new Audio("https://c3.avaamo.com/assets/disconnected-0b53435b5ff4147085fbd8ebc06e7684358ac41efc28ed182c02544e8b0ec388.mp3");
+		audio.volume = 0.1;
+		audio.play()
 		item.isActive
 			? setitem({ isActive: false, icon: "/images/Fab64x64.png" })
 			: setitem({ isActive: true, icon: "-1" });
