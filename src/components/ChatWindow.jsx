@@ -12,36 +12,36 @@ import DownButton from "./DownButton";
 import ReactBottomsheet from "react-bottomsheet";
 import { Dot } from 'react-animated-dots';
 import Image_message from "./Image_message";
-import useSessionStorage from "../utils/useSessionStorage";
+import useLocalStorage from "../utils/useLocalStorage";
 
 function ChatWindow(props) {
 	//"004f1836-15ce-11eb-a4c1-023dd4e3dfca"
 	//ToGetCookie
-	const [cookieData, setCookieData] = useSessionStorage('cookieData', -1);
+	const [cookieData, setCookieData] = useLocalStorage('cookieData', -1);
 	//ToGetAllMessages-Recieve,Send,ButtonsUI,Card
-	const [value, setValue] = useSessionStorage('value', []);
+	const [value, setValue] = useLocalStorage('value', []);
 	//ButtonUIArray which will disappear after click
-	const [buttonValue, setButtonValue] = useSessionStorage('buttonValue', []);
+	const [buttonValue, setButtonValue] = useLocalStorage('buttonValue', []);
 	//News UI
-	const [newsValue, setnewsValue] = useSessionStorage('newsValue', []);
+	const [newsValue, setnewsValue] = useLocalStorage('newsValue', []);
 	//ThreeDots loading Animation
-	const [loader, setLoader] = useSessionStorage('loader', -1);
+	const [loader, setLoader] = useLocalStorage('loader', -1);
 	//DownButtonList which will keep on changing.
-	const [jcb_down_button_data, set_jcb_down_button_data] = useSessionStorage('jcb_down_button_data', []);
+	const [jcb_down_button_data, set_jcb_down_button_data] = useLocalStorage('jcb_down_button_data', []);
 	//DownButtonList Checker
-	const [sheet, setBottomSheet] = useSessionStorage('sheet', { bottomSheet: false });
+	const [sheet, setBottomSheet] = useLocalStorage('sheet', { bottomSheet: false });
 	//1 Random Id per session
-	const [conversation_id, set_conversation_id] = useSessionStorage('conversation_id', -1);
+	const [conversation_id, set_conversation_id] = useLocalStorage('conversation_id', -1);
 	//TextArea while we type
-	const [textAreaInput, setTextAreaInput] = useSessionStorage('textAreaInput', false);
+	const [textAreaInput, setTextAreaInput] = useLocalStorage('textAreaInput', false);
 	//ScrollTo 1st recieved Box after we recieve msg
-	const [scrollTo, setScrollTo] = useSessionStorage('scrollTo', 0);
+	const [scrollTo, setScrollTo] = useLocalStorage('scrollTo', 0);
 	//Maximize ChatBot using maximize icon state change of class
-	const [maximizeChatBot, setMaximizeChatBot] = useSessionStorage('maximizeChatBot', "");
+	const [maximizeChatBot, setMaximizeChatBot] = useLocalStorage('maximizeChatBot', "");
 	//change maximize or minimize icon of chatbot
-	const [maxOrMinIcon, setMaxOrMinIcon] = useSessionStorage('maxOrMinIcon', "/images/maximize.png");
+	const [maxOrMinIcon, setMaxOrMinIcon] = useLocalStorage('maxOrMinIcon', "/images/maximize.png");
 	//Escape Button click
-	const [escapeButton, setEscapeButton] = useSessionStorage('escapeButton', false)
+	const [escapeButton, setEscapeButton] = useLocalStorage('escapeButton', false)
 
 
 	/**using Escape button to make downbuttonList disappear*/
