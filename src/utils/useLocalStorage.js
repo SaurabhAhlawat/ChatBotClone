@@ -21,6 +21,10 @@ function getLocalStorageOrDefault(key, defaultValue) {
   return isJsonString(stored) ? JSON.parse(stored) : stored;
 }
 
+export function clearFromLocalStorage(keys) {
+  keys.forEach((key) => localStorage.removeItem(keyWithPrefix(key)));
+}
+
 export default function useLocalStorage(key, defaultValue) {
   const [value, setValue] = useState(
     getLocalStorageOrDefault(key, defaultValue)
@@ -40,3 +44,4 @@ export default function useLocalStorage(key, defaultValue) {
 
   return [value, setValue];
 }
+

@@ -12,7 +12,8 @@ import DownButton from "./DownButton";
 import ReactBottomsheet from "react-bottomsheet";
 import { Dot } from 'react-animated-dots';
 import Image_message from "./Image_message";
-import useLocalStorage from "../utils/useLocalStorage";
+import useLocalStorage, {clearFromLocalStorage} from "../utils/useLocalStorage";
+import {uuid} from "../utils/utils";
 
 function ChatWindow(props) {
 	//"004f1836-15ce-11eb-a4c1-023dd4e3dfca"
@@ -43,6 +44,9 @@ function ChatWindow(props) {
 	//Escape Button click
 	const [escapeButton, setEscapeButton] = useLocalStorage('escapeButton', false)
 
+	const allStateKeys = ['cookieData', 'value', 'buttonValue', 'newsValue', 'loader', 'jcb_down_button_data', 'sheet', 'conversation_id', 'textAreaInput', 'scrollTo', 'maximizeChatBot', 'maxOrMinIcon', 'escapeButton', 'activeTabs'];
+
+	const tabId = sessionStorage.getItem('_jcb_tabId') ? sessionStorage.getItem('_jcb_tabId') : uuid();
 
 	/**using Escape button to make downbuttonList disappear*/
 	useEffect(() => {
@@ -57,6 +61,22 @@ function ChatWindow(props) {
 	}, []);
 	/** */
 
+	useEffect(() => {
+		window.addEventListener("beforeunload", function () {
+			sessionStorage.removeItem('_jcb_tabId');
+			const storedTabs = localStorage.getItem('_jcb_activeTabs');
+			const activeTabs = storedTabs ? JSON.parse(storedTabs) : [];
+			const index = activeTabs.indexOf(tabId);
+			if(index != -1) {
+				activeTabs.splice(index, 1);
+			}
+			if(activeTabs.length > 0) {
+				localStorage.setItem('_jcb_activeTabs', JSON.stringify(activeTabs));
+			} else {
+				clearFromLocalStorage(allStateKeys);
+			}
+		});
+	}, []);
 
 	/*Scroll to Bottom Easy UI*/
 	const messagesEndRef2 = useRef(null);
@@ -185,6 +205,14 @@ function ChatWindow(props) {
 	/*API CALL for first GoodMorning messages when user open the chat! */
 
 	useEffect(() => {
+		if(tabId){
+			sessionStorage.setItem('_jcb_tabId', tabId);
+			const storedTabs = localStorage.getItem('_jcb_activeTabs')
+			const activeTabs = storedTabs ? JSON.parse(storedTabs) : [];
+			if(!activeTabs.includes(tabId)){
+				localStorage.setItem('_jcb_activeTabs', JSON.stringify([...activeTabs, tabId]))
+			}
+		}
 		if(conversation_id !== -1) return true;
 		if(window.location.pathname === "/mf-transaction/Category") {
 			setTimeout(initializeChat, 10000);
