@@ -123,7 +123,8 @@ function ChatWindow(props) {
 			type: "sent",
 			time: startTime(),
 			count: value.length,
-			conversationId: conversation_id
+			conversationId: conversation_id,
+			pageUrl: window.location.href
 		};
 		clickButton()
 		// console.log(event);
@@ -185,7 +186,8 @@ function ChatWindow(props) {
 		type: "sent",
 		time: startTime(),
 		count: value.length,
-		conversationId: conversation_id
+		conversationId: conversation_id,
+		pageUrl: window.location.href
 	};
 
 	/**when we write something on input field, event function will change the value constantly */
@@ -196,7 +198,8 @@ function ChatWindow(props) {
 			type: "sent",
 			time: startTime(),
 			count: value.length,
-			conversationId: conversation_id
+			conversationId: conversation_id,
+			pageUrl: window.location.href
 		};
 
 		// console.log({});
@@ -255,7 +258,8 @@ function ChatWindow(props) {
 				type: "sent",
 				time: startTime(),
 				count: value.length,
-				conversationId: conversation
+				conversationId: conversation,
+				pageUrl: window.location.href
 			};
 			console.log("session of temp: ")
 			console.log(temp.session)
@@ -369,7 +373,8 @@ function ChatWindow(props) {
 				type: "sent",
 				time: startTime(),
 				count: value.length,
-				conversationId: conversation
+				conversationId: conversation,
+				pageUrl: window.location.href
 			};
 			console.log(temp)
 
@@ -656,7 +661,8 @@ function ChatWindow(props) {
 			type: "sent",
 			time: startTime(),
 			count: value.length,
-			conversationId: conversation_id
+			conversationId: conversation_id,
+			pageUrl: window.location.href
 		};
 		isClicked();
 	}
