@@ -174,6 +174,7 @@ function ChatWindow(props) {
 					click={() => {
 						onclick(m.query);
 					}}
+					newTabUrl={m.newTabUrl}
 				/>
 			);
 		}
@@ -299,11 +300,12 @@ function ChatWindow(props) {
 								};
 								sp.push(inital_message);
 							});
-						} else if (m.type === 2) {
+						} else if (m.type === 2 || m.type === 5) {
 							m.replies.map((mm) => {
 								var inital_message = {
 									session: cookieData,
 									query: mm,
+									newTabUrl: m.type === 5 ? m.urls[0] : null,
 									type: "button",
 									time: startTime(),
 									count: value.length,
@@ -416,11 +418,12 @@ function ChatWindow(props) {
 								};
 								sp.push(inital_message);
 							});
-						} else if (m.type === 2) {
+						} else if (m.type === 2 || m.type === 5) {
 							m.replies.map((mm) => {
 								var inital_message = {
 									session: cookieData,
 									query: mm,
+									newTabUrl: m.type === 5 ? m.urls[0] : null,
 									type: "button",
 									time: startTime(),
 									count: value.length,
@@ -576,11 +579,12 @@ function ChatWindow(props) {
 								};
 								sp.push(inital_message);
 							});
-						} else if (m.type === 2) {
+						} else if (m.type === 2 || m.type === 5) {
 							m.replies.map((mm) => {
 								var inital_message = {
 									session: cookieData,
 									query: mm,
+									newTabUrl: m.type === 5 ? m.urls[0] : null,
 									type: "button",
 									time: startTime(),
 									count: value.length,
