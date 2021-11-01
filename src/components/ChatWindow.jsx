@@ -711,7 +711,7 @@ function ChatWindow(props) {
 						{receives}
 						
 						{loader !== -1 ? <div className="jcb_loader_animation_chatbot"><Dot>.</Dot><Dot>.</Dot><Dot>.</Dot> </div> : null}
-						{recievesButton.length !== 0 ? <div className="row jcb_msg_container ">
+						{recievesButton.length !== 0 ? <div className="jcb_msg_container ">
 							<div class="jcb_btn_messs">{recievesButton}</div>
 						</div> : null}
 						<div ref={messagesEndRef} />
