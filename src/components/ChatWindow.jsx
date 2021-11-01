@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import Send from "./Sent_message";
 import Receive from "./receive_message";
 import Table from './Table_Message';
@@ -12,36 +12,41 @@ import DownButton from "./DownButton";
 import ReactBottomsheet from "react-bottomsheet";
 import { Dot } from 'react-animated-dots';
 import Image_message from "./Image_message";
+import useLocalStorage, {clearFromLocalStorage} from "../utils/useLocalStorage";
+import {uuid} from "../utils/utils";
 
 function ChatWindow(props) {
 	//"004f1836-15ce-11eb-a4c1-023dd4e3dfca"
 	//ToGetCookie
-	const [cookieData, setCookieData] = useState(-1);
+	const [cookieData, setCookieData] = useLocalStorage('cookieData', -1);
 	//ToGetAllMessages-Recieve,Send,ButtonsUI,Card
-	const [value, setValue] = useState([]);
+	const [value, setValue] = useLocalStorage('value', []);
 	//ButtonUIArray which will disappear after click
-	const [buttonValue, setButtonValue] = useState([]);
+	const [buttonValue, setButtonValue] = useLocalStorage('buttonValue', []);
 	//News UI
-	const [newsValue, setnewsValue] = useState([]);
+	const [newsValue, setnewsValue] = useLocalStorage('newsValue', []);
 	//ThreeDots loading Animation
-	const [loader, setLoader] = useState(-1);
+	const [loader, setLoader] = useLocalStorage('loader', -1);
 	//DownButtonList which will keep on changing.
-	const [jcb_down_button_data, set_jcb_down_button_data] = useState([]);
+	const [jcb_down_button_data, set_jcb_down_button_data] = useLocalStorage('jcb_down_button_data', []);
 	//DownButtonList Checker
-	const [sheet, setBottomSheet] = useState({ bottomSheet: false });
+	const [sheet, setBottomSheet] = useLocalStorage('sheet', { bottomSheet: false });
 	//1 Random Id per session
-	const [conversation_id, set_conversation_id] = useState(-1);
+	const [conversation_id, set_conversation_id] = useLocalStorage('conversation_id', -1);
 	//TextArea while we type
-	const [textAreaInput, setTextAreaInput] = useState(false);
+	const [textAreaInput, setTextAreaInput] = useLocalStorage('textAreaInput', false);
 	//ScrollTo 1st recieved Box after we recieve msg
-	const [scrollTo, setScrollTo] = useState(0);
+	const [scrollTo, setScrollTo] = useLocalStorage('scrollTo', 0);
 	//Maximize ChatBot using maximize icon state change of class
-	const [maximizeChatBot, setMaximizeChatBot] = useState("");
+	const [maximizeChatBot, setMaximizeChatBot] = useLocalStorage('maximizeChatBot', "");
 	//change maximize or minimize icon of chatbot
-	const [maxOrMinIcon, setMaxOrMinIcon] = useState("/images/maximize.png");
+	const [maxOrMinIcon, setMaxOrMinIcon] = useLocalStorage('maxOrMinIcon', "/images/maximize.png");
 	//Escape Button click
-	const [escapeButton, setEscapeButton] = useState(false)
+	const [escapeButton, setEscapeButton] = useLocalStorage('escapeButton', false)
 
+	const allStateKeys = ['cookieData', 'value', 'buttonValue', 'newsValue', 'loader', 'jcb_down_button_data', 'sheet', 'conversation_id', 'textAreaInput', 'scrollTo', 'maximizeChatBot', 'maxOrMinIcon', 'escapeButton', 'activeTabs'];
+
+	const tabId = sessionStorage.getItem('_jcb_tabId') ? sessionStorage.getItem('_jcb_tabId') : uuid();
 
 	/**using Escape button to make downbuttonList disappear*/
 	useEffect(() => {
@@ -56,6 +61,22 @@ function ChatWindow(props) {
 	}, []);
 	/** */
 
+	useEffect(() => {
+		window.addEventListener("beforeunload", function () {
+			sessionStorage.removeItem('_jcb_tabId');
+			const storedTabs = localStorage.getItem('_jcb_activeTabs');
+			const activeTabs = storedTabs ? JSON.parse(storedTabs) : [];
+			const index = activeTabs.indexOf(tabId);
+			if(index != -1) {
+				activeTabs.splice(index, 1);
+			}
+			if(activeTabs.length > 0) {
+				localStorage.setItem('_jcb_activeTabs', JSON.stringify(activeTabs));
+			} else {
+				clearFromLocalStorage(allStateKeys);
+			}
+		});
+	}, []);
 
 	/*Scroll to Bottom Easy UI*/
 	const messagesEndRef2 = useRef(null);
@@ -102,7 +123,8 @@ function ChatWindow(props) {
 			type: "sent",
 			time: startTime(),
 			count: value.length,
-			conversationId: conversation_id
+			conversationId: conversation_id,
+			pageUrl: window.location.href
 		};
 		clickButton()
 		// console.log(event);
@@ -152,6 +174,7 @@ function ChatWindow(props) {
 					click={() => {
 						onclick(m.query);
 					}}
+					newTabUrl={m.newTabUrl}
 				/>
 			);
 		}
@@ -164,7 +187,8 @@ function ChatWindow(props) {
 		type: "sent",
 		time: startTime(),
 		count: value.length,
-		conversationId: conversation_id
+		conversationId: conversation_id,
+		pageUrl: window.location.href
 	};
 
 	/**when we write something on input field, event function will change the value constantly */
@@ -175,7 +199,8 @@ function ChatWindow(props) {
 			type: "sent",
 			time: startTime(),
 			count: value.length,
-			conversationId: conversation_id
+			conversationId: conversation_id,
+			pageUrl: window.location.href
 		};
 
 		// console.log({});
@@ -184,6 +209,15 @@ function ChatWindow(props) {
 	/*API CALL for first GoodMorning messages when user open the chat! */
 
 	useEffect(() => {
+		if(tabId){
+			sessionStorage.setItem('_jcb_tabId', tabId);
+			const storedTabs = localStorage.getItem('_jcb_activeTabs')
+			const activeTabs = storedTabs ? JSON.parse(storedTabs) : [];
+			if(!activeTabs.includes(tabId)){
+				localStorage.setItem('_jcb_activeTabs', JSON.stringify([...activeTabs, tabId]))
+			}
+		}
+		if(conversation_id !== -1) return true;
 		if(window.location.pathname === "/mf-transaction/Category") {
 			setTimeout(initializeChat, 10000);
 		} else {
@@ -225,7 +259,8 @@ function ChatWindow(props) {
 				type: "sent",
 				time: startTime(),
 				count: value.length,
-				conversationId: conversation
+				conversationId: conversation,
+				pageUrl: window.location.href
 			};
 			console.log("session of temp: ")
 			console.log(temp.session)
@@ -265,11 +300,12 @@ function ChatWindow(props) {
 								};
 								sp.push(inital_message);
 							});
-						} else if (m.type === 2) {
+						} else if (m.type === 2 || m.type === 5) {
 							m.replies.map((mm) => {
 								var inital_message = {
 									session: cookieData,
 									query: mm,
+									newTabUrl: m.type === 5 ? m.urls[0] : null,
 									type: "button",
 									time: startTime(),
 									count: value.length,
@@ -339,7 +375,8 @@ function ChatWindow(props) {
 				type: "sent",
 				time: startTime(),
 				count: value.length,
-				conversationId: conversation
+				conversationId: conversation,
+				pageUrl: window.location.href
 			};
 			console.log(temp)
 
@@ -381,11 +418,12 @@ function ChatWindow(props) {
 								};
 								sp.push(inital_message);
 							});
-						} else if (m.type === 2) {
+						} else if (m.type === 2 || m.type === 5) {
 							m.replies.map((mm) => {
 								var inital_message = {
 									session: cookieData,
 									query: mm,
+									newTabUrl: m.type === 5 ? m.urls[0] : null,
 									type: "button",
 									time: startTime(),
 									count: value.length,
@@ -541,11 +579,12 @@ function ChatWindow(props) {
 								};
 								sp.push(inital_message);
 							});
-						} else if (m.type === 2) {
+						} else if (m.type === 2 || m.type === 5) {
 							m.replies.map((mm) => {
 								var inital_message = {
 									session: cookieData,
 									query: mm,
+									newTabUrl: m.type === 5 ? m.urls[0] : null,
 									type: "button",
 									time: startTime(),
 									count: value.length,
@@ -626,7 +665,8 @@ function ChatWindow(props) {
 			type: "sent",
 			time: startTime(),
 			count: value.length,
-			conversationId: conversation_id
+			conversationId: conversation_id,
+			pageUrl: window.location.href
 		};
 		isClicked();
 	}

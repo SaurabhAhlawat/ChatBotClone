@@ -5,7 +5,11 @@ function Button(props) {
   return (
     <>
       <div className="jcb_btn_mess">
-        <a style={{ color: "black", cursor: "pointer" }} onClick={props.click}>{props.query}</a>
+        {props.newTabUrl ? 
+          <a style={{ color: "black", cursor: "pointer" }} href={props.newTabUrl} target="_blank" rel="noopener noreferrer">{props.query}</a>
+          :
+          <a style={{ color: "black", cursor: "pointer" }} onClick={props.click}>{props.query}</a>
+        }
       </div>
     </>
   );
