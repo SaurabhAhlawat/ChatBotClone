@@ -47,7 +47,7 @@ function Table_Message(props) {
 		);
 	});
 	return (
-		<div className="row jcb_msg_container base_receive">
+		<div className="jcb_msg_container base_receive">
 			<div className="aa">
 				<div className="jcb_messages_chatbot jcb_chatbot_table_ui">
 					<div >{details.entries.title}</div>
