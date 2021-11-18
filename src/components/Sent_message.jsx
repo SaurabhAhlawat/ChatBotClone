@@ -3,7 +3,7 @@ import "../css/chatbot.css";
 
 function Sent(props) {
   return (
-    <div className="jcb_msg_container jcb_base_sent">
+    <div className="row jcb_msg_container jcb_base_sent">
       <div className="aa">
         <div className="jcb_messages_chatbot jcb_msg_sent_chatbot">
           <p>{props.query}</p>
