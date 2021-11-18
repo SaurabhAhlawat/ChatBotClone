@@ -44,7 +44,7 @@ function Receive(props) {
 
 
 	return (
-		<div className="jcb_msg_container base_receive">
+		<div className="row jcb_msg_container base_receive">
 			<div className="aa">
 				<div className="jcb_messages_chatbot jcb_msg_receive_chatbot">
 					<p>
