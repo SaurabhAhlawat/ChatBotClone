@@ -38,7 +38,7 @@ function ChatWindow(props) {
 	//ScrollTo 1st recieved Box after we recieve msg
 	const [scrollTo, setScrollTo] = useLocalStorage('scrollTo', 0);
 	//Maximize ChatBot using maximize icon state change of class
-	const [maximizeChatBot, setMaximizeChatBot] = useLocalStorage('maximizeChatBot', "");
+	const [maximizeChatBot, setMaximizeChatBot] = useLocalStorage('maximizeChatBot', "jcb_maximize-icon-heading-chatbot-Main");
 	//change maximize or minimize icon of chatbot
 	const [maxOrMinIcon, setMaxOrMinIcon] = useLocalStorage('maxOrMinIcon', "/images/maximize.png");
 	//Escape Button click
