@@ -40,7 +40,7 @@ function ChatWindow(props) {
 	//Maximize ChatBot using maximize icon state change of class
 	const [maximizeChatBot, setMaximizeChatBot] = useLocalStorage('maximizeChatBot', "jcb_maximize-icon-heading-chatbot-Main");
 	//change maximize or minimize icon of chatbot
-	const [maxOrMinIcon, setMaxOrMinIcon] = useLocalStorage('maxOrMinIcon', "/images/maximize.png");
+	const [maxOrMinIcon, setMaxOrMinIcon] = useLocalStorage('maxOrMinIcon', "./images/maximize.png");
 	//Escape Button click
 	const [escapeButton, setEscapeButton] = useLocalStorage('escapeButton', false)
 
@@ -709,11 +709,11 @@ function ChatWindow(props) {
 	function onMaximizeChatBot() {
 		if (maximizeChatBot === "") {
 			setMaximizeChatBot("jcb_maximize-icon-heading-chatbot-Main");
-			setMaxOrMinIcon("/images/minimize.png")
+			setMaxOrMinIcon("./images/minimize.png")
 		}
 		else {
 			setMaximizeChatBot("");
-			setMaxOrMinIcon("/images/maximize.png");
+			setMaxOrMinIcon("./images/maximize.png");
 		}
 	}
 
@@ -734,7 +734,7 @@ function ChatWindow(props) {
 							<img alt="close_icon" style={{ cursor: "pointer" }} class="close-icon-heading-chatbot" onClick={(m) => {
 								m.preventDefault();
 								setMaximizeChatBot(""); props.closeChatbot(); setBottomSheet({ bottomSheet: false })
-							}} src="/images/remove.png" />
+							}} src="./images/remove.png" />
 						</div>
 						<div className="jcb_panel-logo">
 							<div className="jcb_logo-text">Wealth Assist</div>
