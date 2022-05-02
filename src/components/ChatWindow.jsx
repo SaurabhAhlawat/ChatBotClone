@@ -17,8 +17,6 @@ import {uuid} from "../utils/utils";
 
 function ChatWindow(props) {
 	//"004f1836-15ce-11eb-a4c1-023dd4e3dfca"
-	//ToGetCookie
-	const [cookieData, setCookieData] = useLocalStorage('cookieData', -1);
 	//ToGetAllMessages-Recieve,Send,ButtonsUI,Card
 	const [value, setValue] = useLocalStorage('value', []);
 	//ButtonUIArray which will disappear after click
@@ -44,7 +42,7 @@ function ChatWindow(props) {
 	//Escape Button click
 	const [escapeButton, setEscapeButton] = useLocalStorage('escapeButton', false)
 
-	const allStateKeys = ['cookieData', 'value', 'buttonValue', 'newsValue', 'loader', 'jcb_down_button_data', 'sheet', 'conversation_id', 'textAreaInput', 'scrollTo', 'maximizeChatBot', 'maxOrMinIcon', 'escapeButton', 'activeTabs'];
+	const allStateKeys = ['value', 'buttonValue', 'newsValue', 'loader', 'jcb_down_button_data', 'sheet', 'conversation_id', 'textAreaInput', 'scrollTo', 'maximizeChatBot', 'maxOrMinIcon', 'escapeButton', 'activeTabs'];
 
 	const tabId = sessionStorage.getItem('_jcb_tabId') ? sessionStorage.getItem('_jcb_tabId') : uuid();
 
@@ -117,8 +115,8 @@ function ChatWindow(props) {
 
 	/** when user presses any message UI button*/
 	function onclick(event) {
-		temp = {
-			session: cookieData,
+		payload = {
+			session: getSessionId(),
 			query: event,
 			type: "sent",
 			time: startTime(),
@@ -181,8 +179,8 @@ function ChatWindow(props) {
 	});
 	// console.log(recievesButton.length+"recieve:");
 	/*OnChange in Input  function to get the value from input*/
-	var temp = {
-		session: cookieData,
+	var payload = {
+		session: getSessionId(),
 		query: "",
 		type: "sent",
 		time: startTime(),
@@ -193,8 +191,8 @@ function ChatWindow(props) {
 
 	/**when we write something on input field, event function will change the value constantly */
 	function submitForm(event) {
-		temp = {
-			session: cookieData,
+		payload = {
+			session: getSessionId(),
 			query: event,
 			type: "sent",
 			time: startTime(),
@@ -202,8 +200,6 @@ function ChatWindow(props) {
 			conversationId: conversation_id,
 			pageUrl: window.location.href
 		};
-
-		// console.log({});
 	}
 
 	/*API CALL for first GoodMorning messages when user open the chat! */
@@ -225,265 +221,105 @@ function ChatWindow(props) {
 		}
 	}, []);
 
+	function getSessionId() {
+		var user = Cookies.get(props.cookieKey);
+		return user ? user : -1;
+	}
+
 	function initializeChat() {
 		var conversation = Conversation_id_function();
 		set_conversation_id(conversation)
-		console.log(temp);
 		setLoader(1);
-		const user = Cookies.get(props.cookieKey);
-		console.log("cookie : ");
-		console.log(user);
-		console.log(
-			"if cookie is undefined means no cookie found, else we found cookie : " +
-			user
-		);
-		if (user) {
-			//we have cookie
-
-			// var sessionCookie = {
-			//   sessionid: user,
-			// };
-			console.log("we found cookie");
-			// const test = { rest: { ph: 121212, em: "anan@" } };
-
-			// const test2 = {
-			//   ll: "Asa",
-			//   mc: { ...test.rest },
-			// };
-			// console.log(test2);
-			console.log(temp)
-			setCookieData(user);
-			temp = {
-				session: user,
-				query: "hi!",
-				type: "sent",
-				time: startTime(),
-				count: value.length,
-				conversationId: conversation,
-				pageUrl: window.location.href
-			};
-			console.log("session of temp: ")
-			console.log(temp.session)
-			Axios.post(props.url, temp)
-				.then((success) => {
-					console.log("now: fetching data from abcl.vitt.ai");
-					//sp is for text messages array. we are storing it.
-					//btn is for button UI messages array. we are storing it.
-					var sp = [];
-					var btn = [];
-					var actionText = [];
-
-					/**UP Arrow */
-
-					var trial = [];
-					success.data.result.fulfillment.data.DownButton.GenerativeQuestion.map(
-						(m, i) => {
-							// console.log(i);
-							if (trial.length < 10) trial.push(m);
-						}
-					);
-					set_jcb_down_button_data([].concat(trial));
-					/** */
-
-					success.data.result.fulfillment.messages.map((m) => {
-						console.log(m);
-						// console.log("type: " + m.type + " speec: " + m.speech);
-						if (m.type === 0 && m.speech !== "") {
-							m.speech.map((mm) => {
-								var inital_message = {
-									session: cookieData,
-									query: mm,
-									type: "receive",
-									time: startTime(),
-									count: value.length,
-									conversationId: conversation
-								};
-								sp.push(inital_message);
-							});
-						} else if (m.type === 2 || m.type === 5) {
-							m.replies.map((mm) => {
-								var inital_message = {
-									session: cookieData,
-									query: mm,
-									newTabUrl: m.type === 5 ? m.urls[0] : null,
-									type: "button",
-									time: startTime(),
-									count: value.length,
-									conversationId: conversation
-								};
-								// console.log("replies: " + mm);
-								btn.push(inital_message);
-							});
-						}
-						else if (m.type === 3) {
+		payload = {
+			session: getSessionId(),
+			query: "hi!",
+			type: "sent",
+			time: startTime(),
+			count: value.length,
+			conversationId: conversation,
+			pageUrl: window.location.href
+		};
+		Axios.post(props.url, payload)
+			.then((success) => {
+				var sp = [];
+				var btn = [];
+				var actionText = [];
+				var trial = [];
+				success.data.result.fulfillment.data.DownButton.GenerativeQuestion.map(
+					(m, i) => {
+						if (trial.length < 10) trial.push(m);
+					}
+				);
+				set_jcb_down_button_data([].concat(trial));
+				success.data.result.fulfillment.messages.map((m) => {
+					if (m.type === 0 && m.speech !== "") {
+						m.speech.map((mm) => {
 							var inital_message = {
-								session: cookieData,
-								query: m.speech,
-								type: "image",
-								time: startTime(),
-								count: value.length,
-								conversationId: conversation
-							};
-							console.log("ImageLink: " + inital_message.query);
-							sp.push(inital_message);
-						} else if (m.type === 4 && m.speech !== "") {
-							var inital_message = {
-								session: cookieData,
-								query: m.speech,
+								session: getSessionId(),
+								query: mm,
 								type: "receive",
 								time: startTime(),
 								count: value.length,
 								conversationId: conversation
 							};
-							actionText.push(inital_message);
-						}
-					});
-					// console.log(btn);
-					// console.log(sp);
-					setValue([...value].concat(sp).concat(actionText));
-					setButtonValue([].concat(btn));
-					setLoader(-1)
-				})
-				.catch((error) => {
-					// console.log(error);
-
-					var errors = "";
-					// console.log(error.message)
-					if (error.message.includes("Network")) errors = "There seems to be an issue with your internet connection. Please check."
-					else errors = "Oops! please Please write something..."
-					var inital_message = {
-						session: cookieData,
-						query: errors,
-						type: "receive",
-						time: startTime(),
-						count: value.length,
-						conversationId: conversation_id
-					};
-					setValue([...value, inital_message]);
-					setLoader(-1);
-					console.log("some error in fetching data from abcl.vitt.ai : ");
-
-					console.log(error);
-				});
-
-
-		} else {
-			console.log("no cookies found");
-			temp = {
-				session: cookieData,
-				query: "hi!",
-				type: "sent",
-				time: startTime(),
-				count: value.length,
-				conversationId: conversation,
-				pageUrl: window.location.href
-			};
-			console.log(temp)
-
-			console.log("session of temp: ")
-			console.log(temp.session)
-			Axios.post(props.url, temp)
-				.then((success) => {
-					console.log("now: fetching data from abcl.vitt.ai");
-					//sp is for text messages array. we are storing it.
-					//btn is for button UI messages array. we are storing it.
-					var sp = [];
-					var btn = [];
-					var actionText = [];
-
-					/**UP Arrow */
-
-					var trial = [];
-					success.data.result.fulfillment.data.DownButton.GenerativeQuestion.map(
-						(m, i) => {
-							// console.log(i);
-							if (trial.length < 10) trial.push(m);
-						}
-					);
-					set_jcb_down_button_data([].concat(trial));
-					/** */
-
-					success.data.result.fulfillment.messages.map((m) => {
-						console.log(m);
-						// console.log("type: " + m.type + " speec: " + m.speech);
-						if (m.type === 0 && m.speech !== "") {
-							m.speech.map((mm) => {
-								var inital_message = {
-									session: cookieData,
-									query: mm,
-									type: "receive",
-									time: startTime(),
-									count: value.length,
-									conversationId: conversation
-								};
-								sp.push(inital_message);
-							});
-						} else if (m.type === 2 || m.type === 5) {
-							m.replies.map((mm) => {
-								var inital_message = {
-									session: cookieData,
-									query: mm,
-									newTabUrl: m.type === 5 ? m.urls[0] : null,
-									type: "button",
-									time: startTime(),
-									count: value.length,
-									conversationId: conversation
-								};
-								// console.log("replies: " + mm);
-								btn.push(inital_message);
-							});
-						} else if (m.type === 3) {
-							var inital_message = {
-								session: cookieData,
-								query: m.speech,
-								type: "image",
-								time: startTime(),
-								count: value.length,
-								conversationId: conversation
-							};
-							console.log("ImageLink: " + inital_message.query);
 							sp.push(inital_message);
-						} else if (m.type === 4 && m.speech !== "") {
+						});
+					} else if (m.type === 2 || m.type === 5) {
+						m.replies.map((mm) => {
 							var inital_message = {
-								session: cookieData,
-								query: m.speech,
-								type: "receive",
+								session: getSessionId(),
+								query: mm,
+								newTabUrl: m.type === 5 ? m.urls[0] : null,
+								type: "button",
 								time: startTime(),
 								count: value.length,
 								conversationId: conversation
 							};
-							actionText.push(inital_message);
-						}
-					});
-					// console.log(btn);
-					// console.log(sp);
-					setValue([...value].concat(sp).concat(actionText));
-					setButtonValue([].concat(btn));
-					setLoader(-1)
-				})
-				.catch((error) => {
-					// console.log(error);
-
-					var errors = "";
-					// console.log(error.message)
-					if (error.message.includes("Network")) errors = "There seems to be an issue with your internet connection. Please check."
-					else errors = "Oops! Please write something..."
-					var inital_message = {
-						session: cookieData,
-						query: errors,
-						type: "receive",
-						time: startTime(),
-						count: value.length,
-						conversationId: conversation_id
-					};
-					setValue([...value, inital_message]);
-					setLoader(-1);
-					console.log("some error in fetching data from abcl.vitt.ai : ");
-					console.log(error);
+							btn.push(inital_message);
+						});
+					}
+					else if (m.type === 3) {
+						var inital_message = {
+							session: getSessionId(),
+							query: m.speech,
+							type: "image",
+							time: startTime(),
+							count: value.length,
+							conversationId: conversation
+						};
+						sp.push(inital_message);
+					} else if (m.type === 4 && m.speech !== "") {
+						var inital_message = {
+							session: getSessionId(),
+							query: m.speech,
+							type: "receive",
+							time: startTime(),
+							count: value.length,
+							conversationId: conversation
+						};
+						actionText.push(inital_message);
+					}
 				});
-		}
-
-		// console.log(temp);
+				setValue([...value].concat(sp).concat(actionText));
+				setButtonValue([].concat(btn));
+				setLoader(-1)
+			})
+			.catch((error) => {
+				var errors = "";
+				if (error.message.includes("Network")) errors = "There seems to be an issue with your internet connection. Please check."
+				else errors = "Oops! please Please write something..."
+				var inital_message = {
+					session: getSessionId(),
+					query: errors,
+					type: "receive",
+					time: startTime(),
+					count: value.length,
+					conversationId: conversation_id
+				};
+				setValue([...value, inital_message]);
+				setLoader(-1);
+				console.log(error);
+			});
 	}
 	/*After clicking on send either by pressing enter or by pressing send button*/
 
@@ -498,22 +334,19 @@ function ChatWindow(props) {
 		setLoader(1);
 		var count = 1;
 		console.log("isClicked: request: ");
-		console.log(temp);
+		console.log(payload);
 		if (
-			temp.query.toString().trim() === undefined ||
-			temp.query.toString().trim() === null ||
-			temp.query.toString().trim() === ""
+			payload.query.toString().trim() === undefined ||
+			payload.query.toString().trim() === null ||
+			payload.query.toString().trim() === ""
 		) {
 			console.log(
 				"isClicked: query is blank, please enter something in textarea"
 			);
 			setLoader(-1);
 		} else {
-
-			setValue([...value, temp]);
-			// console.log(temp);
-			console.log("isClicked: query is not blank");
-			Axios.post(props.url, temp)
+			setValue([...value, payload]);
+			Axios.post(props.url, payload)
 				.then((success) => {
 
 					// console.log("printed");
@@ -530,7 +363,7 @@ function ChatWindow(props) {
 
 					/**Table Data */
 					var table_Data = {
-						session: cookieData,
+						session: getSessionId(),
 						query: {},
 						type: "card",
 						time: startTime(),
@@ -570,7 +403,7 @@ function ChatWindow(props) {
 						if (m.type === 0 && m.speech !== "") {
 							m.speech.map((mm, qq) => {
 								var inital_message = {
-									session: cookieData,
+									session: getSessionId(),
 									query: mm,
 									type: "receive",
 									time: startTime(),
@@ -582,7 +415,7 @@ function ChatWindow(props) {
 						} else if (m.type === 2 || m.type === 5) {
 							m.replies.map((mm) => {
 								var inital_message = {
-									session: cookieData,
+									session: getSessionId(),
 									query: mm,
 									newTabUrl: m.type === 5 ? m.urls[0] : null,
 									type: "button",
@@ -595,7 +428,7 @@ function ChatWindow(props) {
 							});
 						} else if (m.type === 3) {
 							var inital_message = {
-								session: cookieData,
+								session: getSessionId(),
 								query: m.speech,
 								type: "image",
 								time: startTime(),
@@ -606,7 +439,7 @@ function ChatWindow(props) {
 							sp.push(inital_message);
 						} else if (m.type === 4 && m.speech !== "") {
 							var inital_message = {
-								session: cookieData,
+								session: getSessionId(),
 								query: m.speech,
 								type: "receive",
 								time: startTime(),
@@ -622,7 +455,7 @@ function ChatWindow(props) {
 						sp.push(table_Data)
 					}
 
-					setValue([...value, temp].concat(sp).concat(actionText));
+					setValue([...value, payload].concat(sp).concat(actionText));
 
 					setButtonValue([].concat(btn));
 					setLoader(-1);
@@ -638,14 +471,14 @@ function ChatWindow(props) {
 					if (error.message.includes("Network")) errors = "There seems to be an issue with your internet connection. Please check."
 					else errors = "Oops! please Enter something related to Finance!"
 					var inital_message = {
-						session: cookieData,
+						session: getSessionId(),
 						query: errors,
 						type: "receive",
 						time: startTime(),
 						count: value.length,
 						conversationId: conversation_id
 					};
-					setValue([...value, temp, inital_message]);
+					setValue([...value, payload, inital_message]);
 					setLoader(-1);
 					// console.log(error);
 				});
@@ -659,8 +492,8 @@ function ChatWindow(props) {
 
 
 	function tableHyperLinkClick(m) {
-		temp = {
-			session: cookieData,
+		payload = {
+			session: getSessionId(),
 			query: m,
 			type: "sent",
 			time: startTime(),
@@ -780,7 +613,7 @@ function ChatWindow(props) {
 								<Input
 									change={submitForm}
 									textBoolean={textAreaInput}
-									onEnterPress={(e) => { onclick(temp.query) }}
+									onEnterPress={(e) => { onclick(payload.query) }}
 									EscapeButton={escapeButton}
 								/>
 								<Button
