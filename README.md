@@ -42,7 +42,7 @@ clone in your root project directory
 App.js (with navigation) 
 
 ```javascript 
-import Bot from 'vitt-ABW-Bot/Bot'
+import Bot from 'vitt-abw-bot/Bot'
 
 export function App(){
     return (
