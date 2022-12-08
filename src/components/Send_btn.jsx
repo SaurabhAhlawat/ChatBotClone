@@ -6,7 +6,7 @@ function Button(props) {
     <a className="jcb_myButton" onClick={props.click} type="Submit">
       <img
         className="jcb_send_image"
-        src="/images/arrow-right.png"
+        src="./images/arrow-right.png"
         alt="send_buton"
       />
     </a>
