@@ -42,7 +42,7 @@ function Input(props) {
 	// })
 
 	const lists_of_questions_suggestions = questionList.map((e, i) => {
-		return <div key={i} class="jcb_chatbot_list_questions_item" onClick={() => { onClickOfItemQuestions(e) }}><i class="fa fa-search"></i> {e}</div>
+		return <div key={i} className="jcb_chatbot_list_questions_item" onClick={() => { onClickOfItemQuestions(e) }}><i class="fa fa-search"></i> {e}</div>
 	})
 
 	function onClickOfItemQuestions(e) {
@@ -226,7 +226,7 @@ function Input(props) {
 
 		<>
 			{/* { show ? <div class="jcb_chatbot_list_funds" >{lists_of_fund}</div> : null} */}
-			{showQuestion ? <div class="jcb_chatbot_list_questions_suggestions">{lists_of_questions_suggestions}</div> : null}
+			{showQuestion ? <div className="jcb_chatbot_list_questions_suggestions">{lists_of_questions_suggestions}</div> : null}
 
 			<textarea
 				ref={input => input && input.focus()}

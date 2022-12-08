@@ -7,7 +7,7 @@ function Sent(props) {
       <div className="aa">
         <div className="jcb_messages_chatbot jcb_msg_sent_chatbot">
           <p>{props.query}</p>
-          <time datetime={props.time}>{props.time}</time>
+          <time dateTime={props.time}>{props.time}</time>
         </div>
       </div>
     </div>

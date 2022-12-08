@@ -51,7 +51,7 @@ function Receive(props) {
 						{checkUrlExist ? <>{values.mainText} <a target="_blank" href={values.link} style={{ "color": "#3e593c" }}>{values.string}</a></>
 							: <Linkify componentDecorator={componentDecorator} >{props.query}</Linkify>}
 					</p>  
-					<time datetime={props.time}>{props.time}</time>
+					<time dateTime={props.time}>{props.time}</time>
 				</div>
 			</div>
 		</div>
